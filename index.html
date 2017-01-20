@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8"/>
+        <title>Placeload</title>
+        <link href="./placeload.css" rel="stylesheet"/>
+    </head>
+    <body>
+
+        <section class="user__details">
+
+            <div class="timeline-wrapper" ng-if="!UserCtrl.loadedUserDetail">
+                <div class="user-item">
+                    <div class="animated-background">
+                        <div class="background-masker avatar__left"></div>
+                        <div class="background-masker avatar__right"></div>
+                        <div class="background-masker title__margin"></div>
+                        <div class="background-masker title__left"></div>
+                        <div class="background-masker title__right"></div>
+                        <div class="background-masker email__margin"></div>
+                        <div class="background-masker email__left"></div>
+                        <div class="background-masker email__right"></div>
+                        <div class="background-masker bio__margin"></div>
+                        <div class="background-masker bio__left"></div>
+                        <div class="background-masker bio__right"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="user__avatar">
+                <img alt="perfil photo" class="user__avatar--img" src="https://pbs.twimg.com/profile_images/722146001495203840/s2cTIeUf_400x400.jpg"/>
+            </div>
+            <h2 class="user__name"><a href="#">Sr. João</a></h2>
+            <p class="user__email">
+                calango@calango.me
+            </p>
+            <p class="user__bio">
+                 Nunc eleifend leo vitae magna.  In id erat non orci commodo lobortis.
+            </p>
+        </section>
+
+        <script src="./placeload.js"></script>
+        <script>
+           placeload.draw();
+        </script>
+    </body>
+</html>

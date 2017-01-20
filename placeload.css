@@ -1,0 +1,79 @@
+.user__details {
+    max-width: 500px;
+    margin: 10px auto;
+}
+.user__avatar .user__avatar--img{
+    border-radius: 100%;
+    width: 150px;
+    height: 150px;
+    margin-top: 30px;
+}
+.user__name, .user__bio, .user__email, .user__avatar{
+    text-align: center;
+}
+
+.user__name{
+    font-size: 38px;
+    margin: 2px;
+}
+.user__name a{
+    color: #318fe8;
+    text-decoration: none;
+    transition: all .3s;
+}
+.user__name a:hover{
+    text-decoration: underline;
+}
+.user__email, .user__bio{
+    color: #252525;
+}
+.user__email{
+    margin: 5px 0 26px 0;
+
+}
+.user__bio{
+    padding: 0 5px;
+}
+
+
+
+/* Animation */
+@keyframes placeHolderShimmer{
+    0%{
+        background-position: -468px 0
+    }
+    100%{
+        background-position: 468px 0
+    }
+}
+
+.animated-background {
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+    animation-name: placeHolderShimmer;
+    animation-timing-function: linear;
+    background: #f6f7f8;
+    background: linear-gradient(to right, #eeeeee 8%, #dddddd 18%, #eeeeee 33%);
+    background-size: 800px 104px;
+    height: 338px;
+    position: relative;
+}
+.background-masker {
+    background: #fff;
+    position: absolute;
+}
+
+.background-masker.avatar__left{
+    top: 0;
+    left: 0;
+    height: 150px;
+    width: 150px;
+}
+
+.background-masker.avatar__right{
+    top: 0;
+    right: 0;
+    height: 150px;
+    width: 150px;
+}
