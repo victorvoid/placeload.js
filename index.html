@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8"/>
         <title>Placeload</title>
-        <link href="./placeload.css" rel="stylesheet"/>
+        <link href="./src/style.css" rel="stylesheet"/>
     </head>
     <body>
 
@@ -12,17 +12,6 @@
             <div class="timeline-wrapper" ng-if="!UserCtrl.loadedUserDetail">
                 <div class="user-item">
                     <div class="animated-background">
-                        <div class="background-masker avatar__left"></div>
-                        <div class="background-masker avatar__right"></div>
-                        <div class="background-masker title__margin"></div>
-                        <div class="background-masker title__left"></div>
-                        <div class="background-masker title__right"></div>
-                        <div class="background-masker email__margin"></div>
-                        <div class="background-masker email__left"></div>
-                        <div class="background-masker email__right"></div>
-                        <div class="background-masker bio__margin"></div>
-                        <div class="background-masker bio__left"></div>
-                        <div class="background-masker bio__right"></div>
                     </div>
                 </div>
             </div>
@@ -39,9 +28,10 @@
             </p>
         </section>
 
-        <script src="./placeload.js"></script>
+        <script src="./out/placeload.js"></script>
         <script>
-           placeload.draw();
+           placeload.draw({element: '.user__avatar--img', width: 150, height: 150});
+           placeload.draw({element: '.user__name', width: 50, height: 20});
         </script>
     </body>
 </html>
