@@ -17,7 +17,7 @@ function build(){
         --module ./macros/functions.operator \
         --module ./macros/log \
         ./src/app.js \
-        -o ./out/placeload.js
+        -o ./lib/placeload.js
 }
 
 if [[ $# -eq 0 ]] ; then
