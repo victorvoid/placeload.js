@@ -27,18 +27,18 @@
 
         <script src="./lib/placeload.js"></script>
         <script>
-           placeload.draw({
+           var UserPlaceload = new Placeload();
+           UserPlaceload.draw({
              container: '.user-placeload',
              width: '150px',
-             height: '150px',
-             right: {
-               width: '10px'
-             }
+             height: '150px'
            });
-          // placeload.draw({container: '.user-placeload', width: '250px', height: '15px', marginTop: '10px'});
-          // placeload.draw({container: '.user-placeload', width: '400px', height: '15px', marginTop: '10px'});
-          // placeload.draw({container: '.user-placetwo', width: '400px', height: '15px', marginTop: '10px'});
-          var cont = new placeload();
+           var RepositoriesPlaceloadT = new Placeload();
+           RepositoriesPlaceloadT.draw({
+             container: '.user-placetwo',
+             width: '100px',
+             height: '100px'
+           })
         </script>
     </body>
 </html>
