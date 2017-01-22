@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8"/>
-        <title>Placeload</title>
+        <title>Placeload.js</title>
         <link href="./src/style.css" rel="stylesheet"/>
     </head>
     <body>
@@ -10,8 +10,9 @@
         <section class="user__details">
             <div class="user-placeload"></div>
 
+
             <div class="user__avatar">
-                <img alt="perfil photo" class="user__avatar--img" src="https://pbs.twimg.com/profile_images/722146001495203840/s2cTIeUf_400x400.jpg"/>
+                <img alt="perfil photo" class="user__avatar--img" src="https://pbs.twimg.com/profile_images/822378523721494528/do1h_jmW.jpg"/>
             </div>
             <h2 class="user__name"><a href="#">Sr. João</a></h2>
             <p class="user__email">
@@ -20,13 +21,24 @@
             <p class="user__bio">
                  Nunc eleifend leo vitae magna.  In id erat non orci commodo lobortis.
             </p>
+
+                <div class="user-placetwo"></div>
         </section>
 
         <script src="./lib/placeload.js"></script>
         <script>
-           placeload.draw({container: '.user-placeload', width: '150px', height: '150px', center: true});
-           placeload.draw({container: '.user-placeload', width: '250px', height: '15px', marginTop: '10px', center: true});
-           placeload.draw({container: '.user-placeload', width: '400px', height: '15px', marginTop: '10px', center: true});
+           placeload.draw({
+             container: '.user-placeload',
+             width: '150px',
+             height: '150px',
+             right: {
+               width: '10px'
+             }
+           });
+          // placeload.draw({container: '.user-placeload', width: '250px', height: '15px', marginTop: '10px'});
+          // placeload.draw({container: '.user-placeload', width: '400px', height: '15px', marginTop: '10px'});
+          // placeload.draw({container: '.user-placetwo', width: '400px', height: '15px', marginTop: '10px'});
+          var cont = new placeload();
         </script>
     </body>
 </html>
