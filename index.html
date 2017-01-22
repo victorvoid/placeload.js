@@ -8,13 +8,7 @@
     <body>
 
         <section class="user__details">
-
-            <div class="timeline-wrapper" ng-if="!UserCtrl.loadedUserDetail">
-                <div class="user-item">
-                    <div class="animated-background">
-                    </div>
-                </div>
-            </div>
+            <div class="user-placeload"></div>
 
             <div class="user__avatar">
                 <img alt="perfil photo" class="user__avatar--img" src="https://pbs.twimg.com/profile_images/722146001495203840/s2cTIeUf_400x400.jpg"/>
@@ -30,9 +24,9 @@
 
         <script src="./lib/placeload.js"></script>
         <script>
-           placeload.draw({width: '150px', height: '150px', center: true});
-           placeload.draw({width: '150px', height: '20px', marginTop: '10px', center: true});
-           placeload.draw({width: '200px', height: '20px', marginTop: '10px'});
+           placeload.draw({container: '.user-placeload', width: '150px', height: '150px', center: true});
+           placeload.draw({container: '.user-placeload', width: '250px', height: '15px', marginTop: '10px', center: true});
+           placeload.draw({container: '.user-placeload', width: '400px', height: '15px', marginTop: '10px', center: true});
         </script>
     </body>
 </html>

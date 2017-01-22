@@ -1,13 +1,13 @@
 {
-  "name": "placeload",
+  "name": "placeload.js",
   "version": "0.0.1",
   "description": "",
   "main": "lib/placeload.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Victor Igor",
+  "license": "MIT",
   "dependencies": {
     "es6-macros": "0.0.7",
     "sweet.js": "^2.2.1"

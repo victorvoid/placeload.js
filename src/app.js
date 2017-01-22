@@ -1,9 +1,16 @@
+/*
+⊂_ヽ
+　＼＼ Λ＿Λ
+　  ＼('ㅅ')  Placeload.js developed by Victor Igor (victorvoid)
+　　　>　 ⌒ヽ
+*/
+
 var placeload = function(){
 	var fullHeight = 0;
 	function draw(dataComponent){
 
 		var dataDefault = {
-			element: '',
+			container: '',
 			backgroundColor: '',
 			animationDelay: 300,
 			width: '',
@@ -15,10 +22,10 @@ var placeload = function(){
 			dataDefault[key] = dataComponent[key];
 		}
 
+		if(dataDefault.container === ''){
+			throw new Error('You need to specific container name to draw...')
+		}
 		puts 'draw...';
-
-		var animateContentEl = document.querySelector('.animated-background');
-		var animateContentX = animateContentEl.offsetWidth;
 		//helpers λ -> λ -> n
 		var addClass  /* |o\ */= λ classname -> λ el => {
 			el.className += ' ' + classname;
@@ -32,8 +39,18 @@ var placeload = function(){
 		var appendIn           = λ el -> λ x -> el.appendChild(x);
 		var removeUnit         = λ st -> st.slice(0, st.indexOf('px'));
 
+		var animateContentEl   = '';
+		if(isNull$(document.querySelector(dataDefault.container + ' .animated-background'))){
+			animateContentEl = document.createElement('div')
+					|> appendIn(document.querySelector(dataDefault.container))
+					|> addClass('animated-background');
+	  }else{
+			animateContentEl = document.querySelector(dataDefault.container + ' > '+ '.animated-background');
+		}
+		var animateContentX = animateContentEl.offsetWidth;
+
 		var marginTopValue     = dataDefault.marginTop.slice(0, dataDefault.marginTop.indexOf('px'));
-		marginTopValue         = marginTopValue === '' ? 0 : parseInt(marginTopValue)
+		marginTopValue         = marginTopValue === '' ? 0 : parseInt(marginTopValue);
 		var topPositionElement = fullHeight + marginTopValue;
 		var sideInCenterSizeX  = (animateContentX - parseInt(dataDefault.width
 															|> removeUnit))/2;
@@ -48,6 +65,7 @@ var placeload = function(){
 			if(isNotUndef$(obj.left))   el.style.left   = obj.left   + 'px';
 			return el;
 		};
+
 		var marginTopElement = document.createElement('div')
 				|> appendIn(animateContentEl)
 				|> addClass('background-masker')
