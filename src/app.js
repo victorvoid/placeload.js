@@ -84,7 +84,6 @@ var Placeload = function(containerEl){
 				|> position({top: topPositionElement, right: 0});
 
 		this.fullHeight += parseInt(dataDefault.height |> removeUnit) + marginTopValue;
-		console.log('-> ', this.fullHeight)
 		animateContentEl.style.height = this.fullHeight + 'px';
 	}
 }
