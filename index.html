@@ -8,9 +8,9 @@
     <body>
 
         <section class="user__details">
-            <div class="user-placeload"></div>
-
-
+            <div class="place-flex">
+              <div class="user-placeload"></div>
+            </div>
             <div class="user__avatar">
                 <img alt="perfil photo" class="user__avatar--img" src="https://pbs.twimg.com/profile_images/822378523721494528/do1h_jmW.jpg"/>
             </div>
@@ -22,22 +22,19 @@
                  Nunc eleifend leo vitae magna.  In id erat non orci commodo lobortis.
             </p>
 
-                <div class="user-placetwo"></div>
         </section>
 
         <script src="./lib/placeload.js"></script>
         <script>
-           var UserPlaceload = new Placeload();
+           var UserPlaceload = new Placeload('.user-placeload');
            UserPlaceload.draw({
-             container: '.user-placeload',
              width: '150px',
              height: '150px'
            });
-           var RepositoriesPlaceloadT = new Placeload();
-           RepositoriesPlaceloadT.draw({
-             container: '.user-placetwo',
+           UserPlaceload.draw({
              width: '100px',
-             height: '100px'
+             height: '10px',
+             right: true
            })
         </script>
     </body>

@@ -5,11 +5,11 @@
 　　　>　 ⌒ヽ
 */
 
-var Placeload = function(){
+var Placeload = function(containerEl){
 	this.fullHeight = 0;
+	this.container = containerEl;
 	this.draw = function (dataComponent){
 		var dataDefault = {
-			container: '',
 			backgroundColor: '',
 			animationDelay: 300,
 			width: '',
@@ -21,7 +21,7 @@ var Placeload = function(){
 			dataDefault[key] = dataComponent[key];
 		}
 
-		if(dataDefault.container === ''){
+		if(this.container === ''){
 			throw new Error('You need to specific container name to draw...')
 		}
 		puts 'draw...';
@@ -39,12 +39,12 @@ var Placeload = function(){
 		var removeUnit         = λ st -> st.slice(0, st.indexOf('px'));
 
 		var animateContentEl   = '';
-		if(isNull$(document.querySelector(dataDefault.container + ' .animated-background'))){
+		if(isNull$(document.querySelector(this.container + ' .animated-background'))){
 			animateContentEl = document.createElement('div')
-					|> appendIn(document.querySelector(dataDefault.container))
+					|> appendIn(document.querySelector(this.container))
 					|> addClass('animated-background');
 	  }else{
-			animateContentEl = document.querySelector(dataDefault.container + ' > '+ '.animated-background');
+			animateContentEl = document.querySelector(this.container + ' > '+ '.animated-background');
 		}
 		var animateContentX = animateContentEl.offsetWidth;
 
@@ -92,7 +92,7 @@ var Placeload = function(){
 // Export
 if (typeof window !== 'undefined' && window) {
   if (typeof module === 'object' && module.exports) {
-    	module.exports = Placeload();
+    	module.exports = Placeload;
   } else {
     // Browser
 	    window.Placeload = Placeload;
