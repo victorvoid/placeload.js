@@ -40,7 +40,7 @@ function Placeload(containerEl){
 		if(this.container === ''){
 			throw new Error('You need to specific container name to draw...')
 		}
-		puts 'draw...';
+		puts 'drawing...';
 
 		/**
 		* @description Set a size of the Element
@@ -58,7 +58,7 @@ function Placeload(containerEl){
 		* @param {String} - Class name
 		* @return {Function} - Waiting for element to put class
 		*/
-		var addClass  /* |o\ */= λ classname -> λ el => {
+		var addClass = λ classname -> λ el => {
 			el.className += ' ' + classname;
 			return el;
 		};
@@ -68,10 +68,34 @@ function Placeload(containerEl){
 		* @param {Element} - Element to append
 		* @return {Function} - Waiting for element by parameter to append {Element}
 		*/
-		var appendIn           = λ el -> λ x -> el.appendChild(x);
+		var appendIn = λ el -> λ x -> el.appendChild(x);
 
-		var removeUnit         = λ st -> st.slice(0, st.indexOf('px'));
-		var removeUnitInt   = λ st -> parseInt(removeUnit(st)); //remove Unit and return int
+		/**
+		* @description Remove unit(px, %, rem, em) of String
+		* @param {String}
+		* @return {String} removed unit
+		*/
+		var removeUnit = λ st -> st.slice(0, st.indexOf('px'));
+
+		/**
+		* @description Remove unit(px, %, rem, em) of String AND parse number to Integer
+		* @param {String}
+		* @return {Integer}
+		*/
+		var removeUnitInt = λ st -> parseInt(removeUnit(st));
+
+		/**
+		* @description Get obj width data and styling el
+		* @param {Object}
+		* @return {Function} Function waiting parameter with {Element} to stylize
+		*/
+		var position = λ (obj) -> λ el => {
+			if(isNotUndef$(obj.top))    el.style.top    = obj.top;
+			if(isNotUndef$(obj.right))  el.style.right  = obj.right;
+			if(isNotUndef$(obj.bottom)) el.style.bottom = obj.bottom;
+			if(isNotUndef$(obj.left))   el.style.left   = obj.left;
+			return el;
+		};
 
 		var animateContentEl   = '';
 		if(isNull$(document.querySelector(this.container + ' .animated-background'))){
@@ -81,22 +105,20 @@ function Placeload(containerEl){
 	  }else{
 			animateContentEl = document.querySelector(this.container + ' > '+ '.animated-background');
 		}
+
 		var animateContentX = animateContentEl.offsetWidth;
+
 		var marginTopValue     = dataDefault.marginTop.slice(0, dataDefault.marginTop.indexOf('px'));
+
 		marginTopValue         = marginTopValue === '' ? 0 : parseInt(marginTopValue);
+
 		var topPositionElement = this.fullHeight + marginTopValue;
+
 		var sideInCenterSizeX  = animateContentX - (dataDefault.width |> removeUnitInt)/2;
-		var sideSizeX          = (animateContentX - parseInt(dataDefault.width
-																|> removeUnit));
+
+		var sideSizeX          = animateContentX - (dataDefault.width |> removeUnitInt);
 
 		var widthElement       = dataDefault.center ? sideInCenterSizeX: 0;
-		var position = λ (obj) -> λ el => {
-			if(isNotUndef$(obj.top))    el.style.top    = obj.top;
-			if(isNotUndef$(obj.right))  el.style.right  = obj.right;
-			if(isNotUndef$(obj.bottom)) el.style.bottom = obj.bottom;
-			if(isNotUndef$(obj.left))   el.style.left   = obj.left;
-			return el;
-		};
 
 		if(dataDefault.right){
 			var fullHeightSideValue = dataDefault.height !== '' ? (dataDefault.height |> removeUnitInt) : 0;
@@ -108,12 +130,13 @@ function Placeload(containerEl){
 						|> addClass('background-masker')
 						|> size('100%', this.marginLeftOfSide)
 						|> position(
-							{
-								top: ((dataDefault.height|> removeUnitInt) + (this.fullHeightSide*2)) + 'px',
-								left: this.widthRight
-							});
+												{
+													top: ((dataDefault.height|> removeUnitInt) + (this.fullHeightSide*2)) + 'px',
+													left: this.widthRight
+												});
 
 			this.fullHeightSide += fullHeightSideValue;
+
 			//content right
 			}else{
 				this.widthRight = ((dataDefault.width |> removeUnitInt) + (dataDefault.marginLeft |> removeUnitInt)) + 'px';
@@ -124,7 +147,9 @@ function Placeload(containerEl){
 						|> size(dataDefault.marginLeft, '100%')
 						|> position({top: 0, left: dataDefault.width});
 			}
+
 			this.wasRight = true; //get future element
+
 		}else{
 			this.marginTopElement = document.createElement('div')
 					|> appendIn(animateContentEl)
