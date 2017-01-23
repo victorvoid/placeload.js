@@ -4,6 +4,43 @@
         <meta charset="UTF-8"/>
         <title>Placeload.js</title>
         <link href="./src/style.css" rel="stylesheet"/>
+        <style media="screen">
+          .user__details {
+              max-width: 500px;
+              margin: 10px auto;
+          }
+          .user__avatar .user__avatar--img{
+              border-radius: 100%;
+              width: 150px;
+              height: 150px;
+              margin-top: 30px;
+          }
+          .user__name, .user__bio, .user__email, .user__avatar{
+              text-align: center;
+          }
+          .user__name{
+              font-size: 38px;
+              margin: 2px;
+          }
+          .user__name a{
+              color: #318fe8;
+              text-decoration: none;
+              transition: all .3s;
+          }
+          .user__name a:hover{
+              text-decoration: underline;
+          }
+          .user__email, .user__bio{
+              color: #252525;
+          }
+          .user__email{
+              margin: 5px 0 26px 0;
+
+          }
+          .user__bio{
+              padding: 0 5px;
+          }
+        </style>
     </head>
     <body>
 
@@ -28,14 +65,16 @@
         <script>
            var UserPlaceload = new Placeload('.user-placeload');
            UserPlaceload.draw({
-             width: '150px',
-             height: '150px'
+             width: '100px',
+             height: '100px'
            });
            UserPlaceload.draw({
              width: '100px',
-             height: '10px',
-             right: true
-           })
+             height: '100px',
+             marginTop: '20px',
+             right: true,
+             marginLeft: '10px'
+           });
         </script>
     </body>
 </html>

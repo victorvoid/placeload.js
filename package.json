@@ -10,6 +10,7 @@
   "license": "MIT",
   "dependencies": {
     "es6-macros": "0.0.7",
+    "lambda-chop": "^0.1.5",
     "sweet.js": "^2.2.1"
   }
 }
