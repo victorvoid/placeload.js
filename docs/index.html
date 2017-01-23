@@ -3,8 +3,165 @@
   <head>
     <meta charset="utf-8">
     <title>Placeload.js</title>
+    <link rel="stylesheet" href="page.css">
+    <link rel="stylesheet" href="./zenburn.css">
+    <link rel="stylesheet" href="../src/style.css">
   </head>
   <body>
-    <h1>Placeload.js</h1>
+    <header>
+      <h1>Placeload.js</h1>
+    </header>
+    <nav>
+      <ul>
+        <li><a href="#">Documentation</a></li>
+        <li><a href="#">Examples</a></li>
+        <li><a href="#">Download</a></li>
+      </ul>
+    </nav>
+    <main>
+      <section class="content__panel">
+        <section class="placeload__draw">
+          <img src="https://placeholdit.imgix.net/~text?txtsize=33&txt=350%C3%97150&w=350&h=150" alt="">
+        </section>
+        <section class="placeload__install">
+          <h3>Install from npm.</h3>
+          <pre>
+            <code>$ npm install placeload.js</code>
+          </pre>
+        </section>
+      </section>
+      <section class="content__apresentation">
+        <h2>The best way to create a facebook's placeholder effect </h2>
+        <div class="placeload__description"></div>
+      </section>
+      <section class="content__documentation">
+        <h2 class="documentation__title">Documentation</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nullaI</p>
+        <ul class="summary">
+          <li><a href="#">Getting started</a></li>
+          <li><a href="#">Center option</a></li>
+          <li><a href="#">Margin Top option</a></li>
+        </ul>
+        <h3>Getting started</h3>
+        <section class="content__panel--examples example01">
+          <div class="example01"></div>
+        </section>
+        <pre class="example01">
+          <code class="javascript">
+              /*
+                ⊂_ヽ
+                　＼＼ Λ＿Λ
+                　  ＼('ㅅ')  imported placeload.js & placeload.css
+                　　　>　 ⌒ヽ
+              */
+             var example01 = new Placeload('.example01');
+             example01.draw({
+               width: '250px',
+               height: '250px'
+             });
+          </code>
+        </pre>
+
+        <h3>Center option</h3>
+        <section class="content__panel--examples example02">
+          <div class="example02"></div>
+        </section>
+        <pre class="example02">
+          <code class="javascript">
+              /*
+                ⊂_ヽ
+                　＼＼ Λ＿Λ
+                　  ＼('ㅅ')  imported placeload.js & placeload.css
+                　　　>　 ⌒ヽ
+              */
+             var example02 = new Placeload('.example02');
+             example02.draw({
+               width: '250px',
+               height: '250px',
+               center: true
+             });
+          </code>
+        </pre>
+
+
+        <h3>Margin top option</h3>
+        <section class="content__panel--examples example03">
+          <div class="example03"></div>
+        </section>
+        <pre class="example03">
+          <code class="javascript">
+              /*
+                ⊂_ヽ
+                　＼＼ Λ＿Λ
+                　  ＼('ㅅ')  imported placeload.js & placeload.css
+                　　　>　 ⌒ヽ
+              */
+             var example03 = new Placeload('.example03');
+             example03.draw({
+               width: '150px',
+               height: '150px',
+             });
+             example03.draw({
+               width: '200px',
+               height: '20px',
+               marginTop: '20px'
+             });
+             example03.draw({
+               width: '300px',
+               height: '20px',
+               marginTop: '20px'
+             });
+          </code>
+        </pre>
+      </section>
+    </main>
+    <footer class="footer">
+      <p>Made width <em>♥</em> by <a href="https://www.github.com/victorvoid">victorvoid</a> </p>
+    </footer>
+    <script src="highlight.pack.js"></script>
+    <script src="../lib/placeload.js"></script>
+    <script>
+      //description -> placeload
+       var placeloadDescription = new Placeload('.placeload__description');
+       placeloadDescription.draw({
+         width: '600px',
+         height: '15px',
+         center: true
+       });
+       placeloadDescription.draw({
+         width: '300px',
+         height: '15px',
+         center: true,
+         marginTop: '10px'
+       })
+      //example01
+       var example01 = new Placeload('.example01');
+       example01.draw({
+         width: '250px',
+         height: '250px'
+       });
+       var example02 = new Placeload('.example02');
+       example02.draw({
+         width: '250px',
+         height: '250px',
+         center: true
+       });
+       var example03 = new Placeload('.example03');
+       example03.draw({
+         width: '150px',
+         height: '150px',
+       });
+       example03.draw({
+         width: '200px',
+         height: '20px',
+         marginTop: '20px'
+       });
+       example03.draw({
+         width: '300px',
+         height: '20px',
+         marginTop: '20px'
+       });
+    </script>
+    <script>hljs.initHighlightingOnLoad();</script>
   </body>
 </html>
