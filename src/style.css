@@ -8,7 +8,7 @@
     }
 }
 
-.animated-background {
+.placeload-background {
     animation-duration: 1s;
     animation-fill-mode: forwards;
     animation-iteration-count: infinite;
@@ -20,19 +20,19 @@
     height: 338px;
     position: relative;
 }
-.background-masker {
+.placeload-masker {
     background: #fff;
     position: absolute;
 }
 
-.background-masker.avatar__left{
+.placeload-masker.avatar__left{
     top: 0;
     left: 0;
     height: 150px;
     width: 150px;
 }
 
-.background-masker.avatar__right{
+.placeload-masker.avatar__right{
     top: 0;
     right: 0;
     height: 150px;
