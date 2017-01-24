@@ -27,19 +27,19 @@
     <meta itemprop="image" content="https://github/.com/victorvoid/placeload.js/docs/imgs/cover_placeload.png"/>
 
     <!-- Favicon -->
-    <link rel="apple-touch-icon" sizes="57x57" href="/imgs/favicons/apple-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="/imgs/favicons/apple-icon-60x60.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="/imgs/favicons/apple-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="/imgs/favicons/apple-icon-76x76.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="/imgs/favicons/apple-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="/imgs/favicons/apple-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="/imgs/favicons/apple-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="/imgs/favicons/apple-icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/imgs/favicons/apple-icon-180x180.png">
-    <link rel="icon" type="image/png" sizes="192x192"  href="/imgs/favicons/android-icon-192x192.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/imgs/favicons/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="/imgs/favicons/favicon-96x96.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/imgs/favicons/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="57x57" href="./imgs/favicons/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="./imgs/favicons/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="./imgs/favicons/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="./imgs/favicons/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="./imgs/favicons/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="./imgs/favicons/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="./imgs/favicons/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="./imgs/favicons/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="./imgs/favicons/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="./imgs/favicons/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./imgs/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="./imgs/favicons/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./imgs/favicons/favicon-16x16.png">
     <link rel="manifest" href="/imgs/favicons/manifest.json">
 
     <meta name="msapplication-TileColor" content="#78909C">
@@ -49,9 +49,9 @@
     <!-- Android Lolipop Theme Color -->
     <meta name="theme-color" content="#78909C">
 
-    <link rel="stylesheet" href="page.css">
-    <link rel="stylesheet" href="./zenburn.css">
-    <link rel="stylesheet" href="../src/style.css">
+    <link rel="stylesheet" href="./css/page.css">
+    <link rel="stylesheet" href="./css/zenburn.css">
+    <link rel="stylesheet" href="./css/placeload.css">
   </head>
   <body>
     <header id="header">
@@ -229,8 +229,10 @@
     <footer class="footer">
       <p>Made width <em>♥</em> by <a href="https://www.github.com/victorvoid">victorvoid</a> </p>
     </footer>
-    <script src="highlight.pack.js"></script>
-    <script src="placeload.min.js"></script>
+    <script type="text/javascript" src="./js/page.js"></script>
+    <script type="text/javascript" src="./js/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script type="text/javascript" src="./js/placeload.min.js"></script>
     <script>
       //example01
        var example01 = new Placeload('.example01__place');
@@ -293,7 +295,5 @@
          right: true
        });
     </script>
-    <script>hljs.initHighlightingOnLoad();</script>
-    <script type="text/javascript" src="./page.js"></script>
   </body>
 </html>
