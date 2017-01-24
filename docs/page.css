@@ -28,6 +28,37 @@ header h1{
   margin: 0;
   font-weight: 300;
 }
+
+@keyframes navigationAnimation {
+    from {
+      transform: translateY(-100%)
+    }
+    to {
+      transform: translateY(0)
+    }
+}
+
+#navigation__menu.nav-fix{
+  animation-name: navigationAnimation;
+  animation-duration: .3s;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1;
+}
+#navigation__menu.nav-fix ul li a {
+  padding: 7px 5px;
+  height: 40px;
+}
+#navigation__menu.nav-fix ul li:first-child a {
+  background-color: rgba(79, 150, 195, 0.92);
+}
+#navigation__menu.nav-fix ul li:nth-child(2) a {
+  background-color: rgba(53, 185, 115, 0.75);
+}
+#navigation__menu.nav-fix ul li:last-child a {
+  background-color: rgba(216, 149, 50, 0.83);
+}
 ul{
   margin: 0;
   list-style: none;
@@ -86,11 +117,8 @@ nav ul li:nth-child(3) a:hover{
 .content__panel{
   display: flex;
   clear: both;
-  justify-content: center;
+  justify-content: space-around;
   padding-top: 110px;
-}
-.content__panel .placeload__draw{
-  margin-right: 330px;
 }
 .content__panel .placeload__install h3{
   margin: 0;
@@ -104,17 +132,18 @@ nav ul li:nth-child(3) a:hover{
   line-height: 100%;
 }
 .content__documentation {
-  margin-top: 150px;
+  margin-top: 120px;
 }
 .content__documentation .documentation__title{
   color: #6e6e6e;
   font-size: 2em;
   font-weight: 200;
   padding-left: 10px;
+  padding-top: 30px
 }
 .content__documentation ul.summary{
   margin-left: 80px;
-  list-style: circle;
+  list-style: none;
   margin-bottom: 100px;
 }
 .content__documentation ul.summary li a {
@@ -139,9 +168,14 @@ nav ul li:nth-child(3) a:hover{
   margin-left: 80px;
   margin-top: 20px;
 }
-.content__panel--examples.example02{
+.content__panel--examples.example03{
   margin-left: 0;
 }
+
+.content__panel--examples .example04__place, .content__panel--examples .example05__place{
+  max-width: 500px;
+}
+
 .footer {
   background-color: #e1e1e1;
   padding: 20px;
@@ -168,4 +202,35 @@ nav ul li:nth-child(3) a:hover{
 }
 .footer p a:hover{
   text-decoration: underline;
+}
+
+@media(max-width: 660px){
+  .content__panel{
+    flex-direction: column;
+    padding-top: 50px;
+    text-align: center;
+  }
+  .content__panel .placeload__draw img{
+    width: 100%;
+  }
+  .content__panel .placeload__draw {
+    padding-bottom: 40px;
+  }
+  #navigation__menu ul li a {
+    font-size: .8em;
+  }
+  .content__documentation{
+    margin-top: 60px;
+  }
+  .content__apresentation h2{
+    padding-top: 0;
+  }
+  .content__documentation p, .content__documentation p, .content__documentation ul.summary {
+    margin-left: 10px;
+  }
+}
+@media (max-width: 390px) {
+  #navigation__menu ul li a {
+    width: 100%;
+  }
 }

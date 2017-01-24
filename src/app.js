@@ -6,9 +6,9 @@
 */
 
 /**
-	* @constructor
-	* @param {String} Placeload - Component selector
-	*/
+* @constructor
+* @param {String} Placeload - Component selector
+*/
 function Placeload(containerEl){
 	this.fullHeight = 0; //container complete
 	this.fullHeightSide = 0; //container right complete
@@ -17,7 +17,7 @@ function Placeload(containerEl){
 	this.widthRight = '';
 	this.marginLeftOfSide = '';
 
-/**
+	/**
 	* @description Represents a pincel of the Placeload.
 	* @param {Object} with paint's data
 	*/
@@ -114,7 +114,7 @@ function Placeload(containerEl){
 
 		var topPositionElement = this.fullHeight + marginTopValue;
 
-		var sideInCenterSizeX  = animateContentX - (dataDefault.width |> removeUnitInt)/2;
+		var sideInCenterSizeX  = (animateContentX - (dataDefault.width |> removeUnitInt))/2;
 
 		var sideSizeX          = animateContentX - (dataDefault.width |> removeUnitInt);
 
@@ -176,10 +176,10 @@ function Placeload(containerEl){
 
 // Export
 if (typeof window !== 'undefined' && window) {
-  if (typeof module === 'object' && module.exports) {
-    	module.exports = Placeload;
-  } else {
-    // Browser
+	if (typeof module === 'object' && module.exports) {
+	  	module.exports = Placeload;
+	} else {
+	  // Browser
 	    window.Placeload = Placeload;
-  }
+	}
 }
