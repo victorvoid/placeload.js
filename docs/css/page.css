@@ -14,132 +14,103 @@ body, html {
   line-height: 140%;
   font-family: 'Lora', serif;
 }
+
 h1, h2, h3 {
   font-family: 'Raleway', sans-serif;
 }
+
 header{
   text-align: center;
   margin: 0;
-  padding: 20px;
-  background: #444444;
+  padding: 26px;
+  background: #f6f7f8;
   color: #FFF;
 }
+
+header .btn-download {
+    float: right;
+    margin-top: -32px;
+    padding: 4px 12px;
+    border: none;
+    background: #8cd0d3;
+    color: white;
+    border-radius: 10px;
+    font-weight: 800;
+    text-decoration: none;
+    font-size: 0.8em;
+    transition: all .3s;
+}
+
+header .btn-download:hover, header .btn-download:focus {
+  background-color: #56bcc1;
+}
+
 header h1{
   margin: 0;
   font-weight: 300;
+  color: #78909c;
 }
-
-@keyframes navigationAnimation {
-    from {
-      transform: translateY(-100%)
-    }
-    to {
-      transform: translateY(0)
-    }
-}
-
-#navigation__menu.nav-fix{
-  animation-name: navigationAnimation;
-  animation-duration: .3s;
+header.nav-fix{
+  background-color: rgba(246, 247, 248, 0.83);
   position: fixed;
   width: 100%;
-  top: 0;
-  z-index: 1;
+  z-index:1;
 }
-#navigation__menu.nav-fix ul li a {
-  padding: 7px 5px;
-  height: 40px;
+header.nav-fix .github-corner{
+  display: none;
 }
-#navigation__menu.nav-fix ul li:first-child a {
-  background-color: rgba(79, 150, 195, 0.92);
-}
-#navigation__menu.nav-fix ul li:nth-child(2) a {
-  background-color: rgba(53, 185, 115, 0.75);
-}
-#navigation__menu.nav-fix ul li:last-child a {
-  background-color: rgba(216, 149, 50, 0.83);
+header.nav-fix h1{
+  font-size: 1.2em;
+  text-align: left;
 }
 ul{
   margin: 0;
   list-style: none;
   padding: 0;
 }
-.placeload__draw pre{
-  display: block;
-  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
-  line-height: 1.6;
-  text-align: left;
-}
 
-.placeload__draw pre code {
-  padding: 1em;
-  overflow-x: auto;
-  border-radius: 3px;
-  background: #4a4c4d;
-  word-wrap: auto;
-  white-space: pre;
-  font-family: inherit;
-  -webkit-overflow-scrolling: touch;
-  color: #fff;
-}
-nav ul li a {
-  color: #FFF;
-  text-decoration: none;
-  padding: 24px 5px;
-  display: inline-block;
-  font-size: 1em;
-  line-height: 120%;
-  height: 65px;
-  width: 33.33%;
-  text-align: center;
-  float: left;
-  transition: all .4s;
-}
-nav ul li:first-child a{
-  background-color: #4f96c3;
-}
-nav ul li:first-child a:hover{
-  background-color: #2e84bb;
-}
-nav ul li:nth-child(2) a{
-  background-color: #35b973;
-}
-nav ul li:nth-child(2) a:hover{
-  background-color: #28a261;
-}
-nav ul li:nth-child(3) a{
-  background-color: #d89532;
-}
-nav ul li:nth-child(3) a:hover{
-  background-color: #c1780b;
+.placeload__draw img {
+  height: 250px;
+  transition: all .2s;
 }
 
 .content__panel{
   display: flex;
   clear: both;
   justify-content: space-around;
-  padding-top: 110px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+.content__panel, .content__apresentation{
+  background-color: #78909C;
+}
+
+.content__panel .placellad__install{
+  margin-top: -3px;
 }
 .content__panel .placeload__install h3{
   margin: 0;
+  color: #FFF;
+  margin-bottom: -13px;
 }
+
 .content__apresentation h2 {
   text-align: center;
-  padding-top: 100px;
-  color: #585858;
+  padding-top: 30px;
+  color: #FFF;
   font-weight: 800;
   font-size: 2em;
   line-height: 100%;
+  margin: 0 0 0px 0;
 }
 .content__documentation {
-  margin-top: 120px;
+  margin-top: 40px;
 }
 .content__documentation .documentation__title{
   color: #6e6e6e;
   font-size: 2em;
   font-weight: 200;
   padding-left: 10px;
-  padding-top: 30px
 }
 .content__documentation ul.summary{
   margin-left: 80px;
@@ -204,33 +175,45 @@ nav ul li:nth-child(3) a:hover{
   text-decoration: underline;
 }
 
-@media(max-width: 660px){
+
+
+@media(max-width: 900px){
+
+  .placeload__draw img{
+    height: 190px;
+  }
+
+}
+@media(max-width: 680px){
+  header .github-corner{
+    display:  none;
+  }
   .content__panel{
     flex-direction: column;
     padding-top: 50px;
     text-align: center;
   }
-  .content__panel .placeload__draw img{
-    width: 100%;
+  .content__apresentation{
+    padding-top: 40px;
   }
   .content__panel .placeload__draw {
-    padding-bottom: 40px;
-  }
-  #navigation__menu ul li a {
-    font-size: .8em;
+    display: none;
   }
   .content__documentation{
     margin-top: 60px;
   }
   .content__apresentation h2{
     padding-top: 0;
+    font-size: 1.2em;
   }
-  .content__documentation p, .content__documentation p, .content__documentation ul.summary {
+  .content__documentation p, .content__documentation p, .content__documentation ul.summary, .content__documentation h3, .content__panel--examples {
     margin-left: 10px;
+    margin-right: 10px;
   }
 }
-@media (max-width: 390px) {
-  #navigation__menu ul li a {
-    width: 100%;
+@media (max-width: 480px) {
+  #header h1{
+    font-size: 1em;
+    text-align: left;
   }
 }

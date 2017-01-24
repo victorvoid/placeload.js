@@ -98,12 +98,12 @@ function Placeload(containerEl){
 		};
 
 		var animateContentEl   = '';
-		if(isNull$(document.querySelector(this.container + ' .animated-background'))){
+		if(isNull$(document.querySelector(this.container + ' .placeload-background'))){
 			animateContentEl = document.createElement('div')
 					|> appendIn(document.querySelector(this.container))
-					|> addClass('animated-background');
+					|> addClass('placeload-background');
 	  }else{
-			animateContentEl = document.querySelector(this.container + ' > '+ '.animated-background');
+			animateContentEl = document.querySelector(this.container + ' > '+ '.placeload-background');
 		}
 
 		var animateContentX = animateContentEl.offsetWidth;
@@ -127,7 +127,7 @@ function Placeload(containerEl){
 			if(this.wasRight){
 				this.rowRightlement = document.createElement('div')
 						|> appendIn(animateContentEl)
-						|> addClass('background-masker')
+						|> addClass('placeload-masker')
 						|> size('100%', this.marginLeftOfSide)
 						|> position(
 												{
@@ -153,19 +153,19 @@ function Placeload(containerEl){
 		}else{
 			this.marginTopElement = document.createElement('div')
 					|> appendIn(animateContentEl)
-					|> addClass('background-masker')
+					|> addClass('placeload-masker')
 					|> size('100%', dataDefault.marginTop)
 					|> position({top: this.fullHeight+'px', left: 0});
 
 			this.sideLeftElement = document.createElement('div')
 					|> appendIn(animateContentEl)
-					|> addClass('background-masker')
+					|> addClass('placeload-masker')
 					|> size(widthElement+'px', dataDefault.height)
 					|> position({top: topPositionElement+'px', left: 0});
 
 			this.sideRightElement = document.createElement('div')
 					|> appendIn(animateContentEl)
-					|> addClass('background-masker')
+					|> addClass('placeload-masker')
 					|> size(dataDefault.center ? widthElement+'px': sideSizeX+'px', dataDefault.height)
 					|> position({top: topPositionElement+'px', right: 0});
 			this.fullHeight += (dataDefault.height |> removeUnitInt) + marginTopValue;
