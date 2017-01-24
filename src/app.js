@@ -17,7 +17,7 @@ function Placeload(containerEl){
 	this.widthRight = '';
 	this.marginLeftOfSide = '';
 
-/**
+	/**
 	* @description Represents a pincel of the Placeload.
 	* @param {Object} with paint's data
 	*/
@@ -176,10 +176,10 @@ function Placeload(containerEl){
 
 // Export
 if (typeof window !== 'undefined' && window) {
-  if (typeof module === 'object' && module.exports) {
-    	module.exports = Placeload;
-  } else {
-    // Browser
+	if (typeof module === 'object' && module.exports) {
+	  	module.exports = Placeload;
+	} else {
+	  // Browser
 	    window.Placeload = Placeload;
-  }
+	}
 }

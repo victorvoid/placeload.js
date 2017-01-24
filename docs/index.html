@@ -11,9 +11,9 @@
     <header>
       <h1>Placeload.js</h1>
     </header>
-    <nav>
+    <nav id="navigation__menu">
       <ul>
-        <li><a href="#">Documentation</a></li>
+        <li><a href="#documentation">Documentation</a></li>
         <li><a href="#">Examples</a></li>
         <li><a href="#">Download</a></li>
       </ul>
@@ -35,93 +35,162 @@
         <div class="placeload__description"></div>
       </section>
       <section class="content__documentation">
-        <h2 class="documentation__title">Documentation</h2>
+        <h2 class="documentation__title" id="documentation">Documentation</h2>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nullaI</p>
         <ul class="summary">
-          <li><a href="#">Getting started</a></li>
-          <li><a href="#">Center style</a></li>
-          <li><a href="#">Margin</a></li>
-          <li><a href="#">Right style</a></li>
-          <li><a href="#">Background Color</a></li>
+          <li><a href="#getting-started">Getting started</a></li>
+          <li><a href="#center-style">Center style</a></li>
+          <li><a href="#margin-top">Margin</a></li>
+          <li><a href="#right-style">Right style</a></li>
+          <li><a href="#right-row">Right row</a></li>
+          <li><a href="#background-color">Background Color</a></li>
         </ul>
-        <h3>Getting started</h3>
+        <h3 id="getting-started">Getting started</h3>
         <section class="content__panel--examples example01">
-          <div class="example01"></div>
+          <div class="example01__place"></div>
         </section>
         <pre class="example01">
+          <div class="">
+
           <code class="javascript">
-              /*
-                ⊂_ヽ
-                　＼＼ Λ＿Λ
-                　  ＼('ㅅ')  imported placeload.js & placeload.css
-                　　　>　 ⌒ヽ
-              */
-             var example01 = new Placeload('.example01');
-             example01.draw({
-               width: '250px',
-               height: '250px'
-             });
+        /*
+          ⊂_ヽ
+          　＼＼ Λ＿Λ
+          　  ＼('ㅅ')  imported placeload.js & placeload.css
+          　　　>　 ⌒ヽ
+        */
+        var example01 = new Placeload('.example01__place');
+        example01.draw({
+         width: '250px',
+         height: '250px'
+        });
           </code>
+        </div>
         </pre>
 
-        <h3>Center option</h3>
+
+        <h3 id="margin-top">Margin top</h3>
         <section class="content__panel--examples example02">
-          <div class="example02"></div>
+          <div class="example02__place"></div>
         </section>
         <pre class="example02">
           <code class="javascript">
-              /*
-                ⊂_ヽ
-                　＼＼ Λ＿Λ
-                　  ＼('ㅅ')  imported placeload.js & placeload.css
-                　　　>　 ⌒ヽ
-              */
-             var example02 = new Placeload('.example02');
-             example02.draw({
-               width: '250px',
-               height: '250px',
-               center: true
-             });
+          /*
+            ⊂_ヽ
+            　＼＼ Λ＿Λ
+            　  ＼('ㅅ')  imported placeload.js & placeload.css
+            　　　>　 ⌒ヽ
+          */
+         var example02 = new Placeload('.example02__place');
+         example02.draw({
+           width: '150px',
+           height: '150px',
+         });
+         example02.draw({
+           width: '200px',
+           height: '20px',
+           marginTop: '20px'
+         });
+         example02.draw({
+           width: '300px',
+           height: '20px',
+           marginTop: '20px'
+         });
           </code>
         </pre>
 
-
-        <h3>Margin top option</h3>
+        <h3 id="center-style">Center style</h3>
         <section class="content__panel--examples example03">
-          <div class="example03"></div>
+          <div class="example03__place"></div>
         </section>
         <pre class="example03">
           <code class="javascript">
-              /*
-                ⊂_ヽ
-                　＼＼ Λ＿Λ
-                　  ＼('ㅅ')  imported placeload.js & placeload.css
-                　　　>　 ⌒ヽ
-              */
-             var example03 = new Placeload('.example03');
-             example03.draw({
-               width: '150px',
-               height: '150px'
-             });
-             example03.draw({
-               width: '200px',
-               height: '20px',
-               marginTop: '20px'
-             });
-             example03.draw({
-               width: '300px',
-               height: '20px',
-               marginTop: '20px'
-             });
+          /*
+            ⊂_ヽ
+            　＼＼ Λ＿Λ
+            　  ＼('ㅅ')  imported placeload.js & placeload.css
+            　　　>　 ⌒ヽ
+          */
+         var example03 = new Placeload('.example03__place');
+         example03.draw({
+           width: '250px',
+           height: '250px',
+           center: true
+         });
+         example03.draw({
+           width: '300px',
+           height: '10px',
+           center: true,
+           marginTop: '10px'
+         });
           </code>
         </pre>
+
+
+        <h3 id="right-style">Right style</h3>
+        <section class="content__panel--examples example04">
+          <div class="example04__place"></div>
+        </section>
+        <pre class="example04">
+          <code class="javascript">
+          /*
+            ⊂_ヽ
+            　＼＼ Λ＿Λ
+            　  ＼('ㅅ')  imported placeload.js & placeload.css
+            　　　>　 ⌒ヽ
+          */
+         var example04 = new Placeload('.example04__place');
+         example04.draw({
+           width: '150px',
+           height: '150px'
+         });
+         example04.draw({
+           width: '150px',
+           right: true,
+           marginLeft: '10px'
+         });
+          </code>
+        </pre>
+
+
+        <h3 id="right-row">Right row</h3>
+        <section class="content__panel--examples">
+          <div class="example05__place"></div>
+        </section>
+        <pre class="example05">
+          <code class="javascript">
+          /*
+            ⊂_ヽ
+            　＼＼ Λ＿Λ
+            　  ＼('ㅅ')  imported placeload.js & placeload.css
+            　　　>　 ⌒ヽ
+          */
+         var example05 = new Placeload('.example05__place');
+         example05.draw({
+           width: '150px',
+           height: '150px'
+         });
+         example05.draw({
+           width: '150px',
+           height: '150px',
+           marginLeft: '10px',
+           right: true
+         });
+         example05.draw({
+           width: '150px',
+           height: '20px',
+           right: true
+         });
+          </code>
+        </pre>
+
       </section>
     </main>
     <footer class="footer">
       <p>Made width <em>♥</em> by <a href="https://www.github.com/victorvoid">victorvoid</a> </p>
     </footer>
     <script src="highlight.pack.js"></script>
-    <script src="../lib/placeload.js"></script>
+    <script src="placeload.min.js"></script>
     <script>
       //description -> placeload
        var placeloadDescription = new Placeload('.placeload__description');
@@ -137,33 +206,67 @@
          marginTop: '10px'
        })
       //example01
-       var example01 = new Placeload('.example01');
+       var example01 = new Placeload('.example01__place');
        example01.draw({
          width: '250px',
          height: '250px'
        });
-       var example02 = new Placeload('.example02');
+       var example02 = new Placeload('.example02__place');
        example02.draw({
-         width: '250px',
-         height: '250px',
-         center: true
-       });
-       var example03 = new Placeload('.example03');
-       example03.draw({
          width: '150px',
          height: '150px',
        });
-       example03.draw({
+       example02.draw({
          width: '200px',
          height: '20px',
          marginTop: '20px'
        });
-       example03.draw({
+       example02.draw({
          width: '300px',
          height: '20px',
          marginTop: '20px'
        });
+       var example03 = new Placeload('.example03__place');
+       example03.draw({
+         width: '250px',
+         height: '250px',
+         center: true
+       });
+       example03.draw({
+         width: '300px',
+         height: '10px',
+         center: true,
+         marginTop: '10px'
+       });
+
+       var example04 = new Placeload('.example04__place');
+       example04.draw({
+         width: '150px',
+         height: '150px'
+       });
+       example04.draw({
+         width: '150px',
+         right: true,
+         marginLeft: '10px'
+       });
+       var example05 = new Placeload('.example05__place');
+       example05.draw({
+         width: '150px',
+         height: '150px'
+       });
+       example05.draw({
+         width: '150px',
+         height: '150px',
+         marginLeft: '10px',
+         right: true
+       });
+       example05.draw({
+         width: '150px',
+         height: '20px',
+         right: true
+       });
     </script>
     <script>hljs.initHighlightingOnLoad();</script>
+    <script type="text/javascript" src="./page.js"></script>
   </body>
 </html>
