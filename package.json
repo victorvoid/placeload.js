@@ -1,7 +1,7 @@
 {
   "name": "placeload.js",
   "version": "0.0.1",
-  "description": "",
+  "description": "The best way to create a placeholder layout effect",
   "main": "lib/placeload.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
