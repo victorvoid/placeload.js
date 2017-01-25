@@ -19,6 +19,7 @@
     background-size: 1000px 104px;
     height: 338px;
     position: relative;
+    overflow: hidden;
 }
 .placeload-masker {
     background: #fff;
