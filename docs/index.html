@@ -84,6 +84,7 @@
           <li><a href="#margin-top">Margin</a></li>
           <li><a href="#right-style">Right style</a></li>
           <li><a href="#right-row">Right row</a></li>
+          <li><a href="#border-radius">Border radius</a></li>
         </ul>
         <h3 id="getting-started">Getting started</h3>
         <section class="content__panel--examples example01">
@@ -223,7 +224,34 @@
          });
           </code>
         </pre>
-
+        <h3 id="border-radius">Border radius</h3>
+        <section class="content__panel--examples">
+          <div class="example06__place"></div>
+        </section>
+        <pre class="example06">
+          <code class="javascript">
+          /*
+            ⊂_ヽ
+            　＼＼ Λ＿Λ
+            　  ＼('ㅅ')  imported placeload.js & placeload.css
+            　　　>　 ⌒ヽ
+          */
+          var example06 = new Placeload('.example06__place', {borderRadius: '10px'});
+          example06.draw({
+            width: '100px',
+            height: '100px'
+          });
+          example06.draw({
+            width: '100px',
+            marginLeft: '10px',
+            right: true
+          });
+          example06.draw({
+            right: true,
+            height: '10px'
+          })
+          </code>
+        </pre>
 
         <h2 class="documentation__title" id="Examples">Examples</h2>
         <ul class="summary">
@@ -299,6 +327,20 @@
          height: '20px',
          right: true
        });
+       var example06 = new Placeload('.example06__place', {borderRadius: '10px'});
+       example06.draw({
+         width: '100px',
+         height: '100px'
+       });
+       example06.draw({
+         width: '100px',
+         marginLeft: '10px',
+         right: true
+       });
+       example06.draw({
+         right: true,
+         height: '10px'
+       })
     </script>
   </body>
 </html>

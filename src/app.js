@@ -101,7 +101,7 @@ function Placeload(containerEl, options){
 
 	/******** Customize background ********/
 	if(backOptions.borderRadius !== '') {
-		var containerBackground = document.querySelector( ' .placeload-background');
+		var containerBackground = document.querySelector(this.container + ' .placeload-background');
 		containerBackground.style.borderRadius = backOptions.borderRadius;
 	}
 
