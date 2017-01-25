@@ -40,6 +40,8 @@ Paint your placeholder
   });
 ```
 
+![](https://github.com/victorvoid/placeload.js/blob/master/docs/imgs/placeload_example.gif)
+
 Learning More
 -------------
 
