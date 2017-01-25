@@ -143,7 +143,7 @@ function Placeload(containerEl){
 				this.marginLeftOfSide = dataDefault.marginLeft;
 				this.paddingLeftlement = document.createElement('div')
 						|> appendIn(animateContentEl)
-						|> addClass('background-masker')
+						|> addClass('placeload-masker')
 						|> size(dataDefault.marginLeft, '100%')
 						|> position({top: 0, left: dataDefault.width});
 			}
