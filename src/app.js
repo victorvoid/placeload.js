@@ -8,8 +8,9 @@
 /**
 * @constructor
 * @param {String} Placeload - Component selector
+* @param {Object} Placeload - Objects of background's options
 */
-function Placeload(containerEl){
+function Placeload(containerEl, options){
 	this.fullHeight = 0; //container complete
 	this.fullHeightSide = 0; //container right complete
 	this.container = containerEl;
@@ -18,13 +19,99 @@ function Placeload(containerEl){
 	this.marginLeftOfSide = '';
 
 	/**
+	* @description Options of the container background to customize.
+	*/
+	var backOptions = {
+		backgroundColor: '',
+		animationDelay: 300,
+		borderRadius: ''
+	};
+
+	for (var key in options) {
+		backOptions[key] = options[key];
+	}
+
+	/**************** HELPERS **************/
+	/**
+	* @description Set a size of the Element
+	* @param {String} - Width
+	* @param {String} - Height
+	*/
+	var size = λ(width, height) -> λ (el) => {
+		el.style.width = width;
+		el.style.height = height;
+		return el;
+	};
+
+	/**
+	* @description Add class in Element
+	* @param {String} - Class name
+	* @return {Function} - Waiting for element to put class
+	*/
+	var addClass = λ classname -> λ el => {
+		el.className += ' ' + classname;
+		return el;
+	};
+
+	/**
+	* @description Append element in element
+	* @param {Element} - Element to append
+	* @return {Function} - Waiting for element by parameter to append {Element}
+	*/
+	var appendIn = λ el -> λ x -> el.appendChild(x);
+
+	/**
+	* @description Remove unit(px, %, rem, em) of String
+	* @param {String}
+	* @return {String} removed unit
+	*/
+	var removeUnit = λ st -> st.slice(0, st.indexOf('px'));
+
+	/**
+	* @description Remove unit(px, %, rem, em) of String AND parse number to Integer
+	* @param {String}
+	* @return {Integer}
+	*/
+	var removeUnitInt = λ st -> parseInt(removeUnit(st));
+
+	/**
+	* @description Get obj width data and styling el
+	* @param {Object}
+	* @return {Function} Function waiting parameter with {Element} to stylize
+	*/
+	var position = λ (obj) -> λ el => {
+		if(isNotUndef$(obj.top))    el.style.top    = obj.top;
+		if(isNotUndef$(obj.right))  el.style.right  = obj.right;
+		if(isNotUndef$(obj.bottom)) el.style.bottom = obj.bottom;
+		if(isNotUndef$(obj.left))   el.style.left   = obj.left;
+		return el;
+	};
+
+	/* Create the background animation */
+	var animateContentEl   = '';
+	if(isNull$(document.querySelector(this.container + ' .placeload-background'))){
+		animateContentEl = document.createElement('div')
+				|> appendIn(document.querySelector(this.container))
+				|> addClass('placeload-background');
+  }else{
+		animateContentEl = document.querySelector(this.container + ' > '+ '.placeload-background');
+	}
+
+	var animateContentX = animateContentEl.offsetWidth;
+
+	/******** Customize background ********/
+	if(backOptions.borderRadius !== '') {
+		var containerBackground = document.querySelector( ' .placeload-background');
+		containerBackground.style.borderRadius = backOptions.borderRadius;
+	}
+
+	/**
 	* @description Represents a pincel of the Placeload.
-	* @param {Object} with paint's data
+	* @param {Object} Paint's data
 	*/
 	this.draw = function (dataComponent){
+		puts 'drawing...';
 		var dataDefault = {
-			backgroundColor: '',
-			animationDelay: 300,
 			width: '',
 			height: '',
 			marginTop: '',
@@ -40,73 +127,6 @@ function Placeload(containerEl){
 		if(this.container === ''){
 			throw new Error('You need to specific container name to draw...')
 		}
-		puts 'drawing...';
-
-		/**
-		* @description Set a size of the Element
-		* @param {String} - Width
-		* @param {String} - Height
-		*/
-		var size = λ(width, height) -> λ (el) => {
-			el.style.width = width;
-			el.style.height = height;
-			return el;
-		};
-
-		/**
-		* @description Add class in Element
-		* @param {String} - Class name
-		* @return {Function} - Waiting for element to put class
-		*/
-		var addClass = λ classname -> λ el => {
-			el.className += ' ' + classname;
-			return el;
-		};
-
-		/**
-		* @description Append element in element
-		* @param {Element} - Element to append
-		* @return {Function} - Waiting for element by parameter to append {Element}
-		*/
-		var appendIn = λ el -> λ x -> el.appendChild(x);
-
-		/**
-		* @description Remove unit(px, %, rem, em) of String
-		* @param {String}
-		* @return {String} removed unit
-		*/
-		var removeUnit = λ st -> st.slice(0, st.indexOf('px'));
-
-		/**
-		* @description Remove unit(px, %, rem, em) of String AND parse number to Integer
-		* @param {String}
-		* @return {Integer}
-		*/
-		var removeUnitInt = λ st -> parseInt(removeUnit(st));
-
-		/**
-		* @description Get obj width data and styling el
-		* @param {Object}
-		* @return {Function} Function waiting parameter with {Element} to stylize
-		*/
-		var position = λ (obj) -> λ el => {
-			if(isNotUndef$(obj.top))    el.style.top    = obj.top;
-			if(isNotUndef$(obj.right))  el.style.right  = obj.right;
-			if(isNotUndef$(obj.bottom)) el.style.bottom = obj.bottom;
-			if(isNotUndef$(obj.left))   el.style.left   = obj.left;
-			return el;
-		};
-
-		var animateContentEl   = '';
-		if(isNull$(document.querySelector(this.container + ' .placeload-background'))){
-			animateContentEl = document.createElement('div')
-					|> appendIn(document.querySelector(this.container))
-					|> addClass('placeload-background');
-	  }else{
-			animateContentEl = document.querySelector(this.container + ' > '+ '.placeload-background');
-		}
-
-		var animateContentX = animateContentEl.offsetWidth;
 
 		var marginTopValue     = dataDefault.marginTop.slice(0, dataDefault.marginTop.indexOf('px'));
 
