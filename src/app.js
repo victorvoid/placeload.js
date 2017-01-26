@@ -37,7 +37,7 @@ function Placeload(containerEl, options){
 	* @param {String} - Width
 	* @param {String} - Height
 	*/
-	var size = λ(width, height) -> λ (el) => {
+	var size = λ(width, height) -> λ el => {
 		el.style.width = width;
 		el.style.height = height;
 		return el;
@@ -79,7 +79,7 @@ function Placeload(containerEl, options){
 	* @param {Object}
 	* @return {Function} Function waiting parameter with {Element} to stylize
 	*/
-	var position = λ (obj) -> λ el => {
+	var position = λ obj -> λ el => {
 		if(isNotUndef$(obj.top))    el.style.top    = obj.top;
 		if(isNotUndef$(obj.right))  el.style.right  = obj.right;
 		if(isNotUndef$(obj.bottom)) el.style.bottom = obj.bottom;
@@ -149,11 +149,10 @@ function Placeload(containerEl, options){
 						|> appendIn(animateContentEl)
 						|> addClass('placeload-masker')
 						|> size('100%', this.marginLeftOfSide)
-						|> position(
-												{
-													top: ((dataDefault.height|> removeUnitInt) + (this.fullHeightSide*2)) + 'px',
-													left: this.widthRight
-												});
+						|> position({
+									top: ((dataDefault.height|> removeUnitInt) + (this.fullHeightSide*2)) + 'px',
+									left: this.widthRight
+							});
 
 			this.fullHeightSide += fullHeightSideValue;
 

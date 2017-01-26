@@ -3,7 +3,7 @@ sjs        = $(bin)/sjs
 VERSION    = $(shell node -e 'console.log(require("./package.json").version)')
 
 bundle: macros/*.js
-	cat macros/*.js > macros/index.sjs
+	cat dick.macros/*.js > dick.macros/index.sjs
 
 bundlecss: macros/*.js
 	cat docs/css/*.css > docs/css/index.css
