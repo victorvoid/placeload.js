@@ -62,12 +62,17 @@ $ bower install https://github.com/victorvoid/placeload.js.git
 
 ![](https://github.com/victorvoid/placeload.js/blob/master/docs/imgs/placeload_example.gif)
 
+Demos
+--------
+
+[User load - vanillajs](https://victorvoid.github.io/placeload.js/examples/vanillajs/user_load/index.html)
+
 Learning More
 -------------
 
 Read the [reference documentation](https://victorvoid.github.io/placeload.js/#documentation).
 
-
-## License
+License
+-------
 
 The code is available under the [MIT License](LICENSE.md).
