@@ -2,13 +2,13 @@ bin        = $(shell npm bin)
 sjs        = $(bin)/sjs
 VERSION    = $(shell node -e 'console.log(require("./package.json").version)')
 
-bundle: macros/*.js
+bundle_mac: macros/*.js
 	cat macros/*.js > macros/index.sjs
 
-bundlecss: macros/*.js
+bundle_css: macros/*.js
 	cat docs/css/*.css > docs/css/index.css
 
-bundlejs: macros/*.js
+bundle_js: macros/*.js
 	cat docs/js/*.js > docs/js/index.js
 
 publish: bundle test
