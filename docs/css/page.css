@@ -182,7 +182,10 @@ ul{
   .placeload__draw img{
     height: 190px;
   }
-
+  .content__apresentation{
+    padding-bottom: 10px;
+    margin-bottom: -10px;
+  }
 }
 @media(max-width: 680px){
   header .github-corner{
@@ -195,6 +198,8 @@ ul{
   }
   .content__apresentation{
     padding-top: 40px;
+    padding-bottom: 20px;
+    margin-bottom: -20px;
   }
   .content__panel .placeload__draw {
     display: none;
@@ -204,7 +209,7 @@ ul{
   }
   .content__apresentation h2{
     padding-top: 0;
-    font-size: 1.2em;
+    font-size: 1.3em;
   }
   .content__documentation p, .content__documentation p, .content__documentation ul.summary, .content__documentation h3, .content__panel--examples {
     margin-left: 10px;
