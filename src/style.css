@@ -25,17 +25,3 @@
     background: #fff;
     position: absolute;
 }
-
-.placeload-masker.avatar__left{
-    top: 0;
-    left: 0;
-    height: 150px;
-    width: 150px;
-}
-
-.placeload-masker.avatar__right{
-    top: 0;
-    right: 0;
-    height: 150px;
-    width: 150px;
-}
