@@ -110,7 +110,6 @@ function Placeload(containerEl, options){
 	* @param {Object} Paint's data
 	*/
 	this.draw = function (dataComponent){
-		puts 'drawing...';
 		var dataDefault = {
 			width: '',
 			height: '',
