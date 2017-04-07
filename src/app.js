@@ -3,7 +3,7 @@
 　＼＼ Λ＿Λ
 　  ＼('ㅅ')  Placeload.js developed by Victor Igor (victorvoid)
 　　　>　 ⌒ヽ
-*/
+**/
 
 /**
 * @constructor
@@ -124,7 +124,7 @@ function Placeload(containerEl, options){
 		}
 
 		if(this.container === ''){
-			throw new Error('You need to specific container name to draw...')
+			throw new Error('You need to specific container name to draw...');
 		}
 
 		var marginTopValue     = dataDefault.marginTop.slice(0, dataDefault.marginTop.indexOf('px'));

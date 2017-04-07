@@ -6,18 +6,15 @@ function show(){
         --module lambda-chop/macros \
         --module ./dick.macros/condition \
         --module ./dick.macros/functions.operator \
-        --module ./dick.macros/log \
         ./src/app.js
 }
 
 function build(){
-    sjs --module es6-macros/macros/destructure \
-        --module lambda-chop/macros \
+    sjs --module lambda-chop/macros \
         --module ./dick.macros/condition \
         --module ./dick.macros/functions.operator \
-        --module ./dick.macros/log \
         ./src/app.js \
-        -o ./lib/placeload.js
+        -o ./build/placeload.js
 }
 
 if [[ $# -eq 0 ]] ; then

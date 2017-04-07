@@ -4,13 +4,22 @@
   "description": "The best way to create a placeholder layout effect",
   "main": "lib/placeload.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "clean": "rimraf build && mkdir build",
+    "watch": "watch 'clear && npm -s test' test",
+    "build": "clear && ./compile.sh build"
   },
+  "keywords": [
+    "placeload",
+    "placeload.js",
+    "placeholder css"
+  ],
   "author": "Victor Igor",
   "license": "MIT",
   "dependencies": {
     "es6-macros": "0.0.7",
     "lambda-chop": "^0.1.5",
-    "sweet.js": "^2.2.1"
+    "sweet.js": "^2.2.1",
+    "watch": "^0.16.0",
+    "rimraf": "^2.4.4"
   }
 }
