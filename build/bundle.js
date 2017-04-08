@@ -63,61 +63,11 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(module) {
-
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
-var _ramda = __webpack_require__(1);
-
-var _placeDOM = __webpack_require__(3);
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } } /*
-                                                                                                                                                          ⊂_ヽ
-                                                                                                                                                          　＼＼ Λ＿Λ
-                                                                                                                                                          　  ＼('ㅅ')  Placeload.js developed by Victor Igor (victorvoid)
-                                                                                                                                                          　　　>　 ⌒ヽ
-                                                                                                                                                          */
-
-var defaultOptions = {
-	backgroundColor: '',
-	animationDelay: 300,
-	borderRadius: 0
-};
-
-var elementPlaceload = (0, _placeDOM.addClass)(_placeDOM.divElement, '.placeload-background');
-
-var Placeload = function Placeload(container, options) {
-	_classCallCheck(this, Placeload);
-
-	this.fullHeight = 0;
-	this.container = document.querySelector(container);
-	this.options = (0, _ramda.merge)(defaultOptions, options);
-	this.container.appendChild(elementPlaceload);
-};
-
-var UserPlaceload = new Placeload('.user-placeload', { borderRadius: '10px' });
-
-// Export
-if (typeof window !== 'undefined' && window) {
-	if (( false ? 'undefined' : _typeof(module)) === 'object' && module.exports) {
-		module.exports = Placeload;
-	} else {
-		// Browser
-		window.Placeload = Placeload;
-	}
-}
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)(module)))
-
-/***/ }),
-/* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //  Ramda v0.19.1
@@ -8569,6 +8519,33 @@ if (typeof window !== 'undefined' && window) {
 
 
 /***/ }),
+/* 1 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+exports.divElement = exports.addClass = undefined;
+
+var _ramda = __webpack_require__(0);
+
+var addClass = exports.addClass = (0, _ramda.curry)(function (element, className) {
+	element.className += ' ' + className;
+	return element;
+});
+
+var divElement = exports.divElement = function divElement(styled) {
+	var element = document.createElement('div');
+	if (!(0, _ramda.isNil)(styled.className)) {
+		element = addClass(element, styled.className);
+	}
+	return element;
+};
+
+/***/ }),
 /* 2 */
 /***/ (function(module, exports) {
 
@@ -8601,21 +8578,78 @@ module.exports = function(module) {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
+/* WEBPACK VAR INJECTION */(function(module) {
 
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-exports.divElement = exports.addClass = undefined;
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }(); /*
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     ⊂_ヽ
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     　＼＼ Λ＿Λ
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     　  ＼('ㅅ')  Placeload.js developed by Victor Igor (victorvoid)
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     　　　>　 ⌒ヽ
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     */
 
-var _ramda = __webpack_require__(1);
+var _ramda = __webpack_require__(0);
 
-var addClass = exports.addClass = (0, _ramda.curry)(function (element, className) {
-	element.className += ' ' + className;
-	return element;
-});
+var _placeDOM = __webpack_require__(1);
 
-var divElement = exports.divElement = document.createElement('div');
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var defaultOptions = {
+	backgroundColor: '',
+	animationDelay: 300,
+	borderRadius: 0
+};
+
+var defaultDraw = {
+	width: '0',
+	height: '0',
+	float: false,
+	'margin-left': '0',
+	'margin-right': '0',
+	'margin-top': '0',
+	'margin-bottom': '0'
+};
+
+var elementPlaceload = (0, _placeDOM.divElement)({ className: 'placeload-background' }); //LAYER 1
+var elementDraw = (0, _placeDOM.divElement)({ className: 'placeload-masker' }); //LAYER 2
+
+var Placeload = function () {
+	function Placeload(container, options) {
+		_classCallCheck(this, Placeload);
+
+		this.fullHeight = 0;
+		this.defaultOptions = (0, _ramda.merge)(defaultOptions, options);
+		this.container = document.querySelector(container);
+		this.container.appendChild(elementPlaceload);
+	}
+
+	_createClass(Placeload, [{
+		key: 'draw',
+		value: function draw(props) {
+			var propsDraw = (0, _ramda.merge)(defaultDraw, props);
+			var containerX = this.container.offsetWidth;
+			var containerY = this.container.offsetHeight;
+		}
+	}]);
+
+	return Placeload;
+}();
+
+var userPlaceload = new Placeload('.user-placeload', { borderRadius: '10px' });
+userPlaceload.draw({ width: '100px', height: '100px' });
+userPlaceload.hidden();
+
+// Export
+if (typeof window !== 'undefined' && window) {
+	if (( false ? 'undefined' : _typeof(module)) === 'object' && module.exports) {
+		module.exports = Placeload;
+	} else {
+		// Browser
+		window.Placeload = Placeload;
+	}
+}
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)(module)))
 
 /***/ })
 /******/ ]);
