@@ -25,7 +25,8 @@ const defaultDraw = {
 };
 
 const elementPlaceload = divElement({className: 'placeload-background'}); //LAYER 1
-const elementDraw      = divElement({className: 'placeload-masker'}); //LAYER 2
+const elementDraw      = divElement({className: 'placeload-masker',
+																		 size: { width: '100px', height: '100px'}}); //LAYER 2
 
 class Placeload {
 	constructor(container, options){
@@ -38,13 +39,12 @@ class Placeload {
 	draw(props) {
 		const propsDraw = merge(defaultDraw, props);
 		const containerX = this.container.offsetWidth;
-		const containerY = this.container.offsetHeight;
+		elementPlaceload.appendChild(elementDraw);
 	}
 }
 
 const userPlaceload = new Placeload('.user-placeload', {borderRadius: '10px'});
 userPlaceload.draw({width: '100px', height: '100px'});
-userPlaceload.hidden();
 
 // Export
 if (typeof window !== 'undefined' && window) {

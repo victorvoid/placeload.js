@@ -8528,7 +8528,7 @@
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });
-exports.divElement = exports.addClass = undefined;
+exports.divElement = exports.size = exports.position = exports.addClass = undefined;
 
 var _ramda = __webpack_require__(0);
 
@@ -8537,10 +8537,31 @@ var addClass = exports.addClass = (0, _ramda.curry)(function (element, className
 	return element;
 });
 
+var position = exports.position = (0, _ramda.curry)(function (element, pos) {
+	if (!(0, _ramda.isNil)(pos.top)) element.style.top = pos.top;
+	if (!(0, _ramda.isNil)(pos.bottom)) element.style.top = pos.bottom;
+	if (!(0, _ramda.isNil)(pos.left)) element.style.top = pos.left;
+	if (!(0, _ramda.isNil)(pos.right)) element.style.top = pos.right;
+	return element;
+});
+
+var size = exports.size = (0, _ramda.curry)(function (element, tam) {
+	if (!(0, _ramda.isNil)(tam.width)) element.style.width = tam.width;
+	if (!(0, _ramda.isNil)(tam.height)) element.style.height = tam.height;
+	return element;
+});
+
 var divElement = exports.divElement = function divElement(styled) {
 	var element = document.createElement('div');
 	if (!(0, _ramda.isNil)(styled.className)) {
 		element = addClass(element, styled.className);
+	}
+	if (!(0, _ramda.isNil)(styled.position)) {
+		element = position(element, styled.position);
+	}
+
+	if (!(0, _ramda.isNil)(styled.size)) {
+		element = size(element, styled.size);
 	}
 	return element;
 };
@@ -8612,7 +8633,8 @@ var defaultDraw = {
 };
 
 var elementPlaceload = (0, _placeDOM.divElement)({ className: 'placeload-background' }); //LAYER 1
-var elementDraw = (0, _placeDOM.divElement)({ className: 'placeload-masker' }); //LAYER 2
+var elementDraw = (0, _placeDOM.divElement)({ className: 'placeload-masker',
+	size: { width: '100px', height: '100px' } }); //LAYER 2
 
 var Placeload = function () {
 	function Placeload(container, options) {
@@ -8629,7 +8651,7 @@ var Placeload = function () {
 		value: function draw(props) {
 			var propsDraw = (0, _ramda.merge)(defaultDraw, props);
 			var containerX = this.container.offsetWidth;
-			var containerY = this.container.offsetHeight;
+			elementPlaceload.appendChild(elementDraw);
 		}
 	}]);
 
@@ -8638,7 +8660,6 @@ var Placeload = function () {
 
 var userPlaceload = new Placeload('.user-placeload', { borderRadius: '10px' });
 userPlaceload.draw({ width: '100px', height: '100px' });
-userPlaceload.hidden();
 
 // Export
 if (typeof window !== 'undefined' && window) {
