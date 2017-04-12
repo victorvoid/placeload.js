@@ -8538,6 +8538,7 @@ var defaultDraw = exports.defaultDraw = {
 	width: '0',
 	height: '0',
 	float: false,
+	center: false,
 	'margin-left': '0',
 	'margin-right': '0',
 	'margin-top': '0',
@@ -8693,30 +8694,40 @@ var Placeload = function () {
 			var elementDraw = (0, _placeDOM.divElement)({ className: 'placeload-masker' }); //LAYER 2
 			var propsDraw = (0, _ramda.merge)(_config.defaultDraw, props);
 			var containerSizeX = this.container.offsetWidth;
+
+			//::size {width || height} -> Number + UNIT
 			var getSizeSide = function getSizeSide(size) {
-				return (0, _placeUNIT.isPorcent)(propsDraw[size]) ? (0, _placeUNIT.toPorcent)(100 - parseInt(propsDraw[size])) /* other unit */
-				: (0, _placeUNIT.toPixel)(containerSizeX - parseInt(propsDraw[size]));
+				var divIfCenter = propsDraw.center ? 2 : 1;
+				if ((0, _placeUNIT.isPorcent)(propsDraw[size])) {
+					return (0, _placeUNIT.toPorcent)((100 - parseInt(propsDraw[size])) / divIfCenter);
+				} else {
+					return (0, _placeUNIT.toPixel)(containerSizeX - parseInt(propsDraw[size]) / divIfCenter);
+				}
 			};
 
-			//::side-top:
-			if (!!propsDraw['margin-top']) {
-				var marginTopSize = (0, _placeDOM.size)({ width: '100%', height: propsDraw['margin-top'] });
-				var marginTopPosition = (0, _placeDOM.position)({ top: (0, _placeUNIT.toPixel)(this.fullHeight), left: 0 });
-				var sideTop = (0, _ramda.compose)(marginTopSize, marginTopPosition);
-				//  (￣Д￣) new div DOM
-				elementPlaceload.appendChild(sideTop((0, _placeDOM.divElement)({ className: 'placeload-masker' })));
-			}
+			//::side-top (margin-top)
+			var marginTopSize = (0, _placeDOM.size)({ width: '100%', height: propsDraw['margin-top'] });
+			var marginTopPosition = (0, _placeDOM.position)({ top: (0, _placeUNIT.toPixel)(this.fullHeight), left: 0 });
+			var sideTop = (0, _ramda.compose)(marginTopSize, marginTopPosition);
 
-			//:side
+			elementPlaceload.appendChild(sideTop((0, _placeDOM.divElement)({ className: 'placeload-masker' })));
+
+			//::side
 			var sideSizeX = getSizeSide('width');
 			var sideSizeY = getSizeSide('height');
 			var maskerHeight = parseInt(propsDraw['margin-top']) + this.fullHeight || this.fullHeight;
 			var maskerSize = (0, _placeDOM.size)({ width: sideSizeX, height: propsDraw.height });
-			var maskerPosition = (0, _placeDOM.position)({ left: propsDraw.width, top: (0, _placeUNIT.toPixel)(maskerHeight) });
+			var maskerPosition = (0, _placeDOM.position)(propsDraw.center ? { right: 0, top: (0, _placeUNIT.toPixel)(maskerHeight) } : { left: propsDraw.width, top: (0, _placeUNIT.toPixel)(maskerHeight) });
 
 			//::side-right
-			var sideRigtLeft = (0, _ramda.compose)(maskerSize, maskerPosition);
-			elementPlaceload.appendChild(sideRigtLeft(elementDraw));
+			var sideRigth = (0, _ramda.compose)(maskerSize, maskerPosition);
+			elementPlaceload.appendChild(sideRigth(elementDraw));
+
+			//::side-left (center)
+			if (propsDraw.center) {
+				var sideLeft = (0, _ramda.compose)(maskerSize, (0, _placeDOM.position)({ left: 0, top: (0, _placeUNIT.toPixel)(this.fullHeight) }));
+				elementPlaceload.appendChild(sideLeft((0, _placeDOM.divElement)({ className: 'placeload-masker center' })));
+			}
 
 			this.fullHeight += parseInt(propsDraw.height) + parseInt(propsDraw['margin-top']);
 			elementPlaceload.style.height = (0, _placeUNIT.toPixel)(this.fullHeight);
@@ -8728,8 +8739,8 @@ var Placeload = function () {
 
 var userPlaceload = new Placeload('.user-placeload', { borderRadius: '10px' });
 userPlaceload.draw({ width: '50%', height: '30px' });
-userPlaceload.draw({ width: '100px', height: '100px', 'margin-top': '10px' });
-userPlaceload.draw({ width: '50%', height: '30px', 'margin-top': '10px' });
+userPlaceload.draw({ width: '100px', height: '100px', 'margin-top': '4px' });
+userPlaceload.draw({ width: '50%', height: '30px' });
 
 // Export
 if (typeof window !== 'undefined' && window) {

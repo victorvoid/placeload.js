@@ -8,6 +8,7 @@ export const defaultDraw = {
 	width: '0',
 	height: '0',
 	float: false,
+	center: false,
 	'margin-left': '0',
 	'margin-right': '0',
 	'margin-top': '0',

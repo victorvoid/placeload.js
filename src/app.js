@@ -28,30 +28,40 @@ class Placeload {
 		const elementDraw  = divElement({className: 'placeload-masker'}); //LAYER 2
 		const propsDraw = merge(defaultDraw, props);
 		const containerSizeX = this.container.offsetWidth;
-		const getSizeSide = size => isPorcent(propsDraw[size]) ?
-						toPorcent(100 - parseInt(propsDraw[size]))   /* other unit */
-					: toPixel(containerSizeX - parseInt(propsDraw[size]));
 
-		//::side-top:
-		if(!!propsDraw['margin-top']){
-			const marginTopSize = size({ width: '100%', height: propsDraw['margin-top'] });
-			const marginTopPosition = position({ top: toPixel(this.fullHeight), left: 0});
-			const sideTop = compose(marginTopSize, marginTopPosition);
-			                                     //  (￣Д￣) new div DOM
-			elementPlaceload.appendChild(sideTop(divElement({className: 'placeload-masker'})));
-		}
+		//::size {width || height} -> Number + UNIT
+		const getSizeSide = size => {
+			let divIfCenter = propsDraw.center ? 2 : 1 ;
+			if(isPorcent(propsDraw[size])){
+				return toPorcent((100 - parseInt(propsDraw[size]))/divIfCenter);
+			}else{
+				return toPixel(containerSizeX - parseInt(propsDraw[size])/divIfCenter);
+			}
+		};
 
-		//:side
+		//::side-top (margin-top)
+		const marginTopSize = size({ width: '100%', height: propsDraw['margin-top'] });
+		const marginTopPosition = position({ top: toPixel(this.fullHeight), left: 0});
+		const sideTop = compose(marginTopSize, marginTopPosition);
+
+		elementPlaceload.appendChild(sideTop(divElement({className: 'placeload-masker'})));
+
+		//::side
 		const sideSizeX = getSizeSide('width');
 		const sideSizeY = getSizeSide('height');
 		const maskerHeight = parseInt(propsDraw['margin-top']) + this.fullHeight || this.fullHeight;
 		const maskerSize = size({ width: sideSizeX, height: propsDraw.height });
-		const maskerPosition = position({ left: propsDraw.width, top: toPixel(maskerHeight) });
+		const maskerPosition = position(propsDraw.center ? { right: 0, top: toPixel(maskerHeight) } : { left: propsDraw.width, top: toPixel(maskerHeight) });
 
 		//::side-right
-		const sideRigtLeft = compose(maskerSize, maskerPosition);
-		elementPlaceload.appendChild(sideRigtLeft(elementDraw));
+		const sideRigth = compose(maskerSize, maskerPosition);
+		elementPlaceload.appendChild(sideRigth(elementDraw));
 
+		//::side-left (center)
+		if(propsDraw.center){
+			const sideLeft = compose(maskerSize, position({left: 0, top: toPixel(this.fullHeight)}));
+			elementPlaceload.appendChild(sideLeft(divElement({className:'placeload-masker center'})));
+		}
 
 		this.fullHeight += parseInt(propsDraw.height) + parseInt(propsDraw['margin-top']);
 		elementPlaceload.style.height = toPixel(this.fullHeight);
@@ -59,9 +69,9 @@ class Placeload {
 }
 
 const userPlaceload = new Placeload('.user-placeload', {borderRadius: '10px'});
-userPlaceload.draw({width: '50%', height: '30px' });
-userPlaceload.draw({width: '100px', height: '100px', 'margin-top': '10px'});
-userPlaceload.draw({width: '50%', height: '30px', 'margin-top': '10px'});
+userPlaceload.draw({width: '50%', height: '30px'});
+userPlaceload.draw({width: '100px', height: '100px', 'margin-top': '4px'});
+userPlaceload.draw({width: '50%', height: '30px'});
 
 // Export
 if (typeof window !== 'undefined' && window) {
