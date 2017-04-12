@@ -5,15 +5,15 @@ export const addClass = curry((element, className) => {
 	return element;
 });
 
-export const position = curry((element, pos) => {
+export const position = curry((pos, element) => {
 	if(!isNil(pos.top))    element.style.top = pos.top;
-	if(!isNil(pos.bottom)) element.style.top = pos.bottom;
-	if(!isNil(pos.left))   element.style.top = pos.left;
-	if(!isNil(pos.right))  element.style.top = pos.right;
+	if(!isNil(pos.bottom)) element.style.bottom = pos.bottom;
+	if(!isNil(pos.left))   element.style.left = pos.left;
+	if(!isNil(pos.right))  element.style.right = pos.right;
 	return element;
 });
 
-export const size = curry((element, tam) => {
+export const size = curry((tam, element) => {
 	if(!isNil(tam.width)) element.style.width = tam.width;
 	if(!isNil(tam.height)) element.style.height = tam.height;
 	return element;

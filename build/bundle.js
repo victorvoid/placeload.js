@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 4);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -8528,6 +8528,32 @@
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });
+var defaultOptions = exports.defaultOptions = {
+	backgroundColor: '',
+	animationDelay: 300,
+	borderRadius: 0
+};
+
+var defaultDraw = exports.defaultDraw = {
+	width: '0',
+	height: '0',
+	float: false,
+	'margin-left': '0',
+	'margin-right': '0',
+	'margin-top': '0',
+	'margin-bottom': '0'
+};
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
 exports.divElement = exports.size = exports.position = exports.addClass = undefined;
 
 var _ramda = __webpack_require__(0);
@@ -8537,15 +8563,15 @@ var addClass = exports.addClass = (0, _ramda.curry)(function (element, className
 	return element;
 });
 
-var position = exports.position = (0, _ramda.curry)(function (element, pos) {
+var position = exports.position = (0, _ramda.curry)(function (pos, element) {
 	if (!(0, _ramda.isNil)(pos.top)) element.style.top = pos.top;
-	if (!(0, _ramda.isNil)(pos.bottom)) element.style.top = pos.bottom;
-	if (!(0, _ramda.isNil)(pos.left)) element.style.top = pos.left;
-	if (!(0, _ramda.isNil)(pos.right)) element.style.top = pos.right;
+	if (!(0, _ramda.isNil)(pos.bottom)) element.style.bottom = pos.bottom;
+	if (!(0, _ramda.isNil)(pos.left)) element.style.left = pos.left;
+	if (!(0, _ramda.isNil)(pos.right)) element.style.right = pos.right;
 	return element;
 });
 
-var size = exports.size = (0, _ramda.curry)(function (element, tam) {
+var size = exports.size = (0, _ramda.curry)(function (tam, element) {
 	if (!(0, _ramda.isNil)(tam.width)) element.style.width = tam.width;
 	if (!(0, _ramda.isNil)(tam.height)) element.style.height = tam.height;
 	return element;
@@ -8567,7 +8593,7 @@ var divElement = exports.divElement = function divElement(styled) {
 };
 
 /***/ }),
-/* 2 */
+/* 3 */
 /***/ (function(module, exports) {
 
 module.exports = function(module) {
@@ -8595,7 +8621,7 @@ module.exports = function(module) {
 
 
 /***/ }),
-/* 3 */
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8612,36 +8638,36 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _ramda = __webpack_require__(0);
 
-var _placeDOM = __webpack_require__(1);
+var _placeDOM = __webpack_require__(2);
+
+var _config = __webpack_require__(1);
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var defaultOptions = {
-	backgroundColor: '',
-	animationDelay: 300,
-	borderRadius: 0
+var getUnit = function getUnit(str) {
+	return str.replace(/[0-9]/g, '');
 };
-
-var defaultDraw = {
-	width: '0',
-	height: '0',
-	float: false,
-	'margin-left': '0',
-	'margin-right': '0',
-	'margin-top': '0',
-	'margin-bottom': '0'
+var isPorcent = function isPorcent(str) {
+	return getUnit(str) === '%';
+};
+var isPixel = function isPixel(str) {
+	return getUnit(str) === 'px';
+};
+var toPorcent = function toPorcent(str) {
+	return str + '%';
+};
+var toPixel = function toPixel(str) {
+	return str + 'px';
 };
 
 var elementPlaceload = (0, _placeDOM.divElement)({ className: 'placeload-background' }); //LAYER 1
-var elementDraw = (0, _placeDOM.divElement)({ className: 'placeload-masker',
-	size: { width: '100px', height: '100px' } }); //LAYER 2
 
 var Placeload = function () {
 	function Placeload(container, options) {
 		_classCallCheck(this, Placeload);
 
 		this.fullHeight = 0;
-		this.defaultOptions = (0, _ramda.merge)(defaultOptions, options);
+		this.defaultOptions = (0, _ramda.merge)(_config.defaultOptions, options);
 		this.container = document.querySelector(container);
 		this.container.appendChild(elementPlaceload);
 	}
@@ -8649,9 +8675,20 @@ var Placeload = function () {
 	_createClass(Placeload, [{
 		key: 'draw',
 		value: function draw(props) {
-			var propsDraw = (0, _ramda.merge)(defaultDraw, props);
-			var containerX = this.container.offsetWidth;
-			elementPlaceload.appendChild(elementDraw);
+			var elementDraw = (0, _placeDOM.divElement)({ className: 'placeload-masker' }); //LAYER 2
+			var propsDraw = (0, _ramda.merge)(_config.defaultDraw, props);
+			var containerSizeX = this.container.offsetWidth;
+			var getSizeSide = function getSizeSide(size) {
+				return isPorcent(propsDraw[size]) ? toPorcent(100 - parseInt(propsDraw[size])) /* other unit */
+				: toPixel(containerSizeX - parseInt(propsDraw[size]));
+			};
+
+			var sideSizeX = getSizeSide('width');
+			var sideSizeY = getSizeSide('height');
+			var pMaskerSize = (0, _placeDOM.size)({ width: sideSizeX, height: sideSizeY });
+			var pMaskerPosition = (0, _placeDOM.position)({ left: propsDraw.width });
+			var sideRigtLeft = (0, _ramda.compose)(pMaskerSize, pMaskerPosition);
+			elementPlaceload.appendChild(sideRigtLeft(elementDraw));
 		}
 	}]);
 
@@ -8659,7 +8696,7 @@ var Placeload = function () {
 }();
 
 var userPlaceload = new Placeload('.user-placeload', { borderRadius: '10px' });
-userPlaceload.draw({ width: '100px', height: '100px' });
+userPlaceload.draw({ width: '100%', height: '10%' });
 
 // Export
 if (typeof window !== 'undefined' && window) {
@@ -8670,7 +8707,7 @@ if (typeof window !== 'undefined' && window) {
 		window.Placeload = Placeload;
 	}
 }
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)(module)))
 
 /***/ })
 /******/ ]);

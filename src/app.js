@@ -6,27 +6,16 @@
 */
 
 import { merge, compose, curry } from 'ramda';
-import { divElement } from './placeDOM.js';
+import { divElement, position, size } from './placeDOM';
+import { defaultOptions, defaultDraw } from './config';
 
-const defaultOptions = {
-	backgroundColor: '',
-	animationDelay: 300,
-	borderRadius: 0
-};
-
-const defaultDraw = {
-	width: '0',
-	height: '0',
-	float: false,
-	'margin-left': '0',
-	'margin-right': '0',
-	'margin-top': '0',
-	'margin-bottom': '0'
-};
+const getUnit = str => str.replace(/[0-9]/g, '');
+const isPorcent = str => getUnit(str) === '%';
+const isPixel = str => getUnit(str) === 'px';
+const toPorcent = str => `${str}%`;
+const toPixel = str => `${str}px`;
 
 const elementPlaceload = divElement({className: 'placeload-background'}); //LAYER 1
-const elementDraw      = divElement({className: 'placeload-masker',
-																		 size: { width: '100px', height: '100px'}}); //LAYER 2
 
 class Placeload {
 	constructor(container, options){
@@ -37,14 +26,24 @@ class Placeload {
 	}
 
 	draw(props) {
+		const elementDraw  = divElement({className: 'placeload-masker'}); //LAYER 2
 		const propsDraw = merge(defaultDraw, props);
-		const containerX = this.container.offsetWidth;
-		elementPlaceload.appendChild(elementDraw);
+		const containerSizeX = this.container.offsetWidth;
+		const getSizeSide = size => isPorcent(propsDraw[size]) ?
+						toPorcent(100 - parseInt(propsDraw[size]))   /* other unit */
+					: toPixel(containerSizeX - parseInt(propsDraw[size]));
+
+		const sideSizeX = getSizeSide('width');
+		const sideSizeY = getSizeSide('height');
+		const pMaskerSize = size({width: sideSizeX, height: sideSizeY});
+		const pMaskerPosition = position({left: propsDraw.width});
+		const sideRigtLeft = compose(pMaskerSize, pMaskerPosition);
+		elementPlaceload.appendChild(sideRigtLeft(elementDraw));
 	}
 }
 
 const userPlaceload = new Placeload('.user-placeload', {borderRadius: '10px'});
-userPlaceload.draw({width: '100px', height: '100px'});
+userPlaceload.draw({width: '100%', height: '10%'});
 
 // Export
 if (typeof window !== 'undefined' && window) {
