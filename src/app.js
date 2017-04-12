@@ -5,15 +5,13 @@
 　　　>　 ⌒ヽ
 */
 
-import { merge, compose, curry } from 'ramda';
+import { merge, compose } from 'ramda';
 import { divElement, position, size } from './placeDOM';
 import { defaultOptions, defaultDraw } from './config';
-
-const getUnit = str => str.replace(/[0-9]/g, '');
-const isPorcent = str => getUnit(str) === '%';
-const isPixel = str => getUnit(str) === 'px';
-const toPorcent = str => `${str}%`;
-const toPixel = str => `${str}px`;
+import { isPorcent,
+				 isPixel,
+				 toPorcent,
+				 toPixel } from './placeUNIT';
 
 const elementPlaceload = divElement({className: 'placeload-background'}); //LAYER 1
 
@@ -25,6 +23,7 @@ class Placeload {
 		this.container.appendChild(elementPlaceload);
 	}
 
+	//::props -> DOM style
 	draw(props) {
 		const elementDraw  = divElement({className: 'placeload-masker'}); //LAYER 2
 		const propsDraw = merge(defaultDraw, props);
@@ -35,15 +34,20 @@ class Placeload {
 
 		const sideSizeX = getSizeSide('width');
 		const sideSizeY = getSizeSide('height');
-		const pMaskerSize = size({width: sideSizeX, height: sideSizeY});
-		const pMaskerPosition = position({left: propsDraw.width});
-		const sideRigtLeft = compose(pMaskerSize, pMaskerPosition);
+		const maskerHeight = parseInt(propsDraw['margin-top']) + this.fullHeight || this.fullHeight;
+		const maskerSize = size({ width: sideSizeX, height: propsDraw.height });
+		const maskerPosition = position({ left: propsDraw.width, top: toPixel(maskerHeight) });
+		const sideRigtLeft = compose(maskerSize, maskerPosition);
 		elementPlaceload.appendChild(sideRigtLeft(elementDraw));
+
+		this.fullHeight += parseInt(propsDraw.height);
+		elementPlaceload.style.height = toPixel(this.fullHeight);
 	}
 }
 
 const userPlaceload = new Placeload('.user-placeload', {borderRadius: '10px'});
-userPlaceload.draw({width: '100%', height: '10%'});
+userPlaceload.draw({width: '50%', height: '30px' });
+userPlaceload.draw({width: '120px', height: '100px'});
 
 // Export
 if (typeof window !== 'undefined' && window) {

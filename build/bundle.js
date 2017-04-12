@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 4);
+/******/ 	return __webpack_require__(__webpack_require__.s = 5);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -8594,6 +8594,32 @@ var divElement = exports.divElement = function divElement(styled) {
 
 /***/ }),
 /* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var getUnit = exports.getUnit = function getUnit(str) {
+  return str.replace(/[0-9]/g, '');
+};
+var isPorcent = exports.isPorcent = function isPorcent(str) {
+  return getUnit(str) === '%';
+};
+var isPixel = exports.isPixel = function isPixel(str) {
+  return getUnit(str) === 'px';
+};
+var toPorcent = exports.toPorcent = function toPorcent(str) {
+  return str + '%';
+};
+var toPixel = exports.toPixel = function toPixel(str) {
+  return str + 'px';
+};
+
+/***/ }),
+/* 4 */
 /***/ (function(module, exports) {
 
 module.exports = function(module) {
@@ -8621,7 +8647,7 @@ module.exports = function(module) {
 
 
 /***/ }),
-/* 4 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8642,23 +8668,9 @@ var _placeDOM = __webpack_require__(2);
 
 var _config = __webpack_require__(1);
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+var _placeUNIT = __webpack_require__(3);
 
-var getUnit = function getUnit(str) {
-	return str.replace(/[0-9]/g, '');
-};
-var isPorcent = function isPorcent(str) {
-	return getUnit(str) === '%';
-};
-var isPixel = function isPixel(str) {
-	return getUnit(str) === 'px';
-};
-var toPorcent = function toPorcent(str) {
-	return str + '%';
-};
-var toPixel = function toPixel(str) {
-	return str + 'px';
-};
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var elementPlaceload = (0, _placeDOM.divElement)({ className: 'placeload-background' }); //LAYER 1
 
@@ -8672,6 +8684,9 @@ var Placeload = function () {
 		this.container.appendChild(elementPlaceload);
 	}
 
+	//::props -> DOM style
+
+
 	_createClass(Placeload, [{
 		key: 'draw',
 		value: function draw(props) {
@@ -8679,16 +8694,20 @@ var Placeload = function () {
 			var propsDraw = (0, _ramda.merge)(_config.defaultDraw, props);
 			var containerSizeX = this.container.offsetWidth;
 			var getSizeSide = function getSizeSide(size) {
-				return isPorcent(propsDraw[size]) ? toPorcent(100 - parseInt(propsDraw[size])) /* other unit */
-				: toPixel(containerSizeX - parseInt(propsDraw[size]));
+				return (0, _placeUNIT.isPorcent)(propsDraw[size]) ? (0, _placeUNIT.toPorcent)(100 - parseInt(propsDraw[size])) /* other unit */
+				: (0, _placeUNIT.toPixel)(containerSizeX - parseInt(propsDraw[size]));
 			};
 
 			var sideSizeX = getSizeSide('width');
 			var sideSizeY = getSizeSide('height');
-			var pMaskerSize = (0, _placeDOM.size)({ width: sideSizeX, height: sideSizeY });
-			var pMaskerPosition = (0, _placeDOM.position)({ left: propsDraw.width });
-			var sideRigtLeft = (0, _ramda.compose)(pMaskerSize, pMaskerPosition);
+			var maskerHeight = parseInt(propsDraw['margin-top']) + this.fullHeight || this.fullHeight;
+			var maskerSize = (0, _placeDOM.size)({ width: sideSizeX, height: propsDraw.height });
+			var maskerPosition = (0, _placeDOM.position)({ left: propsDraw.width, top: (0, _placeUNIT.toPixel)(maskerHeight) });
+			var sideRigtLeft = (0, _ramda.compose)(maskerSize, maskerPosition);
 			elementPlaceload.appendChild(sideRigtLeft(elementDraw));
+
+			this.fullHeight += parseInt(propsDraw.height);
+			elementPlaceload.style.height = (0, _placeUNIT.toPixel)(this.fullHeight);
 		}
 	}]);
 
@@ -8696,7 +8715,8 @@ var Placeload = function () {
 }();
 
 var userPlaceload = new Placeload('.user-placeload', { borderRadius: '10px' });
-userPlaceload.draw({ width: '100%', height: '10%' });
+userPlaceload.draw({ width: '50%', height: '30px' });
+userPlaceload.draw({ width: '120px', height: '100px' });
 
 // Export
 if (typeof window !== 'undefined' && window) {
@@ -8707,7 +8727,7 @@ if (typeof window !== 'undefined' && window) {
 		window.Placeload = Placeload;
 	}
 }
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)(module)))
 
 /***/ })
 /******/ ]);
