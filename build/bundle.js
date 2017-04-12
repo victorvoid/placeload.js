@@ -8698,15 +8698,27 @@ var Placeload = function () {
 				: (0, _placeUNIT.toPixel)(containerSizeX - parseInt(propsDraw[size]));
 			};
 
+			//::side-top:
+			if (!!propsDraw['margin-top']) {
+				var marginTopSize = (0, _placeDOM.size)({ width: '100%', height: propsDraw['margin-top'] });
+				var marginTopPosition = (0, _placeDOM.position)({ top: (0, _placeUNIT.toPixel)(this.fullHeight), left: 0 });
+				var sideTop = (0, _ramda.compose)(marginTopSize, marginTopPosition);
+				//  (￣Д￣) new div DOM
+				elementPlaceload.appendChild(sideTop((0, _placeDOM.divElement)({ className: 'placeload-masker' })));
+			}
+
+			//:side
 			var sideSizeX = getSizeSide('width');
 			var sideSizeY = getSizeSide('height');
 			var maskerHeight = parseInt(propsDraw['margin-top']) + this.fullHeight || this.fullHeight;
 			var maskerSize = (0, _placeDOM.size)({ width: sideSizeX, height: propsDraw.height });
 			var maskerPosition = (0, _placeDOM.position)({ left: propsDraw.width, top: (0, _placeUNIT.toPixel)(maskerHeight) });
+
+			//::side-right
 			var sideRigtLeft = (0, _ramda.compose)(maskerSize, maskerPosition);
 			elementPlaceload.appendChild(sideRigtLeft(elementDraw));
 
-			this.fullHeight += parseInt(propsDraw.height);
+			this.fullHeight += parseInt(propsDraw.height) + parseInt(propsDraw['margin-top']);
 			elementPlaceload.style.height = (0, _placeUNIT.toPixel)(this.fullHeight);
 		}
 	}]);
@@ -8716,7 +8728,8 @@ var Placeload = function () {
 
 var userPlaceload = new Placeload('.user-placeload', { borderRadius: '10px' });
 userPlaceload.draw({ width: '50%', height: '30px' });
-userPlaceload.draw({ width: '120px', height: '100px' });
+userPlaceload.draw({ width: '100px', height: '100px', 'margin-top': '10px' });
+userPlaceload.draw({ width: '50%', height: '30px', 'margin-top': '10px' });
 
 // Export
 if (typeof window !== 'undefined' && window) {
