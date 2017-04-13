@@ -78,6 +78,12 @@ Learning More
 
 Read the [reference documentation](https://victorvoid.github.io/placeload.js/#documentation).
 
+Authors
+--------
+The repo is written and maintained by [Victor Igor](https://github.com/victorvoid). Other contributors that have submitted  something, in alphabetical order:
+
+- [Raniel Oliveira](https://github.com/raniel182)
+
 License
 -------
 
