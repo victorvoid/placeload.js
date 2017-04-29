@@ -4620,7 +4620,7 @@ var Placeload = function () {
 				if ((0, _placeUNIT.isPorcent)(propsDraw[size])) {
 					return (0, _placeUNIT.toPorcent)((100 - parseInt(propsDraw[size])) / divIfCenter);
 				} else {
-					return (0, _placeUNIT.toPixel)(containerSizeX - parseInt(propsDraw[size]) / divIfCenter);
+					return (0, _placeUNIT.toPixel)((containerSizeX - parseInt(propsDraw[size])) / divIfCenter);
 				}
 			};
 
@@ -4657,9 +4657,9 @@ var Placeload = function () {
 }();
 
 var userPlaceload = new Placeload('.user-placeload', { borderRadius: '10px' });
-userPlaceload.draw({ width: '30%', height: '30px', center: true });
-userPlaceload.draw({ width: '200px', height: '100px', 'margin-top': '4px' });
-userPlaceload.draw({ width: '80%', height: '30px', 'margin-top': '3px' });
+userPlaceload.draw({ width: '30%', height: '100px', center: true });
+userPlaceload.draw({ width: '80%', height: '20px', 'margin-top': '8px', center: true });
+userPlaceload.draw({ width: '50%', height: '20px', 'margin-top': '8px', center: true });
 
 // Export
 if (typeof window !== 'undefined' && window) {
