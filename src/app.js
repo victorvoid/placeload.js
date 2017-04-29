@@ -51,7 +51,9 @@ class Placeload {
 		const sideSizeY = getSizeSide('height');
 		const maskerHeight = parseInt(propsDraw['margin-top']) + this.fullHeight || this.fullHeight;
 		const maskerSize = size({ width: sideSizeX, height: propsDraw.height });
-		const maskerPosition = position(propsDraw.center ? { right: 0, top: toPixel(maskerHeight) } : { left: propsDraw.width, top: toPixel(maskerHeight) });
+		const maskerPosition = position(propsDraw.center
+                                    ? { right: 0, top: toPixel(maskerHeight) }
+                                    : { left: propsDraw.width, top: toPixel(maskerHeight) });
 
 		//::side-right
 		const sideRigth = compose(maskerSize, maskerPosition);
@@ -59,7 +61,7 @@ class Placeload {
 
 		//::side-left (center)
 		if(propsDraw.center){
-			const sideLeft = compose(maskerSize, position({left: 0, top: toPixel(this.fullHeight)}));
+			const sideLeft = compose(maskerSize, position({left: 0, top: toPixel(maskerHeight)}));
 			elementPlaceload.appendChild(sideLeft(divElement({className:'placeload-masker center'})));
 		}
 
@@ -69,9 +71,9 @@ class Placeload {
 }
 
 const userPlaceload = new Placeload('.user-placeload', {borderRadius: '10px'});
-userPlaceload.draw({width: '50%', height: '30px'});
-userPlaceload.draw({width: '100px', height: '100px', 'margin-top': '4px'});
-userPlaceload.draw({width: '50%', height: '30px'});
+userPlaceload.draw({width: '30%', height: '30px', center: true});
+userPlaceload.draw({width: '200px', height: '100px', 'margin-top': '4px'});
+userPlaceload.draw({width: '80%', height: '30px', 'margin-top': '3px'});
 
 // Export
 if (typeof window !== 'undefined' && window) {
