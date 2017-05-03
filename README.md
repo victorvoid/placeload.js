@@ -26,9 +26,6 @@ Install placeload.js with bower:
 $ bower install https://github.com/victorvoid/placeload.js.git
 ```
 
-
-[You can also download it here](https://drive.google.com/open?id=0B4kDE1zGyQeaNDh1ZDg1VFRlek0)
-
 ### 1. Include placeload on your site.
 
 ```html
