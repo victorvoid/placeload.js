@@ -1,86 +1,62 @@
-/*
-⊂_ヽ
-　＼＼ Λ＿Λ
-　  ＼('ㅅ')  Placeload.js developed by Victor Igor (victorvoid)
-　　　>　 ⌒ヽ
-*/
+const { IO, Either } = require('ramda-fantasy')
 
-import { merge, compose } from 'ramda';
-import { divElement, position, size } from './placeDOM';
-import { defaultOptions, defaultDraw } from './config';
-import { isPorcent,
-				 isPixel,
-				 toPorcent,
-				 toPixel } from './placeUNIT';
-
-const elementPlaceload = divElement({className: 'placeload-background'}); //LAYER 1
-
-class Placeload {
-	constructor(container, options){
-		this.fullHeight = 0;
-		this.defaultOptions = merge(defaultOptions, options);
-		this.container = document.querySelector(container);
-		this.container.appendChild(elementPlaceload);
-	}
-
-	//::props -> DOM style
-	draw(props) {
-		const elementDraw  = divElement({className: 'placeload-masker'}); //LAYER 2
-		const propsDraw = merge(defaultDraw, props);
-		const containerSizeX = this.container.offsetWidth;
-
-		//::size {width || height} -> Number + UNIT
-		const getSizeSide = size => {
-			let divIfCenter = propsDraw.center ? 2 : 1 ;
-			if(isPorcent(propsDraw[size])){
-				return toPorcent((100 - parseInt(propsDraw[size]))/divIfCenter);
-			}else{
-				  return toPixel((containerSizeX - parseInt(propsDraw[size]))/divIfCenter);
-			}
-		};
-
-		//::side-top (margin-top)
-		const marginTopSize = size({ width: '100%', height: propsDraw['margin-top'] });
-		const marginTopPosition = position({ top: toPixel(this.fullHeight), left: 0});
-		const sideTop = compose(marginTopSize, marginTopPosition);
-
-		elementPlaceload.appendChild(sideTop(divElement({className: 'placeload-masker'})));
-
-		//::side
-		const sideSizeX = getSizeSide('width');
-		const sideSizeY = getSizeSide('height');
-		const maskerHeight = parseInt(propsDraw['margin-top']) + this.fullHeight || this.fullHeight;
-		const maskerSize = size({ width: sideSizeX, height: propsDraw.height });
-		const maskerPosition = position(propsDraw.center
-                                    ? { right: 0, top: toPixel(maskerHeight) }
-                                    : { left: propsDraw.width, top: toPixel(maskerHeight) });
-
-		//::side-right
-		const sideRigth = compose(maskerSize, maskerPosition);
-		elementPlaceload.appendChild(sideRigth(elementDraw));
-
-		//::side-left (center)
-		if(propsDraw.center){
-			const sideLeft = compose(maskerSize, position({left: 0, top: toPixel(maskerHeight)}));
-			elementPlaceload.appendChild(sideLeft(divElement({className:'placeload-masker center'})));
-		}
-
-		this.fullHeight += parseInt(propsDraw.height) + parseInt(propsDraw['margin-top']);
-		elementPlaceload.style.height = toPixel(this.fullHeight);
-	}
+const configIO = (IO) => {
+  return IO.map(element => {
+    return element
+  })
 }
 
-const userPlaceload = new Placeload('.user-placeload', {borderRadius: '10px'});
-userPlaceload.draw({width: '30%', height: '100px', center: true});
-userPlaceload.draw({width: '80%', height: '20px', 'margin-top': '8px', center: true});
-userPlaceload.draw({width: '50%', height: '20px', 'margin-top': '8px', center: true});
-
-// Export
-if (typeof window !== 'undefined' && window) {
-	if (typeof module === 'object' && module.exports) {
-	  module.exports = Placeload;
-	} else {
-	  // Browser
-	  window.Placeload = Placeload;
-	}
+const createElemFolk = (IO, element, prop, value) => {
+  return IO.map(elements => {
+    return elements.map(elem => {
+      element.style[prop] = value
+      elem.placeload.appendChild(element)
+      return elem
+    })
+  })
 }
+
+const elementStyle = (IO, element) => ({
+  width:  (size) => elementStyle(createElemFolk(IO, element, 'width', size + 'px'), element),
+  height: (size) => elementStyle(createElemFolk(IO, element, 'height', size + 'px'), element),
+  IO
+})
+
+// drawIO :: a -> IO -> a(IO)
+const drawIO = (f, IO, element) => {
+  const newElement = document.createElement('div')
+  newElement.className += ' placeload-masker'
+  return f(elementStyle(IO, newElement))
+}
+
+const place = (IO) => {
+  return ({
+    config: () => place(configIO(IO)),
+    draw: f => place(drawIO(f, IO)),
+    fold: (err, succ) => IO.IO.runIO().either(err, succ),
+    inspect: () => console.log('IO: ', IO)
+  })
+}
+
+const Placeload = {
+  $ : (x) => place(IO(() => {
+    const container = document.querySelector(x)
+    if(container){
+      const elementPlaceload = document.createElement('div')
+      elementPlaceload.className += ' placeload-background'
+      container.appendChild(elementPlaceload)
+      return Either.Right({
+        container: container,
+        placeload: elementPlaceload
+      })
+    }
+    return Either.Left(`Don\' found ${x} element`)
+  }))
+}
+
+Placeload
+  .$('.user-placeload')
+  .config({color: 'red'})
+  .draw((element) => element.width(100).height(100))
+  .fold( (err)=> console.log('error: ', err),
+         (right) => console.log('sucess: ', right) )
