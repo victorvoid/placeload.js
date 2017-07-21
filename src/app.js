@@ -1,7 +1,7 @@
 const { IO, Either } = require('ramda-fantasy')
 
-const configIO = (IO) => {
-  return IO.map(element => {
+const configIO = (_IO) => {
+  return _IO.map(element => {
     return element
   })
 }
@@ -16,25 +16,25 @@ const createElemFolk = (IO, element, prop, value) => {
   })
 }
 
-const elementStyle = (IO, element) => ({
-  width:  (size) => elementStyle(createElemFolk(IO, element, 'width', size + 'px'), element),
-  height: (size) => elementStyle(createElemFolk(IO, element, 'height', size + 'px'), element),
-  IO
+const elementStyle = (_IO, element) => ({
+  width:  (size) => elementStyle(createElemFolk(_IO, element, 'width', size + 'px'), element),
+  height: (size) => elementStyle(createElemFolk(_IO, element, 'height', size + 'px'), element),
+  _IO
 })
 
 // drawIO :: a -> IO -> a(IO)
-const drawIO = (f, IO, element) => {
+const drawIO = (f, _IO, element) => {
   const newElement = document.createElement('div')
   newElement.className += ' placeload-masker'
-  return f(elementStyle(IO, newElement))
+  return f(elementStyle(_IO, newElement))
 }
 
-const place = (IO) => {
+const place = (_IO) => {
   return ({
-    config: () => place(configIO(IO)),
-    draw: f => place(drawIO(f, IO)),
-    fold: (err, succ) => IO.IO.runIO().either(err, succ),
-    inspect: () => console.log('IO: ', IO)
+    config: () => place(configIO(_IO)),
+    draw: f => place(drawIO(f, _IO)),
+    fold: (err, succ) => _IO._IO.runIO().either(err, succ),
+    inspect: () => console.log('IO: ', _IO)
   })
 }
 
