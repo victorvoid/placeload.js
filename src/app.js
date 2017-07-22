@@ -1,46 +1,43 @@
-const { IO, Either } = require('ramda-fantasy')
+import { IO, Either } from 'ramda-fantasy'
+import { merge } from 'ramda'
+import defaultOptions from './config.js'
+import styl from './styl'
 
-const configIO = (_IO) => {
+//configIO :: IO -> IO
+const configIO = (_IO, config) => {
   return _IO.map(element => {
+    element.map(domElement => {
+      const stylWithDefault = merge(defaultOptions, config)
+      domElement.placeload.style.animationDuration = stylWithDefault.speed
+    })
     return element
   })
 }
-
-const styling = (element, prop, value) => {
-  element.style[prop] = `${value}%`
-  return element
-}
-
-const styl = (element) => ({
-  width: (value) => styl(styling(element, 'width', value)),
-  height: (value) => styl(styling(element, 'height', value)),
-  marginTop: (value) => styl(styling(element, 'margin-top', value))
-})
 
 // createElemFolk :: Either -> Node(DOM) -> prop -> value -> Object(DOM Elements)
 const createElemFolk = (elements, newElement, prop, value) => {
   return elements.map(elem => {
     const height = elem.placeload.style.height || 0
-    if(prop === 'width'){
-      newElement.style.width = `100%`
-      newElement.style.marginLeft = `${value}%`
-      newElement.style.marginTop = `${parseInt(height)}px`
-    }else{
-      newElement.style[prop] = `${value}px`
-      elem.placeload.style.height = `${parseInt(height) + value}px`
+    switch(prop){
+      case 'width':
+        styl(newElement).width(`100%`).marginLeft(`${value}%`).marginTop(height)
+        break
+      case 'height':
+        styl(newElement).height(`${value}px`)
+        styl(elem.placeload).height(`${parseInt(height) + value}px`)
+        break
     }
-    console.log(elem.placeload.style.height)
     elem.placeload.appendChild(newElement)
     return elem
   })
 }
-
+// elementStyle :: Object(DOM Elements) -> Node(DOM) -> Object (fn, fn, ...)
 const elementStyle = (elements, newElement) => ({
   width: (size) => elementStyle(createElemFolk(elements, newElement, 'width', size), newElement),
   height: (size) => elementStyle(createElemFolk(elements, newElement, 'height', size), newElement)
 })
 
-// drawIO :: a -> IO -> a(IO)
+// drawIO :: F -> IO -> F(IO)
 const drawIO = (f, _IO, element) => {
   return _IO.map((elements) => {
     const newElement = document.createElement('div')
@@ -49,10 +46,11 @@ const drawIO = (f, _IO, element) => {
     return elements
   })
 }
+
 //place  :: IO -> Object
 const place = (_IO) => {
   return ({
-    config: () => place(configIO(_IO)),
+    config: (configs) => place(configIO(_IO, configs)),
     line: f => place(drawIO(f, _IO)),
     fold: (err, succ) => _IO.runIO().either(err, succ),
     inspect: () => console.log('IO: ', _IO)
@@ -77,8 +75,9 @@ const Placeload = {
 
 Placeload
   .$('.user-placeload')
-  .config({color: 'red'})
+  .config({speed: '2s'})
   .line((element) => element.width(20).height(100))
   .line((element) => element.width(10).height(50))
+  .line((element) => element.width(100).height(50))
   .fold((err) => console.log('error: ', err),
         (right) => console.log('sucess: ', right))
