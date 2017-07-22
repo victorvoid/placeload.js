@@ -1,5 +1,5 @@
 module.exports = {
-  entry: './src/app.js',
+  entry: './lib/placeload.js',
   output: {
     filename: 'build/bundle.js'
   },
