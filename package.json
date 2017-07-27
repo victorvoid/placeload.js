@@ -5,7 +5,9 @@
   "main": "lib/placeload.js",
   "scripts": {
     "build": "clear webpack",
-    "dev": "webpack --watch"
+    "dev": "webpack --watch",
+    "static": "standard lib/",
+    "static_fix": "standard lib/ --fix"
   },
   "keywords": [
     "placeload",
