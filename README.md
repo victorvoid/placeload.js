@@ -39,16 +39,35 @@ Placeload
   .$('.user-placeload')
   .config({speed: '2s'})
   .line((element) => element.width(300).height(200))
-  .config({spaceBetween: '30px'})
-  .line((element) => element.width(400).height(20))
-  .config({spaceBetween: '30px'})
-  .line((element) => element.width(400).height(20))
-  .config({spaceBetween: '30px'})
-  .line((element) => element.width(250).height(20))
-  .fold((err) => console.log('error: ', err),
-        (allElements) => console.log('sucess: ', allElements))
+  .fold(
+    (err) => console.log('error: ', err),
+    (allElements) => console.log('allElements: ', allElements)
+  )
 ```
 
+### 3. Placeload uses lazy evaluation, in that nothing is evaluated until necessary. 
+
+```js
+
+import Placeload from 'placeload.js'
+
+const userContainer = Placeload
+    .$('.user-placeload')
+    .config({speed: '2s'})
+    .line((element) => element.width(300).height(200))
+    .config({spaceBetween: '30px'})
+    .line((element) => element.width(400).height(20))
+    .config({spaceBetween: '30px'})
+    .line((element) => element.width(400).height(20))
+    .config({spaceBetween: '30px'})
+    .line((element) => element.width(250).height(20))
+
+
+userContainer.fold(
+  (err) => console.log('error: ', err),
+  (allElements) => console.log('allElements: ', allElements)
+)
+```
 ![](https://github.com/victorvoid/placeload.js/blob/master/docs/imgs/placeload_example.gif)
 
 License
