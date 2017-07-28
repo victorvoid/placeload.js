@@ -11,8 +11,7 @@ Placeload.js is a library to customize your interface previews/skeleton screen t
 Getting started
 ------------
 
-Compiled and production-ready code can be found in the lib directory. The src directory contains development code.
-
+Compiled and production-ready code can be found in the dist directory. The lib directory contains development code.
 
 Install placeload.js with npm:
 
@@ -73,7 +72,14 @@ userContainer.fold(
   (allElements) => console.log('allElements: ', allElements)
 )
 ```
+
 ![](https://github.com/victorvoid/placeload.js/blob/master/docs/imgs/placeload_example.gif)
+
+Authors
+--------
+The repo is written and maintained by [Victor Igor](https://github.com/victorvoid). Other contributors that have submitted  something, in alphabetical order:
+
+- [Raniel Oliveira](https://github.com/raniel182) - UX
 
 License
 -------
