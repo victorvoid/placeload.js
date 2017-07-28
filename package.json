@@ -4,7 +4,7 @@
   "description": "The best way to create a placeholder layout effect",
   "main": "lib/placeload.js",
   "scripts": {
-    "build": "clear webpack",
+    "build": "PROD_ENV=production webpack",
     "dev": "webpack --watch",
     "static": "standard lib/",
     "static_fix": "standard lib/ --fix"

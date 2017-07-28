@@ -1,8 +1,18 @@
+const webpack =  require('webpack')
+const PROD = JSON.parse(process.env.PROD_ENV === 'production')
+
 module.exports = {
   entry: './lib/placeload.js',
   output: {
-    filename: 'build/bundle.js'
+    filename: PROD ? 'build/placeload.min.js' : 'build/placeload.js',
+    library: ['Placeload', '[Placeload]'],
+    libraryTarget: 'var'
   },
+  plugins: PROD ? [
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {warnings: false}
+    })
+  ] : [],
   devtool: 'source-map',
   module: {
     loaders: [
