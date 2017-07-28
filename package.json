@@ -4,13 +4,26 @@
   "description": "The best way to create a placeholder layout effect",
   "main": "lib/placeload.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "PROD_ENV=production webpack",
+    "dev": "webpack --watch",
+    "static": "standard lib/",
+    "static_fix": "standard lib/ --fix"
   },
+  "keywords": [
+    "placeload",
+    "placeload.js",
+    "placeholder css"
+  ],
   "author": "Victor Igor",
   "license": "MIT",
+  "devDependencies": {
+    "babel-core": "^6.24.1",
+    "babel-loader": "^6.4.1",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "webpack": "^2.3.3"
+  },
   "dependencies": {
-    "es6-macros": "0.0.7",
-    "lambda-chop": "^0.1.5",
-    "sweet.js": "^2.2.1"
+    "ramda-fantasy": "^0.8.0"
   }
 }
