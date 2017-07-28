@@ -21,56 +21,35 @@ Install placeload.js with bower:
 $ bower install https://github.com/victorvoid/placeload.js.git
 ```
 
-
-[You can also download it here](https://drive.google.com/open?id=0B4kDE1zGyQeaNDh1ZDg1VFRlek0)
-
 ### 1. Include placeload on your site.
 
 ```html
-<link href="lib/placeload.css">
+<link href="dist/placeload.min.css">
 
-<script src="lib/placeload.js"></script>
+<script src="dist/placeload.min.js"></script>
 ```
 
 ### 2. Paint your placeholder
 
 ```js
-  var placeUserUI = new Placeload('.user__panel--placeholder');
-  placeUserUI.draw({
-    width: '300px',
-    height: '200px'
-  });
 
-  placeUserUI.draw({
-    width: '400px',
-    height: '20px',
-    marginTop: '10px'
-  });
+import Placeload from 'placeload.js'
 
-  placeUserUI.draw({
-    width: '400px',
-    height: '20px',
-    marginTop: '10px'
-  });
-
-  placeUserUI.draw({
-    width: '250px',
-    height: '20px',
-    marginTop: '10px'
-  });
+Placeload
+  .$('.user-placeload')
+  .config({speed: '2s'})
+  .line((element) => element.width(300).height(200))
+  .config({spaceBetween: '30px'})
+  .line((element) => element.width(400).height(20))
+  .config({spaceBetween: '30px'})
+  .line((element) => element.width(400).height(20))
+  .config({spaceBetween: '30px'})
+  .line((element) => element.width(250).height(20))
+  .fold((err) => console.log('error: ', err),
+        (right) => console.log('sucess: ', right))
 ```
 
 ![](https://github.com/victorvoid/placeload.js/blob/master/docs/imgs/placeload_example.gif)
-
-Demos
---------
-
-[User load - vanillajs](https://victorvoid.github.io/placeload.js/examples/vanillajs/user_load/index.html)
-
-Learning More
--------------
-
-Read the [reference documentation](https://victorvoid.github.io/placeload.js/#documentation).
 
 License
 -------
