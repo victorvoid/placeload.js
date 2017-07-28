@@ -46,7 +46,7 @@ Placeload
   .config({spaceBetween: '30px'})
   .line((element) => element.width(250).height(20))
   .fold((err) => console.log('error: ', err),
-        (right) => console.log('sucess: ', right))
+        (allElements) => console.log('sucess: ', allElements))
 ```
 
 ![](https://github.com/victorvoid/placeload.js/blob/master/docs/imgs/placeload_example.gif)
