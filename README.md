@@ -1,7 +1,12 @@
 # placeload.js
 The best way to create a placeholder layout effect.
 
+What is it?
+-------------
+
 Placeload.js is a library to customize your interface previews/skeleton screen that yield a fantastic user experience.
+
+![](https://github.com/victorvoid/placeload.js/blob/master/placeload-desc.jpg)
 
 Getting started
 ------------
