@@ -1,13 +1,17 @@
 {
   "name": "placeload.js",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "The best way to create a placeholder layout effect",
-  "main": "lib/placeload.js",
+  "main": "dist/placeload.js",
   "scripts": {
     "build": "PROD_ENV=production webpack",
     "dev": "webpack --watch",
     "static": "standard lib/",
     "static_fix": "standard lib/ --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/victorvoid/placeload.js"
   },
   "keywords": [
     "placeload",
@@ -15,6 +19,9 @@
     "placeholder css"
   ],
   "author": "Victor Igor",
+  "bugs": {
+    "url": "https://github.com/victorvoid/placeload.js/issues"
+  },
   "license": "MIT",
   "devDependencies": {
     "babel-core": "^6.24.1",

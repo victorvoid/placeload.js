@@ -5,7 +5,7 @@ module.exports = {
   entry: './lib/placeload.js',
   output: {
     filename: PROD ? 'dist/placeload.min.js' : 'dist/placeload.js',
-    library: ['Placeload', '[Placeload]'],
+    library: 'Placeload',
     libraryTarget: 'var'
   },
   plugins: PROD ? [
