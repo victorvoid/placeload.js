@@ -3,7 +3,6 @@
     <head>
         <meta charset="UTF-8"/>
         <title>Placeload.js</title>
-        <link href="./lib/style.css" rel="stylesheet"/>
         <style media="screen">
           .user__details {
               max-width: 500px;
@@ -69,7 +68,7 @@
               .line((element) => element.width(300).height(200))
               .config({spaceBetween: '10px'})
               .line((element) => element.width(100).height(20))
-              .config({spaceBetween: '10px'})
+              .config({spaceBetween: '10px', right: true})
               .line((element) => element.width(50).height(20))
               .fold(
                 (err) => console.log('error: ', err),
