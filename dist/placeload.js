@@ -1089,7 +1089,7 @@ var Left = _ramdaFantasy.Either.Left;
 
 var Placeload = {
   $: function $(x) {
-    return utils(getHoldersElements(x));
+    return utils(getHoldersElements(x), selector(x));
   }
 
   // selector :: String -> Either
@@ -1115,19 +1115,26 @@ var getHoldersElements = function getHoldersElements(x) {
 };
 
 // place  :: IO -> Object
-var utils = function utils(_IO) {
+var utils = function utils(_IO, container) {
   return {
     config: function config(configs) {
-      return utils(configIO(_IO, configs));
+      return utils(configIO(_IO, configs), container);
     },
     line: function line(f) {
-      return utils(drawIO(f, _IO));
+      return utils(drawIO(f, _IO), container);
     },
     spaceBetween: function spaceBetween(size) {
-      return utils(drawIO({ spaceBetween: size }, _IO));
+      return utils(drawIO({ spaceBetween: size }, _IO), container);
     },
     fold: function fold(err, succ) {
-      return _IO.runIO().either(err, succ);
+      _IO.runIO().either(err, succ);
+      return {
+        remove: function remove() {
+          container.map(function (element) {
+            element.parentNode.removeChild(element);
+          });
+        }
+      };
     },
     inspect: function inspect() {
       return console.log('IO: ', _IO.toString());

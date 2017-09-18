@@ -62,7 +62,7 @@
 
         <script src="../dist/placeload.js"></script>
         <script>
-            Placeload
+            const user = Placeload
               .$('.user-placeload')
               .config({speed: '2s'})
               .line((element) => element.width(300).height(200))
@@ -74,6 +74,10 @@
                 (err) => console.log('error: ', err),
                 (allElements) => console.log('allElements: ', allElements)
               )
+            // simulation API
+            setTimeout(() => {
+                user.remove()
+            }, 2000)
         </script>
     </body>
 </html>
