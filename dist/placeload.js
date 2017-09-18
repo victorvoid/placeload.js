@@ -1089,14 +1089,20 @@ var Left = _ramdaFantasy.Either.Left;
 
 var Placeload = {
   $: function $(x) {
-    return place(selector(x));
+    return utils(getHoldersElements(x));
   }
 
   // selector :: String -> Either
 };var selector = function selector(x) {
+  var element = document.querySelector(x);
+  if (element) return Right(element);
+  return Left('Don\' found ' + x + ' element');
+};
+
+// getHoldersElements :: String -> Either
+var getHoldersElements = function getHoldersElements(x) {
   return (0, _ramdaFantasy.IO)(function () {
-    var container = document.querySelector(x);
-    if (container) {
+    return selector(x).chain(function (container) {
       var elementPlaceload = (0, _styl2.default)(document.createElement('div')).addClass('placeload-background').toDOM();
       container.appendChild(elementPlaceload);
       return Right({
@@ -1104,22 +1110,21 @@ var Placeload = {
         placeload: elementPlaceload,
         elems: []
       });
-    }
-    return Left('Don\' found ' + x + ' element');
+    });
   });
 };
 
 // place  :: IO -> Object
-var place = function place(_IO) {
+var utils = function utils(_IO) {
   return {
     config: function config(configs) {
-      return place(configIO(_IO, configs));
+      return utils(configIO(_IO, configs));
     },
     line: function line(f) {
-      return place(drawIO(f, _IO));
+      return utils(drawIO(f, _IO));
     },
     spaceBetween: function spaceBetween(size) {
-      return place(drawIO({ spaceBetween: size }, _IO));
+      return utils(drawIO({ spaceBetween: size }, _IO));
     },
     fold: function fold(err, succ) {
       return _IO.runIO().either(err, succ);
