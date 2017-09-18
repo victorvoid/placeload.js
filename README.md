@@ -55,7 +55,7 @@ Placeload
 
 import Placeload from 'placeload.js'
 
-const userContainer = Placeload
+const userLoader = Placeload
     .$('.user-placeload')
     .config({speed: '2s'})
     .line((element) => element.width(300).height(200))
@@ -67,10 +67,16 @@ const userContainer = Placeload
     .line((element) => element.width(250).height(20))
 
 
-userContainer.fold(
+userLoader.fold(
   (err) => console.log('error: ', err),
   (allElements) => console.log('allElements: ', allElements)
 )
+
+API.getUsers()
+  .then(users => {
+      userLoader.remove()
+    }
+  )
 ```
 
 ![](https://github.com/victorvoid/placeload.js/blob/master/docs/imgs/placeload_example.gif)
