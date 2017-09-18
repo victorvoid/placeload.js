@@ -1089,23 +1089,28 @@ var Left = _ramdaFantasy.Either.Left;
 
 var Placeload = {
   $: function $(x) {
-    return place((0, _ramdaFantasy.IO)(function () {
-      var container = document.querySelector(x);
-      if (container) {
-        var elementPlaceload = (0, _styl2.default)(document.createElement('div')).addClass('placeload-background').toDOM();
-        container.appendChild(elementPlaceload);
-        return Right({
-          container: container,
-          placeload: elementPlaceload,
-          elems: []
-        });
-      }
-      return Left('Don\' found ' + x + ' element');
-    }));
+    return place(selector(x));
   }
 
-  // place  :: IO -> Object
-};var place = function place(_IO) {
+  // selector :: String -> Either
+};var selector = function selector(x) {
+  return (0, _ramdaFantasy.IO)(function () {
+    var container = document.querySelector(x);
+    if (container) {
+      var elementPlaceload = (0, _styl2.default)(document.createElement('div')).addClass('placeload-background').toDOM();
+      container.appendChild(elementPlaceload);
+      return Right({
+        container: container,
+        placeload: elementPlaceload,
+        elems: []
+      });
+    }
+    return Left('Don\' found ' + x + ' element');
+  });
+};
+
+// place  :: IO -> Object
+var place = function place(_IO) {
   return {
     config: function config(configs) {
       return place(configIO(_IO, configs));
