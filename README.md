@@ -28,8 +28,6 @@ $ bower install https://github.com/victorvoid/placeload.js.git
 ### 1. Include placeload on your site.
 
 ```html
-<link href="dist/placeload.min.css">
-
 <script src="dist/placeload.min.js"></script>
 ```
 
