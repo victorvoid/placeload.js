@@ -1,4 +1,7 @@
 # placeload.js
+
+[![NPM version][npm-image]][npm-url]
+
 The best way to create a placeholder layout effect.
 
 What is it?
@@ -83,3 +86,6 @@ License
 -------
 
 The code is available under the [MIT License](LICENSE.md).
+
+[npm-image]: https://badge.fury.io/js/placeload.js.svg
+[npm-url]: https://npmjs.org/package/placeload.js
