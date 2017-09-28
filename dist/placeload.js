@@ -1089,35 +1089,52 @@ var Left = _ramdaFantasy.Either.Left;
 
 var Placeload = {
   $: function $(x) {
-    return place((0, _ramdaFantasy.IO)(function () {
-      var container = document.querySelector(x);
-      if (container) {
-        var elementPlaceload = (0, _styl2.default)(document.createElement('div')).addClass('placeload-background').toDOM();
-        container.appendChild(elementPlaceload);
-        return Right({
-          container: container,
-          placeload: elementPlaceload,
-          elems: []
-        });
-      }
-      return Left('Don\' found ' + x + ' element');
-    }));
+    return utils(getHoldersElements(x), selector(x));
   }
 
-  // place  :: IO -> Object
-};var place = function place(_IO) {
+  // selector :: String -> Either
+};var selector = function selector(x) {
+  var element = document.querySelector(x);
+  if (element) return Right(element);
+  return Left('Don\' found ' + x + ' element');
+};
+
+// getHoldersElements :: String -> Either
+var getHoldersElements = function getHoldersElements(x) {
+  return (0, _ramdaFantasy.IO)(function () {
+    return selector(x).chain(function (container) {
+      var elementPlaceload = (0, _styl2.default)(document.createElement('div')).addClass('placeload-background').toDOM();
+      container.appendChild(elementPlaceload);
+      return Right({
+        container: container,
+        placeload: elementPlaceload,
+        elems: []
+      });
+    });
+  });
+};
+
+// place  :: IO -> Object
+var utils = function utils(_IO, container) {
   return {
     config: function config(configs) {
-      return place(configIO(_IO, configs));
+      return utils(configIO(_IO, configs), container);
     },
     line: function line(f) {
-      return place(drawIO(f, _IO));
+      return utils(drawIO(f, _IO), container);
     },
     spaceBetween: function spaceBetween(size) {
-      return place(drawIO({ spaceBetween: size }, _IO));
+      return utils(drawIO({ spaceBetween: size }, _IO), container);
     },
     fold: function fold(err, succ) {
-      return _IO.runIO().either(err, succ);
+      _IO.runIO().either(err, succ);
+      return {
+        remove: function remove() {
+          container.map(function (element) {
+            element.parentNode.removeChild(element);
+          });
+        }
+      };
     },
     inspect: function inspect() {
       return console.log('IO: ', _IO.toString());
