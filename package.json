@@ -31,10 +31,10 @@
     "babel-preset-stage-0": "^6.24.1",
     "css-loader": "^0.28.7",
     "style-loader": "^0.18.2",
-    "webpack": "^2.3.3"
+    "webpack": "^2.3.3",
+    "standard": "^10.0.3"
   },
   "dependencies": {
-    "ramda-fantasy": "^0.8.0",
-    "standard": "^10.0.3"
+    "ramda-fantasy": "^0.8.0"
   }
 }
