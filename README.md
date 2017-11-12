@@ -82,6 +82,8 @@ API.getUsers()
 
 ![](https://github.com/victorvoid/placeload.js/blob/master/docs/imgs/placeload_example.gif)
 
+- [Examples here](https://github.com/victorvoid/placeload.js/tree/master/examples)
+
 Authors
 --------
 The repo is written and maintained by [Victor Igor](https://github.com/victorvoid). Other contributors that have submitted  something, in alphabetical order:
