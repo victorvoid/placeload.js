@@ -85,6 +85,42 @@ API.getUsers()
 
 - [Examples here](https://github.com/victorvoid/placeload.js/tree/master/examples)
 
+
+Placeload 0.0.1 (OLD API) :see_no_evil:
+--------
+
+[Read the reference documentation for this version here](https://victorvoid.github.io/placeload.js/#documentation)
+
+```sh
+$ npm install placeload.js@0.0.1
+```
+
+```js
+  var placeUserUI = new Placeload('.user-placeload');
+  placeUserUI.draw({
+    width: '300px',
+    height: '200px'
+  });
+
+  placeUserUI.draw({
+    width: '400px',
+    height: '20px',
+    marginTop: '10px'
+  });
+
+  placeUserUI.draw({
+    width: '400px',
+    height: '20px',
+    marginTop: '10px'
+  });
+
+  placeUserUI.draw({
+    width: '250px',
+    height: '20px',
+    marginTop: '10px'
+  });
+```
+
 Authors
 --------
 The repo is written and maintained by [Victor Igor](https://github.com/victorvoid). Other contributors that have submitted  something, in alphabetical order:
