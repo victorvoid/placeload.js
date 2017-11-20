@@ -1089,18 +1089,17 @@ var Left = _ramdaFantasy.Either.Left;
 
 var Placeload = {
   $: function $(x) {
-    return utils(getHoldersElements(x), selector(x));
+    return utils(boxElements(x), selector(x));
   }
 
   // selector :: String -> Either
 };var selector = function selector(x) {
   var element = document.querySelector(x);
-  if (element) return Right(element);
-  return Left('Don\' found ' + x + ' element');
+  return element ? Right(element) : Left('Don\'t found ' + x + ' element');
 };
 
-// getHoldersElements :: String -> Either
-var getHoldersElements = function getHoldersElements(x) {
+// boxElements :: String -> IO
+var boxElements = function boxElements(x) {
   return (0, _ramdaFantasy.IO)(function () {
     return selector(x).chain(function (container) {
       var elementPlaceload = (0, _styl2.default)(document.createElement('div')).addClass('placeload-background').toDOM();
@@ -1114,7 +1113,7 @@ var getHoldersElements = function getHoldersElements(x) {
   });
 };
 
-// place  :: IO -> Object
+// place  :: IO -> IO(Node(DOM)) -> Object
 var utils = function utils(_IO, container) {
   return {
     config: function config(configs) {
@@ -1122,9 +1121,6 @@ var utils = function utils(_IO, container) {
     },
     line: function line(f) {
       return utils(drawIO(f, _IO), container);
-    },
-    spaceBetween: function spaceBetween(size) {
-      return utils(drawIO({ spaceBetween: size }, _IO), container);
     },
     fold: function fold(err, succ) {
       _IO.runIO().either(err, succ);
@@ -1142,7 +1138,7 @@ var utils = function utils(_IO, container) {
   };
 };
 
-// drawIO :: F -> IO -> F(IO)
+// drawIO :: Function -> IO -> Function(IO)
 var drawIO = function drawIO(f, _IO) {
   return _IO.map(function (elements) {
     return elements.map(function (el) {
@@ -1158,15 +1154,15 @@ var drawIO = function drawIO(f, _IO) {
 var elementStyle = function elementStyle(elements, newElement) {
   return {
     width: function width(size) {
-      return elementStyle(createElemFolk(elements, newElement, 'width', size), newElement);
+      return elementStyle(newBoxStyled(elements, newElement, 'width', size), newElement);
     },
     height: function height(size) {
-      return elementStyle(createElemFolk(elements, newElement, 'height', size), newElement);
+      return elementStyle(newBoxStyled(elements, newElement, 'height', size), newElement);
     }
   };
 };
 
-// configIO :: IO -> IO
+// configIO :: IO -> Object -> IO
 var configIO = function configIO(_IO, config) {
   return _IO.map(function (element) {
     return element.chain(function (elem) {
@@ -1175,11 +1171,7 @@ var configIO = function configIO(_IO, config) {
       var newHeightToPlaceload = parseInt(placeloadHeight) + parseInt(stylWithDefault.spaceBetween);
       var newElement = (0, _styl2.default)(document.createElement('div')).width('100%').height(stylWithDefault.spaceBetween).marginTop(placeloadHeight).addClass('placeload-masker').toDOM();
 
-      if (stylWithDefault.right) {
-        runDrawRightLine(elem, stylWithDefault).runIO();
-      } else {
-        (0, _styl2.default)(elem.placeload).height(newHeightToPlaceload + 'px');
-      }
+      (0, _styl2.default)(elem.placeload).height(newHeightToPlaceload + 'px');
       elem.placeload.style.animationDuration = stylWithDefault.speed;
       elem.placeload.appendChild(newElement);
       return element;
@@ -1187,22 +1179,8 @@ var configIO = function configIO(_IO, config) {
   });
 };
 
-var runDrawRightLine = function runDrawRightLine(elem, stylWithDefault) {
-  return (0, _ramdaFantasy.IO)(function () {
-    var lastChild = elem.elems[elem.elems.length - 2];
-    var itemToRight = elem.elems[elem.elems.length - 1];
-    var elementRow = (0, _styl2.default)(document.createElement('div')).addClass('placeload-masker').width('100%').height('10px').marginTop('20px').marginLeft(lastChild.style.marginLeft).toDOM();
-
-    (0, _styl2.default)(lastChild).hide();
-    (0, _styl2.default)(itemToRight).width(stylWithDefault.marginLeft).height(itemToRight.style.marginTop).marginLeft(lastChild.style.marginLeft).marginTop(lastChild.style.marginTop);
-
-    (0, _styl2.default)(elem.placeload).height(parseInt(lastChild.style.marginTop) + parseInt(lastChild.style.height) + 'px');
-    elem.placeload.appendChild(elementRow);
-  });
-};
-
-// createElemFolk :: Either -> Node(DOM) -> prop -> value -> Object(DOM Elements)
-var createElemFolk = function createElemFolk(elements, newElement, prop, value) {
+// newBoxStyled :: Either -> Node(DOM) -> String -> String -> Object(DOM Elements)
+var newBoxStyled = function newBoxStyled(elements, newElement, prop, value) {
   return elements.map(function (elem) {
     var height = elem.placeload.style.height || 0;
     switch (prop) {

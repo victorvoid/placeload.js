@@ -64,11 +64,11 @@
         <script>
             const user = Placeload
               .$('.user-placeload')
-              .config({speed: '2s'})
-              .line((element) => element.width(300).height(200))
-              .config({spaceBetween: '10px'})
+              .config({ speed: '2s' })
+              .line((element) => element.width(100).height(200))
+              .config({ spaceBetween: '10px' })
               .line((element) => element.width(100).height(20))
-              .config({spaceBetween: '10px', right: true})
+              .config({ spaceBetween: '10px' })
               .line((element) => element.width(50).height(20))
               .fold(
                 (err) => console.log('error: ', err),
