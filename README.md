@@ -67,12 +67,13 @@ const userLoader = Placeload
     .config({spaceBetween: '30px'})
     .line((element) => element.width(250).height(20))
 
-
+//running
 userLoader.fold(
   (err) => console.log('error: ', err),
   (allElements) => console.log('allElements: ', allElements)
 )
 
+//Removing when data are loaded
 API.getUsers()
   .then(users => {
       userLoader.remove()
