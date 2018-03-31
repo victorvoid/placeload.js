@@ -57,28 +57,27 @@ Placeload
 import Placeload from 'placeload.js'
 
 const userLoader = Placeload
-    .$('.user-placeload')
-    .config({speed: '2s'})
-    .line((element) => element.width(300).height(200))
-    .config({spaceBetween: '30px'})
-    .line((element) => element.width(400).height(20))
-    .config({spaceBetween: '30px'})
-    .line((element) => element.width(400).height(20))
-    .config({spaceBetween: '30px'})
-    .line((element) => element.width(250).height(20))
+  .$('.user-placeload')
+  .config({speed: '2s'})
+  .line((element) => element.width(300).height(200))
+  .config({spaceBetween: '30px'})
+  .line((element) => element.width(400).height(20))
+  .config({spaceBetween: '30px'})
+  .line((element) => element.width(400).height(20))
+  .config({spaceBetween: '30px'})
+  .line((element) => element.width(250).height(20))
 
 //running
 userLoader.fold(
-  (err) => console.log('error: ', err),
-  (allElements) => console.log('allElements: ', allElements)
+  err => console.log('error: ', err),
+  allElements => console.log('allElements: ', allElements)
 )
 
 //Removing when data are loaded
 API.getUsers()
   .then(users => {
-      userLoader.remove()
-    }
-  )
+    userLoader.remove()
+  })
 ```
 
 ![](https://github.com/victorvoid/placeload.js/blob/master/docs/imgs/placeload_example.gif)
