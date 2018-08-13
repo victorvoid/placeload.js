@@ -6,7 +6,7 @@ module.exports = {
   output: {
     filename: PROD ? 'dist/placeload.min.js' : 'dist/placeload.js',
     library: 'Placeload',
-    libraryTarget: 'var'
+    libraryTarget: 'umd'
   },
   plugins: PROD ? [
     new webpack.optimize.UglifyJsPlugin({

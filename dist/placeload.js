@@ -1,5 +1,14 @@
-var Placeload =
-/******/ (function(modules) { // webpackBootstrap
+(function webpackUniversalModuleDefinition(root, factory) {
+	if(typeof exports === 'object' && typeof module === 'object')
+		module.exports = factory();
+	else if(typeof define === 'function' && define.amd)
+		define([], factory);
+	else if(typeof exports === 'object')
+		exports["Placeload"] = factory();
+	else
+		root["Placeload"] = factory();
+})(this, function() {
+return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
 /******/
@@ -64,15 +73,14 @@ var Placeload =
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 24);
+/******/ 	return __webpack_require__(__webpack_require__.s = 23);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var _isPlaceholder = __webpack_require__(6);
-
+var _isPlaceholder = /*#__PURE__*/__webpack_require__(6);
 
 /**
  * Optimized internal one-arity curry function.
@@ -82,7 +90,9 @@ var _isPlaceholder = __webpack_require__(6);
  * @param {Function} fn The function to curry.
  * @return {Function} The curried function.
  */
-module.exports = function _curry1(fn) {
+
+
+function _curry1(fn) {
   return function f1(a) {
     if (arguments.length === 0 || _isPlaceholder(a)) {
       return f1;
@@ -90,16 +100,16 @@ module.exports = function _curry1(fn) {
       return fn.apply(this, arguments);
     }
   };
-};
-
+}
+module.exports = _curry1;
 
 /***/ }),
 /* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var _curry1 = __webpack_require__(0);
-var _isPlaceholder = __webpack_require__(6);
+var _curry1 = /*#__PURE__*/__webpack_require__(0);
 
+var _isPlaceholder = /*#__PURE__*/__webpack_require__(6);
 
 /**
  * Optimized internal two-arity curry function.
@@ -109,31 +119,35 @@ var _isPlaceholder = __webpack_require__(6);
  * @param {Function} fn The function to curry.
  * @return {Function} The curried function.
  */
-module.exports = function _curry2(fn) {
+
+
+function _curry2(fn) {
   return function f2(a, b) {
     switch (arguments.length) {
       case 0:
         return f2;
       case 1:
-        return _isPlaceholder(a) ? f2
-             : _curry1(function(_b) { return fn(a, _b); });
+        return _isPlaceholder(a) ? f2 : _curry1(function (_b) {
+          return fn(a, _b);
+        });
       default:
-        return _isPlaceholder(a) && _isPlaceholder(b) ? f2
-             : _isPlaceholder(a) ? _curry1(function(_a) { return fn(_a, b); })
-             : _isPlaceholder(b) ? _curry1(function(_b) { return fn(a, _b); })
-             : fn(a, b);
+        return _isPlaceholder(a) && _isPlaceholder(b) ? f2 : _isPlaceholder(a) ? _curry1(function (_a) {
+          return fn(_a, b);
+        }) : _isPlaceholder(b) ? _curry1(function (_b) {
+          return fn(a, _b);
+        }) : fn(a, b);
     }
   };
-};
-
+}
+module.exports = _curry2;
 
 /***/ }),
 /* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var _curry1 = __webpack_require__(0);
-var _toString = __webpack_require__(59);
+var _curry1 = /*#__PURE__*/__webpack_require__(0);
 
+var _toString = /*#__PURE__*/__webpack_require__(59);
 
 /**
  * Returns the string representation of the given value. `eval`'ing the output
@@ -171,8 +185,12 @@ var _toString = __webpack_require__(59);
  *      R.toString({foo: 1, bar: 2, baz: 3}); //=> '{"bar": 2, "baz": 3, "foo": 1}'
  *      R.toString(new Date('2001-02-03T04:05:06Z')); //=> 'new Date("2001-02-03T04:05:06.000Z")'
  */
-module.exports = _curry1(function toString(val) { return _toString(val, []); });
 
+
+var toString = /*#__PURE__*/_curry1(function toString(val) {
+  return _toString(val, []);
+});
+module.exports = toString;
 
 /***/ }),
 /* 3 */
@@ -251,32 +269,66 @@ module.exports = {
 /* 4 */
 /***/ (function(module, exports) {
 
-module.exports = function _arity(n, fn) {
+function _arity(n, fn) {
   /* eslint-disable no-unused-vars */
   switch (n) {
-    case 0: return function() { return fn.apply(this, arguments); };
-    case 1: return function(a0) { return fn.apply(this, arguments); };
-    case 2: return function(a0, a1) { return fn.apply(this, arguments); };
-    case 3: return function(a0, a1, a2) { return fn.apply(this, arguments); };
-    case 4: return function(a0, a1, a2, a3) { return fn.apply(this, arguments); };
-    case 5: return function(a0, a1, a2, a3, a4) { return fn.apply(this, arguments); };
-    case 6: return function(a0, a1, a2, a3, a4, a5) { return fn.apply(this, arguments); };
-    case 7: return function(a0, a1, a2, a3, a4, a5, a6) { return fn.apply(this, arguments); };
-    case 8: return function(a0, a1, a2, a3, a4, a5, a6, a7) { return fn.apply(this, arguments); };
-    case 9: return function(a0, a1, a2, a3, a4, a5, a6, a7, a8) { return fn.apply(this, arguments); };
-    case 10: return function(a0, a1, a2, a3, a4, a5, a6, a7, a8, a9) { return fn.apply(this, arguments); };
-    default: throw new Error('First argument to _arity must be a non-negative integer no greater than ten');
+    case 0:
+      return function () {
+        return fn.apply(this, arguments);
+      };
+    case 1:
+      return function (a0) {
+        return fn.apply(this, arguments);
+      };
+    case 2:
+      return function (a0, a1) {
+        return fn.apply(this, arguments);
+      };
+    case 3:
+      return function (a0, a1, a2) {
+        return fn.apply(this, arguments);
+      };
+    case 4:
+      return function (a0, a1, a2, a3) {
+        return fn.apply(this, arguments);
+      };
+    case 5:
+      return function (a0, a1, a2, a3, a4) {
+        return fn.apply(this, arguments);
+      };
+    case 6:
+      return function (a0, a1, a2, a3, a4, a5) {
+        return fn.apply(this, arguments);
+      };
+    case 7:
+      return function (a0, a1, a2, a3, a4, a5, a6) {
+        return fn.apply(this, arguments);
+      };
+    case 8:
+      return function (a0, a1, a2, a3, a4, a5, a6, a7) {
+        return fn.apply(this, arguments);
+      };
+    case 9:
+      return function (a0, a1, a2, a3, a4, a5, a6, a7, a8) {
+        return fn.apply(this, arguments);
+      };
+    case 10:
+      return function (a0, a1, a2, a3, a4, a5, a6, a7, a8, a9) {
+        return fn.apply(this, arguments);
+      };
+    default:
+      throw new Error('First argument to _arity must be a non-negative integer no greater than ten');
   }
-};
-
+}
+module.exports = _arity;
 
 /***/ }),
 /* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var _curry1 = __webpack_require__(0);
-var curryN = __webpack_require__(7);
+var _curry1 = /*#__PURE__*/__webpack_require__(0);
 
+var curryN = /*#__PURE__*/__webpack_require__(7);
 
 /**
  * Returns a curried equivalent of the provided function. The curried function
@@ -319,31 +371,33 @@ var curryN = __webpack_require__(7);
  *      var g = f(3);
  *      g(4); //=> 10
  */
-module.exports = _curry1(function curry(fn) {
+
+
+var curry = /*#__PURE__*/_curry1(function curry(fn) {
   return curryN(fn.length, fn);
 });
-
+module.exports = curry;
 
 /***/ }),
 /* 6 */
 /***/ (function(module, exports) {
 
-module.exports = function _isPlaceholder(a) {
-  return a != null &&
-         typeof a === 'object' &&
-         a['@@functional/placeholder'] === true;
-};
-
+function _isPlaceholder(a) {
+       return a != null && typeof a === 'object' && a['@@functional/placeholder'] === true;
+}
+module.exports = _isPlaceholder;
 
 /***/ }),
 /* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var _arity = __webpack_require__(4);
-var _curry1 = __webpack_require__(0);
-var _curry2 = __webpack_require__(1);
-var _curryN = __webpack_require__(44);
+var _arity = /*#__PURE__*/__webpack_require__(4);
 
+var _curry1 = /*#__PURE__*/__webpack_require__(0);
+
+var _curry2 = /*#__PURE__*/__webpack_require__(1);
+
+var _curryN = /*#__PURE__*/__webpack_require__(44);
 
 /**
  * Returns a curried equivalent of the provided function, with the specified
@@ -387,21 +441,23 @@ var _curryN = __webpack_require__(44);
  *      var g = f(3);
  *      g(4); //=> 10
  */
-module.exports = _curry2(function curryN(length, fn) {
+
+
+var curryN = /*#__PURE__*/_curry2(function curryN(length, fn) {
   if (length === 1) {
     return _curry1(fn);
   }
   return _arity(length, _curryN(length, [], fn));
 });
-
+module.exports = curryN;
 
 /***/ }),
 /* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var _curry2 = __webpack_require__(1);
-var _equals = __webpack_require__(46);
+var _curry2 = /*#__PURE__*/__webpack_require__(1);
 
+var _equals = /*#__PURE__*/__webpack_require__(46);
 
 /**
  * Returns `true` if its arguments are equivalent, `false` otherwise. Handles
@@ -428,17 +484,18 @@ var _equals = __webpack_require__(46);
  *      var b = {}; b.v = b;
  *      R.equals(a, b); //=> true
  */
-module.exports = _curry2(function equals(a, b) {
+
+
+var equals = /*#__PURE__*/_curry2(function equals(a, b) {
   return _equals(a, b, [], []);
 });
-
+module.exports = equals;
 
 /***/ }),
 /* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var _isArray = __webpack_require__(11);
-
+var _isArray = /*#__PURE__*/__webpack_require__(11);
 
 /**
  * This checks whether a function has a [methodname] function. If it isn't an
@@ -450,28 +507,28 @@ var _isArray = __webpack_require__(11);
  * @param {String} methodname property to check for a custom implementation
  * @return {Object} Whatever the return value of the method is.
  */
-module.exports = function _checkForMethod(methodname, fn) {
-  return function() {
+
+
+function _checkForMethod(methodname, fn) {
+  return function () {
     var length = arguments.length;
     if (length === 0) {
       return fn();
     }
     var obj = arguments[length - 1];
-    return (_isArray(obj) || typeof obj[methodname] !== 'function') ?
-      fn.apply(this, arguments) :
-      obj[methodname].apply(obj, Array.prototype.slice.call(arguments, 0, length - 1));
+    return _isArray(obj) || typeof obj[methodname] !== 'function' ? fn.apply(this, arguments) : obj[methodname].apply(obj, Array.prototype.slice.call(arguments, 0, length - 1));
   };
-};
-
+}
+module.exports = _checkForMethod;
 
 /***/ }),
 /* 10 */
 /***/ (function(module, exports) {
 
-module.exports = function _has(prop, obj) {
+function _has(prop, obj) {
   return Object.prototype.hasOwnProperty.call(obj, prop);
-};
-
+}
+module.exports = _has;
 
 /***/ }),
 /* 11 */
@@ -490,20 +547,41 @@ module.exports = function _has(prop, obj) {
  *      _isArray({}); //=> false
  */
 module.exports = Array.isArray || function _isArray(val) {
-  return (val != null &&
-          val.length >= 0 &&
-          Object.prototype.toString.call(val) === '[object Array]');
+  return val != null && val.length >= 0 && Object.prototype.toString.call(val) === '[object Array]';
 };
-
 
 /***/ }),
 /* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var _curry1 = __webpack_require__(0);
-var _has = __webpack_require__(10);
-var _isArguments = __webpack_require__(51);
+var _curry1 = /*#__PURE__*/__webpack_require__(0);
 
+var _has = /*#__PURE__*/__webpack_require__(10);
+
+var _isArguments = /*#__PURE__*/__webpack_require__(51);
+
+// cover IE < 9 keys issues
+
+
+var hasEnumBug = ! /*#__PURE__*/{ toString: null }.propertyIsEnumerable('toString');
+var nonEnumerableProps = ['constructor', 'valueOf', 'isPrototypeOf', 'toString', 'propertyIsEnumerable', 'hasOwnProperty', 'toLocaleString'];
+// Safari bug
+var hasArgsEnumBug = /*#__PURE__*/function () {
+  'use strict';
+
+  return arguments.propertyIsEnumerable('length');
+}();
+
+var contains = function contains(list, item) {
+  var idx = 0;
+  while (idx < list.length) {
+    if (list[idx] === item) {
+      return true;
+    }
+    idx += 1;
+  }
+  return false;
+};
 
 /**
  * Returns a list containing the names of all the enumerable own properties of
@@ -523,58 +601,34 @@ var _isArguments = __webpack_require__(51);
  *
  *      R.keys({a: 1, b: 2, c: 3}); //=> ['a', 'b', 'c']
  */
-module.exports = (function() {
-  // cover IE < 9 keys issues
-  var hasEnumBug = !({toString: null}).propertyIsEnumerable('toString');
-  var nonEnumerableProps = ['constructor', 'valueOf', 'isPrototypeOf', 'toString',
-                            'propertyIsEnumerable', 'hasOwnProperty', 'toLocaleString'];
-  // Safari bug
-  var hasArgsEnumBug = (function() {
-    'use strict';
-    return arguments.propertyIsEnumerable('length');
-  }());
-
-  var contains = function contains(list, item) {
-    var idx = 0;
-    while (idx < list.length) {
-      if (list[idx] === item) {
-        return true;
-      }
-      idx += 1;
+var _keys = typeof Object.keys === 'function' && !hasArgsEnumBug ? function keys(obj) {
+  return Object(obj) !== obj ? [] : Object.keys(obj);
+} : function keys(obj) {
+  if (Object(obj) !== obj) {
+    return [];
+  }
+  var prop, nIdx;
+  var ks = [];
+  var checkArgsLength = hasArgsEnumBug && _isArguments(obj);
+  for (prop in obj) {
+    if (_has(prop, obj) && (!checkArgsLength || prop !== 'length')) {
+      ks[ks.length] = prop;
     }
-    return false;
-  };
-
-  return typeof Object.keys === 'function' && !hasArgsEnumBug ?
-    _curry1(function keys(obj) {
-      return Object(obj) !== obj ? [] : Object.keys(obj);
-    }) :
-    _curry1(function keys(obj) {
-      if (Object(obj) !== obj) {
-        return [];
+  }
+  if (hasEnumBug) {
+    nIdx = nonEnumerableProps.length - 1;
+    while (nIdx >= 0) {
+      prop = nonEnumerableProps[nIdx];
+      if (_has(prop, obj) && !contains(ks, prop)) {
+        ks[ks.length] = prop;
       }
-      var prop, nIdx;
-      var ks = [];
-      var checkArgsLength = hasArgsEnumBug && _isArguments(obj);
-      for (prop in obj) {
-        if (_has(prop, obj) && (!checkArgsLength || prop !== 'length')) {
-          ks[ks.length] = prop;
-        }
-      }
-      if (hasEnumBug) {
-        nIdx = nonEnumerableProps.length - 1;
-        while (nIdx >= 0) {
-          prop = nonEnumerableProps[nIdx];
-          if (_has(prop, obj) && !contains(ks, prop)) {
-            ks[ks.length] = prop;
-          }
-          nIdx -= 1;
-        }
-      }
-      return ks;
-    });
-}());
-
+      nIdx -= 1;
+    }
+  }
+  return ks;
+};
+var keys = /*#__PURE__*/_curry1(_keys);
+module.exports = keys;
 
 /***/ }),
 /* 13 */
@@ -757,9 +811,9 @@ module.exports = Tuple;
 /* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var pipe = __webpack_require__(64);
-var reverse = __webpack_require__(67);
+var pipe = /*#__PURE__*/__webpack_require__(64);
 
+var reverse = /*#__PURE__*/__webpack_require__(67);
 
 /**
  * Performs right-to-left function composition. The rightmost function may have
@@ -785,22 +839,25 @@ var reverse = __webpack_require__(67);
  *
  * @symb R.compose(f, g, h)(a, b) = f(g(h(a, b)))
  */
-module.exports = function compose() {
+
+
+function compose() {
   if (arguments.length === 0) {
     throw new Error('compose requires at least one argument');
   }
   return pipe.apply(this, reverse(arguments));
-};
-
+}
+module.exports = compose;
 
 /***/ }),
 /* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var _curry1 = __webpack_require__(0);
-var _curry2 = __webpack_require__(1);
-var _isPlaceholder = __webpack_require__(6);
+var _curry1 = /*#__PURE__*/__webpack_require__(0);
 
+var _curry2 = /*#__PURE__*/__webpack_require__(1);
+
+var _isPlaceholder = /*#__PURE__*/__webpack_require__(6);
 
 /**
  * Optimized internal three-arity curry function.
@@ -810,108 +867,119 @@ var _isPlaceholder = __webpack_require__(6);
  * @param {Function} fn The function to curry.
  * @return {Function} The curried function.
  */
-module.exports = function _curry3(fn) {
+
+
+function _curry3(fn) {
   return function f3(a, b, c) {
     switch (arguments.length) {
       case 0:
         return f3;
       case 1:
-        return _isPlaceholder(a) ? f3
-             : _curry2(function(_b, _c) { return fn(a, _b, _c); });
+        return _isPlaceholder(a) ? f3 : _curry2(function (_b, _c) {
+          return fn(a, _b, _c);
+        });
       case 2:
-        return _isPlaceholder(a) && _isPlaceholder(b) ? f3
-             : _isPlaceholder(a) ? _curry2(function(_a, _c) { return fn(_a, b, _c); })
-             : _isPlaceholder(b) ? _curry2(function(_b, _c) { return fn(a, _b, _c); })
-             : _curry1(function(_c) { return fn(a, b, _c); });
+        return _isPlaceholder(a) && _isPlaceholder(b) ? f3 : _isPlaceholder(a) ? _curry2(function (_a, _c) {
+          return fn(_a, b, _c);
+        }) : _isPlaceholder(b) ? _curry2(function (_b, _c) {
+          return fn(a, _b, _c);
+        }) : _curry1(function (_c) {
+          return fn(a, b, _c);
+        });
       default:
-        return _isPlaceholder(a) && _isPlaceholder(b) && _isPlaceholder(c) ? f3
-             : _isPlaceholder(a) && _isPlaceholder(b) ? _curry2(function(_a, _b) { return fn(_a, _b, c); })
-             : _isPlaceholder(a) && _isPlaceholder(c) ? _curry2(function(_a, _c) { return fn(_a, b, _c); })
-             : _isPlaceholder(b) && _isPlaceholder(c) ? _curry2(function(_b, _c) { return fn(a, _b, _c); })
-             : _isPlaceholder(a) ? _curry1(function(_a) { return fn(_a, b, c); })
-             : _isPlaceholder(b) ? _curry1(function(_b) { return fn(a, _b, c); })
-             : _isPlaceholder(c) ? _curry1(function(_c) { return fn(a, b, _c); })
-             : fn(a, b, c);
+        return _isPlaceholder(a) && _isPlaceholder(b) && _isPlaceholder(c) ? f3 : _isPlaceholder(a) && _isPlaceholder(b) ? _curry2(function (_a, _b) {
+          return fn(_a, _b, c);
+        }) : _isPlaceholder(a) && _isPlaceholder(c) ? _curry2(function (_a, _c) {
+          return fn(_a, b, _c);
+        }) : _isPlaceholder(b) && _isPlaceholder(c) ? _curry2(function (_b, _c) {
+          return fn(a, _b, _c);
+        }) : _isPlaceholder(a) ? _curry1(function (_a) {
+          return fn(_a, b, c);
+        }) : _isPlaceholder(b) ? _curry1(function (_b) {
+          return fn(a, _b, c);
+        }) : _isPlaceholder(c) ? _curry1(function (_c) {
+          return fn(a, b, _c);
+        }) : fn(a, b, c);
     }
   };
-};
-
+}
+module.exports = _curry3;
 
 /***/ }),
 /* 17 */
 /***/ (function(module, exports) {
 
-module.exports = function _isString(x) {
+function _isString(x) {
   return Object.prototype.toString.call(x) === '[object String]';
-};
-
+}
+module.exports = _isString;
 
 /***/ }),
 /* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var _isArrayLike = __webpack_require__(52);
-var _xwrap = __webpack_require__(62);
-var bind = __webpack_require__(36);
+var _isArrayLike = /*#__PURE__*/__webpack_require__(52);
 
+var _xwrap = /*#__PURE__*/__webpack_require__(62);
 
-module.exports = (function() {
-  function _arrayReduce(xf, acc, list) {
-    var idx = 0;
-    var len = list.length;
-    while (idx < len) {
-      acc = xf['@@transducer/step'](acc, list[idx]);
-      if (acc && acc['@@transducer/reduced']) {
-        acc = acc['@@transducer/value'];
-        break;
-      }
-      idx += 1;
+var bind = /*#__PURE__*/__webpack_require__(35);
+
+function _arrayReduce(xf, acc, list) {
+  var idx = 0;
+  var len = list.length;
+  while (idx < len) {
+    acc = xf['@@transducer/step'](acc, list[idx]);
+    if (acc && acc['@@transducer/reduced']) {
+      acc = acc['@@transducer/value'];
+      break;
     }
-    return xf['@@transducer/result'](acc);
+    idx += 1;
+  }
+  return xf['@@transducer/result'](acc);
+}
+
+function _iterableReduce(xf, acc, iter) {
+  var step = iter.next();
+  while (!step.done) {
+    acc = xf['@@transducer/step'](acc, step.value);
+    if (acc && acc['@@transducer/reduced']) {
+      acc = acc['@@transducer/value'];
+      break;
+    }
+    step = iter.next();
+  }
+  return xf['@@transducer/result'](acc);
+}
+
+function _methodReduce(xf, acc, obj, methodName) {
+  return xf['@@transducer/result'](obj[methodName](bind(xf['@@transducer/step'], xf), acc));
+}
+
+var symIterator = typeof Symbol !== 'undefined' ? Symbol.iterator : '@@iterator';
+
+function _reduce(fn, acc, list) {
+  if (typeof fn === 'function') {
+    fn = _xwrap(fn);
+  }
+  if (_isArrayLike(list)) {
+    return _arrayReduce(fn, acc, list);
+  }
+  if (typeof list['fantasy-land/reduce'] === 'function') {
+    return _methodReduce(fn, acc, list, 'fantasy-land/reduce');
+  }
+  if (list[symIterator] != null) {
+    return _iterableReduce(fn, acc, list[symIterator]());
+  }
+  if (typeof list.next === 'function') {
+    return _iterableReduce(fn, acc, list);
+  }
+  if (typeof list.reduce === 'function') {
+    return _methodReduce(fn, acc, list, 'reduce');
   }
 
-  function _iterableReduce(xf, acc, iter) {
-    var step = iter.next();
-    while (!step.done) {
-      acc = xf['@@transducer/step'](acc, step.value);
-      if (acc && acc['@@transducer/reduced']) {
-        acc = acc['@@transducer/value'];
-        break;
-      }
-      step = iter.next();
-    }
-    return xf['@@transducer/result'](acc);
-  }
-
-  function _methodReduce(xf, acc, obj, methodName) {
-    return xf['@@transducer/result'](obj[methodName](bind(xf['@@transducer/step'], xf), acc));
-  }
-
-  var symIterator = (typeof Symbol !== 'undefined') ? Symbol.iterator : '@@iterator';
-  return function _reduce(fn, acc, list) {
-    if (typeof fn === 'function') {
-      fn = _xwrap(fn);
-    }
-    if (_isArrayLike(list)) {
-      return _arrayReduce(fn, acc, list);
-    }
-    if (typeof list['fantasy-land/reduce'] === 'function') {
-      return _methodReduce(fn, acc, list, 'fantasy-land/reduce');
-    }
-    if (list[symIterator] != null) {
-      return _iterableReduce(fn, acc, list[symIterator]());
-    }
-    if (typeof list.next === 'function') {
-      return _iterableReduce(fn, acc, list);
-    }
-    if (typeof list.reduce === 'function') {
-      return _methodReduce(fn, acc, list, 'reduce');
-    }
-
-    throw new TypeError('reduce: list must be array or iterable');
-  };
-}());
-
+  throw new TypeError('reduce: list must be array or iterable');
+}
+module.exports = _reduce;
 
 /***/ }),
 /* 19 */
@@ -985,15 +1053,15 @@ exports.default = styl;
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = {
-  Either: __webpack_require__(27),
-  Future: __webpack_require__(28),
+  Either: __webpack_require__(26),
+  Future: __webpack_require__(27),
   Identity: __webpack_require__(13),
-  IO: __webpack_require__(29),
-  lift2: __webpack_require__(33),
-  lift3: __webpack_require__(34),
-  Maybe: __webpack_require__(30),
-  Reader: __webpack_require__(31),
-  State: __webpack_require__(32),
+  IO: __webpack_require__(28),
+  lift2: __webpack_require__(32),
+  lift3: __webpack_require__(33),
+  Maybe: __webpack_require__(29),
+  Reader: __webpack_require__(30),
+  State: __webpack_require__(31),
   Tuple: __webpack_require__(14)
 };
 
@@ -1005,7 +1073,7 @@ module.exports = {
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(25);
+var content = __webpack_require__(24);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -1031,40 +1099,10 @@ if(false) {
 
 /***/ }),
 /* 23 */
-/***/ (function(module, exports) {
-
-module.exports = function(module) {
-	if(!module.webpackPolyfill) {
-		module.deprecate = function() {};
-		module.paths = [];
-		// module.parent = undefined by default
-		if(!module.children) module.children = [];
-		Object.defineProperty(module, "loaded", {
-			enumerable: true,
-			get: function() {
-				return module.l;
-			}
-		});
-		Object.defineProperty(module, "id", {
-			enumerable: true,
-			get: function() {
-				return module.i;
-			}
-		});
-		module.webpackPolyfill = 1;
-	}
-	return module;
-};
-
-
-/***/ }),
-/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(module) {
 
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
@@ -1091,9 +1129,10 @@ var Placeload = {
   $: function $(x) {
     return utils(boxElements(x), selector(x));
   }
+};
 
-  // selector :: String -> Either
-};var selector = function selector(x) {
+// selector :: String -> Either
+var selector = function selector(x) {
   var element = document.querySelector(x);
   return element ? Right(element) : Left('Don\'t found ' + x + ' element');
 };
@@ -1197,22 +1236,13 @@ var newBoxStyled = function newBoxStyled(elements, newElement, prop, value) {
   });
 };
 
-// Export
-if (typeof window !== 'undefined' && window) {
-  if (( false ? 'undefined' : _typeof(module)) === 'object' && module.exports) {
-    module.exports = Placeload;
-  } else {
-    // Browser
-    window.Placeload = Placeload;
-  }
-}
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(23)(module)))
+module.exports = Placeload;
 
 /***/ }),
-/* 25 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(26)(undefined);
+exports = module.exports = __webpack_require__(25)(false);
 // imports
 
 
@@ -1223,7 +1253,7 @@ exports.push([module.i, "/* Animation */\n@keyframes placeHolderShimmer{\n    0%
 
 
 /***/ }),
-/* 26 */
+/* 25 */
 /***/ (function(module, exports) {
 
 /*
@@ -1305,7 +1335,7 @@ function toComment(sourceMap) {
 
 
 /***/ }),
-/* 27 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var curry = __webpack_require__(5);
@@ -1446,11 +1476,11 @@ module.exports = Either;
 
 
 /***/ }),
-/* 28 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var once = __webpack_require__(63);
-var forEach = __webpack_require__(38);
+var forEach = __webpack_require__(37);
 var toString = __webpack_require__(2);
 var curry = __webpack_require__(5);
 
@@ -1658,7 +1688,7 @@ module.exports = Future;
 
 
 /***/ }),
-/* 29 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var compose = __webpack_require__(15);
@@ -1730,7 +1760,7 @@ IO.prototype.toString = function() {
 
 
 /***/ }),
-/* 30 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var toString = __webpack_require__(2);
@@ -1892,13 +1922,13 @@ module.exports = Maybe;
 
 
 /***/ }),
-/* 31 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var compose = __webpack_require__(15);
-var identity = __webpack_require__(40);
+var identity = __webpack_require__(39);
 var toString = __webpack_require__(2);
-var always = __webpack_require__(35);
+var always = __webpack_require__(34);
 
 
 function Reader(run) {
@@ -1998,7 +2028,7 @@ module.exports = Reader;
 
 
 /***/ }),
-/* 32 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var curry = __webpack_require__(5);
@@ -2090,7 +2120,7 @@ module.exports = State;
 
 
 /***/ }),
-/* 33 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var curryN = __webpack_require__(7);
@@ -2101,7 +2131,7 @@ module.exports = curryN(3, function lift2(f, a1, a2) {
 
 
 /***/ }),
-/* 34 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var curryN = __webpack_require__(7);
@@ -2112,11 +2142,10 @@ module.exports = curryN(4, function lift3(f, a1, a2, a3) {
 
 
 /***/ }),
-/* 35 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var _curry1 = __webpack_require__(0);
-
+var _curry1 = /*#__PURE__*/__webpack_require__(0);
 
 /**
  * Returns a function that always returns the given value. Note that for
@@ -2137,20 +2166,22 @@ var _curry1 = __webpack_require__(0);
  *      var t = R.always('Tee');
  *      t(); //=> 'Tee'
  */
-module.exports = _curry1(function always(val) {
-  return function() {
+
+
+var always = /*#__PURE__*/_curry1(function always(val) {
+  return function () {
     return val;
   };
 });
-
+module.exports = always;
 
 /***/ }),
-/* 36 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var _arity = __webpack_require__(4);
-var _curry2 = __webpack_require__(1);
+var _arity = /*#__PURE__*/__webpack_require__(4);
 
+var _curry2 = /*#__PURE__*/__webpack_require__(1);
 
 /**
  * Creates a function that is bound to a context.
@@ -2174,25 +2205,32 @@ var _curry2 = __webpack_require__(1);
  *      // logs {a: 2}
  * @symb R.bind(f, o)(a, b) = f.call(o, a, b)
  */
-module.exports = _curry2(function bind(fn, thisObj) {
-  return _arity(fn.length, function() {
+
+
+var bind = /*#__PURE__*/_curry2(function bind(fn, thisObj) {
+  return _arity(fn.length, function () {
     return fn.apply(thisObj, arguments);
   });
 });
-
+module.exports = bind;
 
 /***/ }),
-/* 37 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var _curry2 = __webpack_require__(1);
-var _dispatchable = __webpack_require__(45);
-var _filter = __webpack_require__(47);
-var _isObject = __webpack_require__(53);
-var _reduce = __webpack_require__(18);
-var _xfilter = __webpack_require__(61);
-var keys = __webpack_require__(12);
+var _curry2 = /*#__PURE__*/__webpack_require__(1);
 
+var _dispatchable = /*#__PURE__*/__webpack_require__(45);
+
+var _filter = /*#__PURE__*/__webpack_require__(47);
+
+var _isObject = /*#__PURE__*/__webpack_require__(53);
+
+var _reduce = /*#__PURE__*/__webpack_require__(18);
+
+var _xfilter = /*#__PURE__*/__webpack_require__(61);
+
+var keys = /*#__PURE__*/__webpack_require__(12);
 
 /**
  * Takes a predicate and a `Filterable`, and returns a new filterable of the
@@ -2221,28 +2259,27 @@ var keys = __webpack_require__(12);
  *
  *      R.filter(isEven, {a: 1, b: 2, c: 3, d: 4}); //=> {b: 2, d: 4}
  */
-module.exports = _curry2(_dispatchable(['filter'], _xfilter, function(pred, filterable) {
-  return (
-    _isObject(filterable) ?
-      _reduce(function(acc, key) {
-        if (pred(filterable[key])) {
-          acc[key] = filterable[key];
-        }
-        return acc;
-      }, {}, keys(filterable)) :
-    // else
-      _filter(pred, filterable)
-  );
-}));
 
+
+var filter = /*#__PURE__*/_curry2( /*#__PURE__*/_dispatchable(['filter'], _xfilter, function (pred, filterable) {
+  return _isObject(filterable) ? _reduce(function (acc, key) {
+    if (pred(filterable[key])) {
+      acc[key] = filterable[key];
+    }
+    return acc;
+  }, {}, keys(filterable)) :
+  // else
+  _filter(pred, filterable);
+}));
+module.exports = filter;
 
 /***/ }),
-/* 38 */
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var _checkForMethod = __webpack_require__(9);
-var _curry2 = __webpack_require__(1);
+var _checkForMethod = /*#__PURE__*/__webpack_require__(9);
 
+var _curry2 = /*#__PURE__*/__webpack_require__(1);
 
 /**
  * Iterate over an input `list`, calling a provided function `fn` for each
@@ -2278,7 +2315,9 @@ var _curry2 = __webpack_require__(1);
  *      // logs 8
  * @symb R.forEach(f, [a, b, c]) = [a, b, c]
  */
-module.exports = _curry2(_checkForMethod('forEach', function forEach(fn, list) {
+
+
+var forEach = /*#__PURE__*/_curry2( /*#__PURE__*/_checkForMethod('forEach', function forEach(fn, list) {
   var len = list.length;
   var idx = 0;
   while (idx < len) {
@@ -2287,14 +2326,13 @@ module.exports = _curry2(_checkForMethod('forEach', function forEach(fn, list) {
   }
   return list;
 }));
-
+module.exports = forEach;
 
 /***/ }),
-/* 39 */
+/* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var _curry2 = __webpack_require__(1);
-
+var _curry2 = /*#__PURE__*/__webpack_require__(1);
 
 /**
  * Returns true if its arguments are identical, false otherwise. Values are
@@ -2319,9 +2357,12 @@ var _curry2 = __webpack_require__(1);
  *      R.identical(0, -0); //=> false
  *      R.identical(NaN, NaN); //=> true
  */
-module.exports = _curry2(function identical(a, b) {
+
+
+var identical = /*#__PURE__*/_curry2(function identical(a, b) {
   // SameValue algorithm
-  if (a === b) { // Steps 1-5, 7-10
+  if (a === b) {
+    // Steps 1-5, 7-10
     // Steps 6.b-6.e: +0 != -0
     return a !== 0 || 1 / a === 1 / b;
   } else {
@@ -2329,15 +2370,15 @@ module.exports = _curry2(function identical(a, b) {
     return a !== a && b !== b;
   }
 });
-
+module.exports = identical;
 
 /***/ }),
-/* 40 */
+/* 39 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var _curry1 = __webpack_require__(0);
-var _identity = __webpack_require__(49);
+var _curry1 = /*#__PURE__*/__webpack_require__(0);
 
+var _identity = /*#__PURE__*/__webpack_require__(49);
 
 /**
  * A function that does nothing but return the parameter supplied to it. Good
@@ -2358,53 +2399,72 @@ var _identity = __webpack_require__(49);
  *      R.identity(obj) === obj; //=> true
  * @symb R.identity(a) = a
  */
-module.exports = _curry1(_identity);
 
+
+var identity = /*#__PURE__*/_curry1(_identity);
+module.exports = identity;
 
 /***/ }),
-/* 41 */
+/* 40 */
 /***/ (function(module, exports) {
 
-module.exports = function _arrayFromIterator(iter) {
+function _arrayFromIterator(iter) {
   var list = [];
   var next;
   while (!(next = iter.next()).done) {
     list.push(next.value);
   }
   return list;
-};
+}
+module.exports = _arrayFromIterator;
 
+/***/ }),
+/* 41 */
+/***/ (function(module, exports) {
+
+function _complement(f) {
+  return function () {
+    return !f.apply(this, arguments);
+  };
+}
+module.exports = _complement;
 
 /***/ }),
 /* 42 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-module.exports = function _complement(f) {
-  return function() {
-    return !f.apply(this, arguments);
-  };
-};
+var _indexOf = /*#__PURE__*/__webpack_require__(50);
 
+function _contains(a, list) {
+  return _indexOf(list, a, 0) >= 0;
+}
+module.exports = _contains;
 
 /***/ }),
 /* 43 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, exports) {
 
-var _indexOf = __webpack_require__(50);
+function _containsWith(pred, x, list) {
+  var idx = 0;
+  var len = list.length;
 
-
-module.exports = function _contains(a, list) {
-  return _indexOf(list, a, 0) >= 0;
-};
-
+  while (idx < len) {
+    if (pred(x, list[idx])) {
+      return true;
+    }
+    idx += 1;
+  }
+  return false;
+}
+module.exports = _containsWith;
 
 /***/ }),
 /* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var _arity = __webpack_require__(4);
-var _isPlaceholder = __webpack_require__(6);
+var _arity = /*#__PURE__*/__webpack_require__(4);
 
+var _isPlaceholder = /*#__PURE__*/__webpack_require__(6);
 
 /**
  * Internal curryN function.
@@ -2416,17 +2476,17 @@ var _isPlaceholder = __webpack_require__(6);
  * @param {Function} fn The function to curry.
  * @return {Function} The curried function.
  */
-module.exports = function _curryN(length, received, fn) {
-  return function() {
+
+
+function _curryN(length, received, fn) {
+  return function () {
     var combined = [];
     var argsIdx = 0;
     var left = length;
     var combinedIdx = 0;
     while (combinedIdx < received.length || argsIdx < arguments.length) {
       var result;
-      if (combinedIdx < received.length &&
-          (!_isPlaceholder(received[combinedIdx]) ||
-           argsIdx >= arguments.length)) {
+      if (combinedIdx < received.length && (!_isPlaceholder(received[combinedIdx]) || argsIdx >= arguments.length)) {
         result = received[combinedIdx];
       } else {
         result = arguments[argsIdx];
@@ -2438,19 +2498,18 @@ module.exports = function _curryN(length, received, fn) {
       }
       combinedIdx += 1;
     }
-    return left <= 0 ? fn.apply(this, combined)
-                     : _arity(left, _curryN(length, combined, fn));
+    return left <= 0 ? fn.apply(this, combined) : _arity(left, _curryN(length, combined, fn));
   };
-};
-
+}
+module.exports = _curryN;
 
 /***/ }),
 /* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var _isArray = __webpack_require__(11);
-var _isTransformer = __webpack_require__(54);
+var _isArray = /*#__PURE__*/__webpack_require__(11);
 
+var _isTransformer = /*#__PURE__*/__webpack_require__(54);
 
 /**
  * Returns a function that dispatches with different strategies based on the
@@ -2466,8 +2525,10 @@ var _isTransformer = __webpack_require__(54);
  * @param {Function} fn default ramda implementation
  * @return {Function} A function that dispatches on object in list position
  */
-module.exports = function _dispatchable(methodNames, xf, fn) {
-  return function() {
+
+
+function _dispatchable(methodNames, xf, fn) {
+  return function () {
     if (arguments.length === 0) {
       return fn();
     }
@@ -2488,27 +2549,60 @@ module.exports = function _dispatchable(methodNames, xf, fn) {
     }
     return fn.apply(this, arguments);
   };
-};
-
+}
+module.exports = _dispatchable;
 
 /***/ }),
 /* 46 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var _arrayFromIterator = __webpack_require__(41);
-var _functionName = __webpack_require__(48);
-var _has = __webpack_require__(10);
-var identical = __webpack_require__(39);
-var keys = __webpack_require__(12);
-var type = __webpack_require__(70);
+var _arrayFromIterator = /*#__PURE__*/__webpack_require__(40);
 
+var _containsWith = /*#__PURE__*/__webpack_require__(43);
 
-module.exports = function _equals(a, b, stackA, stackB) {
+var _functionName = /*#__PURE__*/__webpack_require__(48);
+
+var _has = /*#__PURE__*/__webpack_require__(10);
+
+var identical = /*#__PURE__*/__webpack_require__(38);
+
+var keys = /*#__PURE__*/__webpack_require__(12);
+
+var type = /*#__PURE__*/__webpack_require__(70);
+
+/**
+ * private _uniqContentEquals function.
+ * That function is checking equality of 2 iterator contents with 2 assumptions
+ * - iterators lengths are the same
+ * - iterators values are unique
+ *
+ * false-positive result will be returned for comparision of, e.g.
+ * - [1,2,3] and [1,2,3,4]
+ * - [1,1,1] and [1,2,3]
+ * */
+
+function _uniqContentEquals(aIterator, bIterator, stackA, stackB) {
+  var a = _arrayFromIterator(aIterator);
+  var b = _arrayFromIterator(bIterator);
+
+  function eq(_a, _b) {
+    return _equals(_a, _b, stackA.slice(), stackB.slice());
+  }
+
+  // if *a* array contains any element that is not included in *b*
+  return !_containsWith(function (b, aItem) {
+    return !_containsWith(eq, aItem, b);
+  }, b, a);
+}
+
+function _equals(a, b, stackA, stackB) {
   if (identical(a, b)) {
     return true;
   }
 
-  if (type(a) !== type(b)) {
+  var typeA = type(a);
+
+  if (typeA !== type(b)) {
     return false;
   }
 
@@ -2517,21 +2611,18 @@ module.exports = function _equals(a, b, stackA, stackB) {
   }
 
   if (typeof a['fantasy-land/equals'] === 'function' || typeof b['fantasy-land/equals'] === 'function') {
-    return typeof a['fantasy-land/equals'] === 'function' && a['fantasy-land/equals'](b) &&
-           typeof b['fantasy-land/equals'] === 'function' && b['fantasy-land/equals'](a);
+    return typeof a['fantasy-land/equals'] === 'function' && a['fantasy-land/equals'](b) && typeof b['fantasy-land/equals'] === 'function' && b['fantasy-land/equals'](a);
   }
 
   if (typeof a.equals === 'function' || typeof b.equals === 'function') {
-    return typeof a.equals === 'function' && a.equals(b) &&
-           typeof b.equals === 'function' && b.equals(a);
+    return typeof a.equals === 'function' && a.equals(b) && typeof b.equals === 'function' && b.equals(a);
   }
 
-  switch (type(a)) {
+  switch (typeA) {
     case 'Arguments':
     case 'Array':
     case 'Object':
-      if (typeof a.constructor === 'function' &&
-          _functionName(a.constructor) === 'Promise') {
+      if (typeof a.constructor === 'function' && _functionName(a.constructor) === 'Promise') {
         return a === b;
       }
       break;
@@ -2550,21 +2641,42 @@ module.exports = function _equals(a, b, stackA, stackB) {
     case 'Error':
       return a.name === b.name && a.message === b.message;
     case 'RegExp':
-      if (!(a.source === b.source &&
-            a.global === b.global &&
-            a.ignoreCase === b.ignoreCase &&
-            a.multiline === b.multiline &&
-            a.sticky === b.sticky &&
-            a.unicode === b.unicode)) {
+      if (!(a.source === b.source && a.global === b.global && a.ignoreCase === b.ignoreCase && a.multiline === b.multiline && a.sticky === b.sticky && a.unicode === b.unicode)) {
         return false;
       }
       break;
+  }
+
+  var idx = stackA.length - 1;
+  while (idx >= 0) {
+    if (stackA[idx] === a) {
+      return stackB[idx] === b;
+    }
+    idx -= 1;
+  }
+
+  switch (typeA) {
     case 'Map':
-    case 'Set':
-      if (!_equals(_arrayFromIterator(a.entries()), _arrayFromIterator(b.entries()), stackA, stackB)) {
+      if (a.size !== b.size) {
         return false;
       }
-      break;
+
+      return _uniqContentEquals(a.entries(), b.entries(), stackA.concat([a]), stackB.concat([b]));
+    case 'Set':
+      if (a.size !== b.size) {
+        return false;
+      }
+
+      return _uniqContentEquals(a.values(), b.values(), stackA.concat([a]), stackB.concat([b]));
+    case 'Arguments':
+    case 'Array':
+    case 'Object':
+    case 'Boolean':
+    case 'Number':
+    case 'String':
+    case 'Date':
+    case 'Error':
+    case 'RegExp':
     case 'Int8Array':
     case 'Uint8Array':
     case 'Uint8ClampedArray':
@@ -2574,7 +2686,6 @@ module.exports = function _equals(a, b, stackA, stackB) {
     case 'Uint32Array':
     case 'Float32Array':
     case 'Float64Array':
-      break;
     case 'ArrayBuffer':
       break;
     default:
@@ -2587,35 +2698,26 @@ module.exports = function _equals(a, b, stackA, stackB) {
     return false;
   }
 
-  var idx = stackA.length - 1;
-  while (idx >= 0) {
-    if (stackA[idx] === a) {
-      return stackB[idx] === b;
-    }
-    idx -= 1;
-  }
+  var extendedStackA = stackA.concat([a]);
+  var extendedStackB = stackB.concat([b]);
 
-  stackA.push(a);
-  stackB.push(b);
   idx = keysA.length - 1;
   while (idx >= 0) {
     var key = keysA[idx];
-    if (!(_has(key, b) && _equals(b[key], a[key], stackA, stackB))) {
+    if (!(_has(key, b) && _equals(b[key], a[key], extendedStackA, extendedStackB))) {
       return false;
     }
     idx -= 1;
   }
-  stackA.pop();
-  stackB.pop();
   return true;
-};
-
+}
+module.exports = _equals;
 
 /***/ }),
 /* 47 */
 /***/ (function(module, exports) {
 
-module.exports = function _filter(fn, list) {
+function _filter(fn, list) {
   var idx = 0;
   var len = list.length;
   var result = [];
@@ -2627,35 +2729,36 @@ module.exports = function _filter(fn, list) {
     idx += 1;
   }
   return result;
-};
-
+}
+module.exports = _filter;
 
 /***/ }),
 /* 48 */
 /***/ (function(module, exports) {
 
-module.exports = function _functionName(f) {
+function _functionName(f) {
   // String(x => x) evaluates to "x => x", so the pattern may not match.
   var match = String(f).match(/^function (\w*)/);
   return match == null ? '' : match[1];
-};
-
+}
+module.exports = _functionName;
 
 /***/ }),
 /* 49 */
 /***/ (function(module, exports) {
 
-module.exports = function _identity(x) { return x; };
-
+function _identity(x) {
+  return x;
+}
+module.exports = _identity;
 
 /***/ }),
 /* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var equals = __webpack_require__(8);
+var equals = /*#__PURE__*/__webpack_require__(8);
 
-
-module.exports = function _indexOf(list, a, idx) {
+function _indexOf(list, a, idx) {
   var inf, item;
   // Array.prototype.indexOf doesn't exist below IE9
   if (typeof list.indexOf === 'function') {
@@ -2708,32 +2811,35 @@ module.exports = function _indexOf(list, a, idx) {
     idx += 1;
   }
   return -1;
-};
-
+}
+module.exports = _indexOf;
 
 /***/ }),
 /* 51 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var _has = __webpack_require__(10);
+var _has = /*#__PURE__*/__webpack_require__(10);
 
+var toString = Object.prototype.toString;
+var _isArguments = function () {
+  return toString.call(arguments) === '[object Arguments]' ? function _isArguments(x) {
+    return toString.call(x) === '[object Arguments]';
+  } : function _isArguments(x) {
+    return _has('callee', x);
+  };
+};
 
-module.exports = (function() {
-  var toString = Object.prototype.toString;
-  return toString.call(arguments) === '[object Arguments]' ?
-    function _isArguments(x) { return toString.call(x) === '[object Arguments]'; } :
-    function _isArguments(x) { return _has('callee', x); };
-}());
-
+module.exports = _isArguments;
 
 /***/ }),
 /* 52 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var _curry1 = __webpack_require__(0);
-var _isArray = __webpack_require__(11);
-var _isString = __webpack_require__(17);
+var _curry1 = /*#__PURE__*/__webpack_require__(0);
 
+var _isArray = /*#__PURE__*/__webpack_require__(11);
+
+var _isString = /*#__PURE__*/__webpack_require__(17);
 
 /**
  * Tests whether or not an object is similar to an array.
@@ -2752,43 +2858,57 @@ var _isString = __webpack_require__(17);
  *      _isArrayLike({length: 10}); //=> false
  *      _isArrayLike({0: 'zero', 9: 'nine', length: 10}); //=> true
  */
-module.exports = _curry1(function isArrayLike(x) {
-  if (_isArray(x)) { return true; }
-  if (!x) { return false; }
-  if (typeof x !== 'object') { return false; }
-  if (_isString(x)) { return false; }
-  if (x.nodeType === 1) { return !!x.length; }
-  if (x.length === 0) { return true; }
+
+
+var _isArrayLike = /*#__PURE__*/_curry1(function isArrayLike(x) {
+  if (_isArray(x)) {
+    return true;
+  }
+  if (!x) {
+    return false;
+  }
+  if (typeof x !== 'object') {
+    return false;
+  }
+  if (_isString(x)) {
+    return false;
+  }
+  if (x.nodeType === 1) {
+    return !!x.length;
+  }
+  if (x.length === 0) {
+    return true;
+  }
   if (x.length > 0) {
     return x.hasOwnProperty(0) && x.hasOwnProperty(x.length - 1);
   }
   return false;
 });
-
+module.exports = _isArrayLike;
 
 /***/ }),
 /* 53 */
 /***/ (function(module, exports) {
 
-module.exports = function _isObject(x) {
+function _isObject(x) {
   return Object.prototype.toString.call(x) === '[object Object]';
-};
-
+}
+module.exports = _isObject;
 
 /***/ }),
 /* 54 */
 /***/ (function(module, exports) {
 
-module.exports = function _isTransformer(obj) {
+function _isTransformer(obj) {
   return typeof obj['@@transducer/step'] === 'function';
-};
-
+}
+module.exports = _isTransformer;
 
 /***/ }),
 /* 55 */
 /***/ (function(module, exports) {
 
-module.exports = function _map(fn, functor) {
+function _map(fn, functor) {
   var idx = 0;
   var len = functor.length;
   var result = Array(len);
@@ -2797,38 +2917,31 @@ module.exports = function _map(fn, functor) {
     idx += 1;
   }
   return result;
-};
-
+}
+module.exports = _map;
 
 /***/ }),
 /* 56 */
 /***/ (function(module, exports) {
 
-module.exports = function _pipe(f, g) {
-  return function() {
+function _pipe(f, g) {
+  return function () {
     return g.call(this, f.apply(this, arguments));
   };
-};
-
+}
+module.exports = _pipe;
 
 /***/ }),
 /* 57 */
 /***/ (function(module, exports) {
 
-module.exports = function _quote(s) {
-  var escaped = s
-    .replace(/\\/g, '\\\\')
-    .replace(/[\b]/g, '\\b')  // \b matches word boundary; [\b] matches backspace
-    .replace(/\f/g, '\\f')
-    .replace(/\n/g, '\\n')
-    .replace(/\r/g, '\\r')
-    .replace(/\t/g, '\\t')
-    .replace(/\v/g, '\\v')
-    .replace(/\0/g, '\\0');
+function _quote(s) {
+  var escaped = s.replace(/\\/g, '\\\\').replace(/[\b]/g, '\\b') // \b matches word boundary; [\b] matches backspace
+  .replace(/\f/g, '\\f').replace(/\n/g, '\\n').replace(/\r/g, '\\r').replace(/\t/g, '\\t').replace(/\v/g, '\\v').replace(/\0/g, '\\0');
 
   return '"' + escaped.replace(/"/g, '\\"') + '"';
-};
-
+}
+module.exports = _quote;
 
 /***/ }),
 /* 58 */
@@ -2837,55 +2950,55 @@ module.exports = function _quote(s) {
 /**
  * Polyfill from <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString>.
  */
-module.exports = (function() {
-  var pad = function pad(n) { return (n < 10 ? '0' : '') + n; };
+var pad = function pad(n) {
+  return (n < 10 ? '0' : '') + n;
+};
 
-  return typeof Date.prototype.toISOString === 'function' ?
-    function _toISOString(d) {
-      return d.toISOString();
-    } :
-    function _toISOString(d) {
-      return (
-        d.getUTCFullYear() + '-' +
-        pad(d.getUTCMonth() + 1) + '-' +
-        pad(d.getUTCDate()) + 'T' +
-        pad(d.getUTCHours()) + ':' +
-        pad(d.getUTCMinutes()) + ':' +
-        pad(d.getUTCSeconds()) + '.' +
-        (d.getUTCMilliseconds() / 1000).toFixed(3).slice(2, 5) + 'Z'
-      );
-    };
-}());
+var _toISOString = typeof Date.prototype.toISOString === 'function' ? function _toISOString(d) {
+  return d.toISOString();
+} : function _toISOString(d) {
+  return d.getUTCFullYear() + '-' + pad(d.getUTCMonth() + 1) + '-' + pad(d.getUTCDate()) + 'T' + pad(d.getUTCHours()) + ':' + pad(d.getUTCMinutes()) + ':' + pad(d.getUTCSeconds()) + '.' + (d.getUTCMilliseconds() / 1000).toFixed(3).slice(2, 5) + 'Z';
+};
 
+module.exports = _toISOString;
 
 /***/ }),
 /* 59 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var _contains = __webpack_require__(43);
-var _map = __webpack_require__(55);
-var _quote = __webpack_require__(57);
-var _toISOString = __webpack_require__(58);
-var keys = __webpack_require__(12);
-var reject = __webpack_require__(66);
+var _contains = /*#__PURE__*/__webpack_require__(42);
 
+var _map = /*#__PURE__*/__webpack_require__(55);
 
-module.exports = function _toString(x, seen) {
+var _quote = /*#__PURE__*/__webpack_require__(57);
+
+var _toISOString = /*#__PURE__*/__webpack_require__(58);
+
+var keys = /*#__PURE__*/__webpack_require__(12);
+
+var reject = /*#__PURE__*/__webpack_require__(66);
+
+function _toString(x, seen) {
   var recur = function recur(y) {
     var xs = seen.concat([x]);
     return _contains(y, xs) ? '<Circular>' : _toString(y, xs);
   };
 
   //  mapPairs :: (Object, [String]) -> [String]
-  var mapPairs = function(obj, keys) {
-    return _map(function(k) { return _quote(k) + ': ' + recur(obj[k]); }, keys.slice().sort());
+  var mapPairs = function (obj, keys) {
+    return _map(function (k) {
+      return _quote(k) + ': ' + recur(obj[k]);
+    }, keys.slice().sort());
   };
 
   switch (Object.prototype.toString.call(x)) {
     case '[object Arguments]':
       return '(function() { return arguments; }(' + _map(recur, x).join(', ') + '))';
     case '[object Array]':
-      return '[' + _map(recur, x).concat(mapPairs(x, reject(function(k) { return /^\d+$/.test(k); }, keys(x)))).join(', ') + ']';
+      return '[' + _map(recur, x).concat(mapPairs(x, reject(function (k) {
+        return (/^\d+$/.test(k)
+        );
+      }, keys(x)))).join(', ') + ']';
     case '[object Boolean]':
       return typeof x === 'object' ? 'new Boolean(' + recur(x.valueOf()) + ')' : x.toString();
     case '[object Date]':
@@ -2907,73 +3020,83 @@ module.exports = function _toString(x, seen) {
       }
       return '{' + mapPairs(x, keys(x)).join(', ') + '}';
   }
-};
-
+}
+module.exports = _toString;
 
 /***/ }),
 /* 60 */
 /***/ (function(module, exports) {
 
 module.exports = {
-  init: function() {
+  init: function () {
     return this.xf['@@transducer/init']();
   },
-  result: function(result) {
+  result: function (result) {
     return this.xf['@@transducer/result'](result);
   }
 };
-
 
 /***/ }),
 /* 61 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var _curry2 = __webpack_require__(1);
-var _xfBase = __webpack_require__(60);
+var _curry2 = /*#__PURE__*/__webpack_require__(1);
 
+var _xfBase = /*#__PURE__*/__webpack_require__(60);
 
-module.exports = (function() {
+var XFilter = /*#__PURE__*/function () {
+
   function XFilter(f, xf) {
     this.xf = xf;
     this.f = f;
   }
   XFilter.prototype['@@transducer/init'] = _xfBase.init;
   XFilter.prototype['@@transducer/result'] = _xfBase.result;
-  XFilter.prototype['@@transducer/step'] = function(result, input) {
+  XFilter.prototype['@@transducer/step'] = function (result, input) {
     return this.f(input) ? this.xf['@@transducer/step'](result, input) : result;
   };
 
-  return _curry2(function _xfilter(f, xf) { return new XFilter(f, xf); });
-}());
+  return XFilter;
+}();
 
+var _xfilter = /*#__PURE__*/_curry2(function _xfilter(f, xf) {
+  return new XFilter(f, xf);
+});
+module.exports = _xfilter;
 
 /***/ }),
 /* 62 */
 /***/ (function(module, exports) {
 
-module.exports = (function() {
+var XWrap = /*#__PURE__*/function () {
   function XWrap(fn) {
     this.f = fn;
   }
-  XWrap.prototype['@@transducer/init'] = function() {
+  XWrap.prototype['@@transducer/init'] = function () {
     throw new Error('init not implemented on XWrap');
   };
-  XWrap.prototype['@@transducer/result'] = function(acc) { return acc; };
-  XWrap.prototype['@@transducer/step'] = function(acc, x) {
+  XWrap.prototype['@@transducer/result'] = function (acc) {
+    return acc;
+  };
+  XWrap.prototype['@@transducer/step'] = function (acc, x) {
     return this.f(acc, x);
   };
 
-  return function _xwrap(fn) { return new XWrap(fn); };
-}());
+  return XWrap;
+}();
 
+function _xwrap(fn) {
+  return new XWrap(fn);
+}
+module.exports = _xwrap;
 
 /***/ }),
 /* 63 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var _arity = __webpack_require__(4);
-var _curry1 = __webpack_require__(0);
+var _arity = /*#__PURE__*/__webpack_require__(4);
 
+var _curry1 = /*#__PURE__*/__webpack_require__(0);
 
 /**
  * Accepts a function `fn` and returns a function that guards invocation of
@@ -2994,10 +3117,12 @@ var _curry1 = __webpack_require__(0);
  *      addOneOnce(10); //=> 11
  *      addOneOnce(addOneOnce(50)); //=> 11
  */
-module.exports = _curry1(function once(fn) {
+
+
+var once = /*#__PURE__*/_curry1(function once(fn) {
   var called = false;
   var result;
-  return _arity(fn.length, function() {
+  return _arity(fn.length, function () {
     if (called) {
       return result;
     }
@@ -3006,17 +3131,19 @@ module.exports = _curry1(function once(fn) {
     return result;
   });
 });
-
+module.exports = once;
 
 /***/ }),
 /* 64 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var _arity = __webpack_require__(4);
-var _pipe = __webpack_require__(56);
-var reduce = __webpack_require__(65);
-var tail = __webpack_require__(69);
+var _arity = /*#__PURE__*/__webpack_require__(4);
 
+var _pipe = /*#__PURE__*/__webpack_require__(56);
+
+var reduce = /*#__PURE__*/__webpack_require__(65);
+
+var tail = /*#__PURE__*/__webpack_require__(69);
 
 /**
  * Performs left-to-right function composition. The leftmost function may have
@@ -3041,22 +3168,23 @@ var tail = __webpack_require__(69);
  *      f(3, 4); // -(3^4) + 1
  * @symb R.pipe(f, g, h)(a, b) = h(g(f(a, b)))
  */
-module.exports = function pipe() {
+
+
+function pipe() {
   if (arguments.length === 0) {
     throw new Error('pipe requires at least one argument');
   }
-  return _arity(arguments[0].length,
-                reduce(_pipe, arguments[0], tail(arguments)));
-};
-
+  return _arity(arguments[0].length, reduce(_pipe, arguments[0], tail(arguments)));
+}
+module.exports = pipe;
 
 /***/ }),
 /* 65 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var _curry3 = __webpack_require__(16);
-var _reduce = __webpack_require__(18);
+var _curry3 = /*#__PURE__*/__webpack_require__(16);
 
+var _reduce = /*#__PURE__*/__webpack_require__(18);
 
 /**
  * Returns a single item by iterating through the list, successively calling
@@ -3092,29 +3220,32 @@ var _reduce = __webpack_require__(18);
  * @example
  *
  *      R.reduce(R.subtract, 0, [1, 2, 3, 4]) // => ((((0 - 1) - 2) - 3) - 4) = -10
- *                -               -10
- *               / \              / \
- *              -   4           -6   4
- *             / \              / \
- *            -   3   ==>     -3   3
- *           / \              / \
- *          -   2           -1   2
- *         / \              / \
- *        0   1            0   1
+ *      //          -               -10
+ *      //         / \              / \
+ *      //        -   4           -6   4
+ *      //       / \              / \
+ *      //      -   3   ==>     -3   3
+ *      //     / \              / \
+ *      //    -   2           -1   2
+ *      //   / \              / \
+ *      //  0   1            0   1
  *
  * @symb R.reduce(f, a, [b, c, d]) = f(f(f(a, b), c), d)
  */
-module.exports = _curry3(_reduce);
 
+
+var reduce = /*#__PURE__*/_curry3(_reduce);
+module.exports = reduce;
 
 /***/ }),
 /* 66 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var _complement = __webpack_require__(42);
-var _curry2 = __webpack_require__(1);
-var filter = __webpack_require__(37);
+var _complement = /*#__PURE__*/__webpack_require__(41);
 
+var _curry2 = /*#__PURE__*/__webpack_require__(1);
+
+var filter = /*#__PURE__*/__webpack_require__(36);
 
 /**
  * The complement of [`filter`](#filter).
@@ -3140,18 +3271,20 @@ var filter = __webpack_require__(37);
  *
  *      R.reject(isOdd, {a: 1, b: 2, c: 3, d: 4}); //=> {b: 2, d: 4}
  */
-module.exports = _curry2(function reject(pred, filterable) {
+
+
+var reject = /*#__PURE__*/_curry2(function reject(pred, filterable) {
   return filter(_complement(pred), filterable);
 });
-
+module.exports = reject;
 
 /***/ }),
 /* 67 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var _curry1 = __webpack_require__(0);
-var _isString = __webpack_require__(17);
+var _curry1 = /*#__PURE__*/__webpack_require__(0);
 
+var _isString = /*#__PURE__*/__webpack_require__(17);
 
 /**
  * Returns a new list or string with the elements or characters in reverse
@@ -3177,19 +3310,20 @@ var _isString = __webpack_require__(17);
  *      R.reverse('a');        //=> 'a'
  *      R.reverse('');         //=> ''
  */
-module.exports = _curry1(function reverse(list) {
-  return _isString(list) ? list.split('').reverse().join('') :
-                           Array.prototype.slice.call(list, 0).reverse();
-});
 
+
+var reverse = /*#__PURE__*/_curry1(function reverse(list) {
+  return _isString(list) ? list.split('').reverse().join('') : Array.prototype.slice.call(list, 0).reverse();
+});
+module.exports = reverse;
 
 /***/ }),
 /* 68 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var _checkForMethod = __webpack_require__(9);
-var _curry3 = __webpack_require__(16);
+var _checkForMethod = /*#__PURE__*/__webpack_require__(9);
 
+var _curry3 = /*#__PURE__*/__webpack_require__(16);
 
 /**
  * Returns the elements of the given list or string (or object with a `slice`
@@ -3215,19 +3349,22 @@ var _curry3 = __webpack_require__(16);
  *      R.slice(-3, -1, ['a', 'b', 'c', 'd']);      //=> ['b', 'c']
  *      R.slice(0, 3, 'ramda');                     //=> 'ram'
  */
-module.exports = _curry3(_checkForMethod('slice', function slice(fromIndex, toIndex, list) {
+
+
+var slice = /*#__PURE__*/_curry3( /*#__PURE__*/_checkForMethod('slice', function slice(fromIndex, toIndex, list) {
   return Array.prototype.slice.call(list, fromIndex, toIndex);
 }));
-
+module.exports = slice;
 
 /***/ }),
 /* 69 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var _checkForMethod = __webpack_require__(9);
-var _curry1 = __webpack_require__(0);
-var slice = __webpack_require__(68);
+var _checkForMethod = /*#__PURE__*/__webpack_require__(9);
 
+var _curry1 = /*#__PURE__*/__webpack_require__(0);
+
+var slice = /*#__PURE__*/__webpack_require__(68);
 
 /**
  * Returns all but the first element of the given list or string (or object
@@ -3256,15 +3393,16 @@ var slice = __webpack_require__(68);
  *      R.tail('a');    //=> ''
  *      R.tail('');     //=> ''
  */
-module.exports = _curry1(_checkForMethod('tail', slice(1, Infinity)));
 
+
+var tail = /*#__PURE__*/_curry1( /*#__PURE__*/_checkForMethod('tail', /*#__PURE__*/slice(1, Infinity)));
+module.exports = tail;
 
 /***/ }),
 /* 70 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var _curry1 = __webpack_require__(0);
-
+var _curry1 = /*#__PURE__*/__webpack_require__(0);
 
 /**
  * Gives a single-word string description of the (native) type of a value,
@@ -3289,13 +3427,14 @@ var _curry1 = __webpack_require__(0);
  *      R.type([]); //=> "Array"
  *      R.type(/[A-z]/); //=> "RegExp"
  *      R.type(() => {}); //=> "Function"
+ *      R.type(undefined); //=> "Undefined"
  */
-module.exports = _curry1(function type(val) {
-  return val === null      ? 'Null'      :
-         val === undefined ? 'Undefined' :
-         Object.prototype.toString.call(val).slice(8, -1);
-});
 
+
+var type = /*#__PURE__*/_curry1(function type(val) {
+  return val === null ? 'Null' : val === undefined ? 'Undefined' : Object.prototype.toString.call(val).slice(8, -1);
+});
+module.exports = type;
 
 /***/ }),
 /* 71 */
@@ -3753,4 +3892,5 @@ module.exports = function (css) {
 
 /***/ })
 /******/ ]);
+});
 //# sourceMappingURL=placeload.js.map
